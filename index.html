@@ -34,6 +34,8 @@
         <link rel="stylesheet" href="lib/highlight/styles/default.css">
         <script src="lib/highlight/highlight.pack.js"></script>
         <!-- <script>hljs.initHighlightingOnLoad();</script> -->
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     </head>
     <body>
         <header>
@@ -41,17 +43,19 @@
             <div id = "titre"></div>
             <div id = "bdd"></div>
             <div id = "boutons">
-                <button class="dt-button" id = "accueil">Accueil</button>
-                <button class="dt-button" id = "lancer">Exécution</button>
-                <button class="dt-button" id = "tables">Tables</button class="dt-button">
-                <button class="dt-button" id = "schema">Schéma</button class="dt-button">
+                <button class="btn btn-primary" id = "accueil">Accueil</button>
+                <button class="btn btn-primary" id = "lancer">Exécution</button>
+                <button class="btn btn-primary" id = "tables">Tables</button>
+                <button class="btn btn-primary" id = "schema">Schéma</button>
             </div>
         </header>
         <section id = "interface">
         </section>
         <footer>
-            <p>Interface de cours SQL concernant uniquement la partie requêtage avec <code>SELECT</code> - Réalisé par <a href="http://fxjollois.github.io" target="_blank">FX Jollois</a></p>
-            <p>Développé avec la librairie <a href="https://github.com/kripken/sql.js/" target="_blank">sql.js</a>, basée sur <a href="https://www.sqlite.org/" target="_blank">SQLite</a>. Taper <code>CTRL + ENTER</code> pour exécuter. <a href="presentation/">Présentation de l'application</a></p>
+            <p>Interface de cours SQL concernant uniquement la partie requêtage avec <code>SELECT</code> - Réalisé par <a href="http://fxjollois.github.io" target="_blank">FX Jollois</a> 
+                et personnalisé par <a href="http://www.charon.org" target="_blank">JN Charon</a></p>
+            <p>Développé avec la librairie <a href="https://github.com/kripken/sql.js/" target="_blank">sql.js</a>, basée sur 
+                <a href="https://www.sqlite.org/" target="_blank">SQLite</a>. Taper <code>CTRL + ENTER</code> pour exécuter. <a href="presentation/">Présentation de l'application</a></p>
         </footer>
         <script src="lib/interface.js"></script>
     </body>
