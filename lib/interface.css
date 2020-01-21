@@ -2,7 +2,7 @@ body {
     font-family: sans-serif;
     font-size: 12pt;
     height: 100%;
-    background-color: #eee;
+    background-color: white;
 }
 
 body, header h1, table, p {
@@ -51,7 +51,7 @@ footer p {
     margin-top: 5px;
 }
 
-/* Affichage des liens */
+/* Affichage des liens 
 a {
     text-decoration: none;
     color: darkred;
@@ -59,9 +59,9 @@ a {
 a:hover {
     color: red;
 }
+*/
 
-/* Affichage des boutons */
-
+/* Affichage des boutons
 button:hover {
     background-color: steelblue;
     cursor: pointer;
@@ -69,9 +69,10 @@ button:hover {
 button.active {
     background-color: darkslategrey;
 }
-
+*/
 #choixAccueil button {
     width: 300px;
+    margin-bottom: 5px;
 }
 
 /* accueil */
@@ -170,4 +171,6 @@ button.item {
     position: sticky;
     top: 0;
     background-color: white;
+    margin-bottom:3px;
+    padding-bottom: 3px;
 }
