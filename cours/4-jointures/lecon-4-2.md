@@ -95,5 +95,8 @@ SELECT COUNT(DISTINCT CodeCli)
 - Nom et prénom du client
 - Numéro de commande
 - Nom du produit
-- Quantité du produit
+- Nom du fournisseur du produit
+- Quantité commandée 
 - Prix total pour produit
+5. Afficher pour chaque employé la liste des commandes qu'il a traité avec leur montant total
+6. Afficher la liste des clients ayant commandé pour plus de 100€ du produit référence numéro `68`

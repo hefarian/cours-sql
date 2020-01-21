@@ -80,7 +80,7 @@ Un **jointure naturelle** n'est donc pas réalisable lorsque :
 1. Récupérer les informations des fournisseurs pour chaque produit
 2. Afficher les informations des commandes du client `"Lazy K Kountry Store"`
 3. Afficher le nombre de commande pour chaque messager (en indiquant son nom)
-4. Afficher, pour chaque commande : 
+4. Afficher, pour chaque commande en recoupant la table principale et la table de détail : 
 - Numéro de commande
 - Montant total de la commande
 - Montant de la remise
