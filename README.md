@@ -1,12 +1,14 @@
 # Cours-SQL
+Ce projet est un fork du projet de FX Jollois disponible ici : https://github.com/fxjollois/cours-sql. J'y ai ajouté des exercices complémentaires et modifié un peu le style pour uniformiser l'interface.
 
-Application web interactive de cours `SQL` accessible [ici](http://fxjollois.github.io/cours-sql). Pour le moment, seule la partie `SELECT` est abordée dans ce cours.
 
-Vous pouvez voir une [présentation](https://fxjollois.github.io/cours-sql/presentation/) de l'outil.
+Application web interactive de cours `SQL` accessible [ici](http://www.charon.org/cours-sql/index.html). Pour le moment, seule la partie `SELECT` est abordée dans ce cours.
 
-Si vous souhaitez prévenir de problèmes sur l'application, ou demander des améliorations, n'hésitez pas à faire une [demande](https://github.com/fxjollois/cours-sql/issues).
+Vous pouvez voir une [présentation](https://www.charon.org/cours-sql/presentation/) de l'outil.
 
-Enfin, le code de l'application, ainsi que toutes les données (cours et bases `SQLite`), est disponible sur cette [page](https://github.com/fxjollois/cours-sql).
+Si vous souhaitez prévenir de problèmes sur l'application, ou demander des améliorations, n'hésitez pas à faire une [demande](https://github.com/jncharon/cours-sql/issues).
+
+Enfin, le code de l'application, ainsi que toutes les données (cours et bases `SQLite`), est disponible sur cette [page](https://github.com/jncharon/cours-sql).
 
 ## Outils utilisés
 
