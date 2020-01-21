@@ -87,3 +87,7 @@ SELECT NoFour, CodeCateg, COUNT(*)
 2. Donner le montant moyen du port par messager
 3. Donner le nombre de catégories de produits fournis par chaque fournisseur
 4. Donner le prix moyen des produits pour chaque fournisseur et chaque catégorie de produits fournis par celui-ci
+5. Depuis la table `DetailCommande`, donner le prix total et le montant total de TVA de chaque commande 
+6. Donner le prix moyen et le prix médian des produits de la catégorie numéro 2
+7. Lister le nombre de client par pays et par ville  
+8. Lister les cinq employés ayant géré le plus de commandes 

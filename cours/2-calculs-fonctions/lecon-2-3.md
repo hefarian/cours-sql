@@ -82,3 +82,4 @@ Adresse, CodePostal Ville, Pays
 3. Mettre en minuscule le nom des sociétés
 4. Remplacer le terme `"marketing"` par `"mercatique"` dans la fonction des contacts
 5. Indiquer la présence du terme `"Chef"` dans la fonction du contact
+6. Sélectionner les noms et prénoms des clients en mettant la première lettre de leur nom en majuscule

@@ -115,3 +115,7 @@ Il faut noter que l'opérateur `LIKE` est insensible à la casse, i.e. il ne tie
 2. Lister les clients suisses, allemands et belges
 3. Lister les clients dont le numéro de fax n'est pas renseigné
 4. Lister les clients dont le nom contient `"restaurant"` (nom présent dans la colonne `Societe`)
+5. Lister les produits dont le prix est entre 90 et 100€
+6. Lister les produits fournis par les fournisseurs 16, 18 et 19
+7. Lister les produits de la catégorie 1 (colonne `CodeCateg`) dont des unités sont commandés (colonne `UnitesCom`)
+8. Lister les produits en stock (colonne `UnitesStock`) du fournisseur N°23 qui ne sont pas en commande conditionné par 500ml

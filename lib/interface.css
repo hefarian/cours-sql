@@ -15,6 +15,7 @@ header {
     height: 100px;
     padding-left: 50px;
     overflow: hidden;
+    background-color: white;
 }
 header h1, header h2, #boutons {
     display: inline-block;
@@ -44,6 +45,7 @@ footer {
     text-align: center;
     font-size: .9em;
     overflow: hidden;
+    background-color: white;
 }
 footer p {
     margin-top: 5px;
@@ -60,14 +62,33 @@ a:hover {
 
 /* Affichage des boutons */
 button {
-    min-width: 60px;
-    height: 40px;
-    border: none; /* solid 1px black; */
-    background-color: slategray;
-    color: snow;
-    font-size: 1.2em;
-    margin: 10px auto;
-    text-align: left;
+    position: relative;
+    display: inline-block;
+    box-sizing: border-box;
+    margin-right: 0.333em;
+    margin-bottom: 0.333em;
+    padding: 0.5em 1em;
+    border: 1px solid #999;
+    border-radius: 2px;
+    cursor: pointer;
+    font-size: 0.88em;
+    line-height: 1.6em;
+    color: black;
+    white-space: nowrap;
+    overflow: hidden;
+    background-color: #e9e9e9;
+    background-image: -webkit-linear-gradient(top, #fff 0%, #e9e9e9 100%);
+    background-image: -moz-linear-gradient(top, #fff 0%, #e9e9e9 100%);
+    background-image: -ms-linear-gradient(top, #fff 0%, #e9e9e9 100%);
+    background-image: -o-linear-gradient(top, #fff 0%, #e9e9e9 100%);
+    background-image: linear-gradient(to bottom, #fff 0%, #e9e9e9 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='white', EndColorStr='#e9e9e9');
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    text-decoration: none;
+    outline: none;
 }
 button:hover {
     background-color: steelblue;

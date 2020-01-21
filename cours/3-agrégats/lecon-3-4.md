@@ -56,3 +56,4 @@ SELECT attributs, calculs, agrégats
 2. Lister les catégories dont les prix sont en moyenne supérieurs strictement à 150 euros
 3. Lister les fournisseurs ne fournissant qu'une seule catégorie de produits
 4. Lister les fonctions pour lesquelles la moyenne d'âge des employés dépasse les 45 ans
+5. Lister les numéros de commandes et leur prix total lorsque qu'il est supérieur ou égal à 1000€ en les triant par montant décroissant

@@ -88,5 +88,5 @@ SELECT Refprod, UnitesStock, UnitesCom, NiveauReap,
 	- si elle vaut entre 6 et 15% (inclus) : `"remise modérée"`
 	- sinon :`"remise importante"`
 3. Indiquer pour les commandes envoyées si elles ont été envoyées en retard (date d'envoi `DateEnv` supérieure (ou égale) à la date butoir `ALivAvant`) ou à temps
-
+4. Lister le nom et la disponibilité des produits en affichant `"Disponible"` ou `"Indisponible"` en fonction de la valeur de la colonne `Indisponible`
 

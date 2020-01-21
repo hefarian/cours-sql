@@ -34,7 +34,7 @@ Il est possible d'indiquer de deux façons le ou les attributs à prendre en com
 - par leur nom
 - par leur position dans la table
 
-Les deux requêtes suivantes sont les mêmes et permettent toutes deux d'avoir la liste des employés triés dans l'ordre croissant de leur nom (attribut `Nom` placé en 2ème position).
+Les deux requêtes suivantes sont les mêmes et permettent toutes deux d'avoir la liste des employés triés dans l'ordre croissant de leur nom (attribut `Nom` placé en 2ème position). Le terme **`ASC`** peut être spécifié mais n'est pas nécessaire car il est appliqué par défaut.
 
 ```sql
 SELECT * 
@@ -46,6 +46,12 @@ SELECT *
 SELECT * 
     FROM Employe
     ORDER BY 2;
+```
+
+```sql
+SELECT * 
+    FROM Employe
+    ORDER BY Nom ASC;
 ```
 
 Dans un souci de clarté, il est tout de même préférable d'utiliser la première option.
@@ -80,6 +86,4 @@ SELECT *
 2. N'afficher que les 10 premiers produits
 3. Trier tous les produits par leur prix unitaire (attribut `PrixUnit`)
 4. Lister les trois produits les plus chers
-
-
- 
+5. Lister les employés (table `Employe`) triés par ville puis par nom croissants
