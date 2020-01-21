@@ -174,3 +174,7 @@ button.item {
     margin-bottom:3px;
     padding-bottom: 3px;
 }
+
+.ace_content {
+    background-color: #f5f5f5;
+}

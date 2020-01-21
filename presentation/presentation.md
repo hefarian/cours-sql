@@ -6,7 +6,7 @@ class: middle, center, inverse, title
 
 François-Xavier Jollois
 
-.footnote[lien vers le [site](https://github.com/fxjollois/cours-sql/)]
+.footnote[lien vers le [site](https://github.com/jncharon/cours-sql/)]
 
 ---
 
@@ -98,7 +98,7 @@ class: middle, center, inverse
 
 Une démonstration ?
 
-# [Lien vers l'application web](https://fxjollois.github.io/cours-sql/) 
+# [Lien vers l'application web](https://www.charon.org/sql/index.html) 
 
 ---
 
@@ -126,4 +126,4 @@ class: middle, center, inverse
 
 ## N'hésitez pas à utiliser et à participer éventuellement
 
-### [Projet Github](http://github.com/fxjollois/cours-sql)
+### [Projet Github](http://github.com/jncharon/cours-sql)
