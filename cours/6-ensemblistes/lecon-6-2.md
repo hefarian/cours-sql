@@ -21,5 +21,6 @@ Les règles pour le tri et la limitation des résultats sont aussi les mêmes.
 Avec l'opérateur `INTERSECT` :
 
 1. Lister les employés (nom et prénom) étant `"Représentant(e)"` et étant basé au `"Royaume-Uni"` 
-2. Lister les clients (société et pays) ayant commandés via un employé basé à `"Seattle"` et ayant commandé des `"Desserts"`
+2. Lister les clients (société et pays) ayant commandé via un employé basé à `"Seattle"` et ayant commandé des `"Desserts"`
+3. Lister les clients (nom et prénom) ayant commandé 
 
