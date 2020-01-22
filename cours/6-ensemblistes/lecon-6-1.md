@@ -1,6 +1,10 @@
 # Union
 
-L'**union** est une opération ensembliste qui consiste à prendre les éléments présents dans *A* et dans *B*, *A* et *B* étant deux ensembles obtenus grâce à des requêtes, et réuni grâce à l'opérateur `UNION`. L'exemple ci-dessous renvoie tous les clients qui sont français (premier `SELECT`) ou dont le contact est le propriétaire de l'entreprise (deuxième `SELECT`).
+L'**union** est une opération ensembliste qui consiste à prendre les éléments présents dans *A* et dans *B*, *A* et *B* étant deux ensembles obtenus grâce à des requêtes, et réuni grâce à l'opérateur `UNION`. L'exemple ci-dessous renvoie
+
+Cela permet d'aggréger les données provenant de deux requêtes SQL indépendantes mais ayant des clauses `SELECT` compatibles.
+
+Tous les clients qui sont français (premier `SELECT`) ou dont le contact est le propriétaire de l'entreprise (deuxième `SELECT`).
 
 ```sql
 SELECT Societe, Fonction, Pays
@@ -12,11 +16,21 @@ SELECT Societe, Fonction, Pays
     WHERE Fonction = "Propriétaire";
 ``` 
 
-Il faut noter que les deux `SELECT` doivent absolument renvoyer les mêmes champs.
+Il faut noter que les deux `SELECT` doivent absolument renvoyer des champs ayant des types compatibles. Si besoin il est possible de tricher un peu : 
+
+```sql
+SELECT Societe, Fonction, Pays
+    FROM Client
+    WHERE Pays = "France"
+UNION
+SELECT Societe, Fonction, Pays
+    FROM Client
+    WHERE Fonction = "Propriétaire";
+``` 
 
 ## Ordre et limite
 
-Si l'on souhaite faire un tri du résultat, et/ou se limiter aux premières lignes, les commandes `ORDER BY` et `LIMIT` doivent se placer tout à la fin. Par exemple, nous trions ici la réquête précédente sur le nom de la société.
+Si l'on souhaite faire un tri du résultat, et/ou se limiter aux premières lignes, les commandes `ORDER BY` et `LIMIT` doivent se placer tout à la fin, dans la dernière requête SQL. Par exemple, nous trions ici la réquête précédente sur le nom de la société.
 
 ```sql
 SELECT Societe, Fonction, Pays
@@ -63,5 +77,5 @@ ORDER BY 1;
 En utilisant la clause `UNION` :
 
 1. Lister les employés (nom et prénom) étant `"Représentant(e)"` ou étant basé au `"Royaume-Uni"`
-1. Lister les clients (société et pays) ayant commandés via un employé situé à Londres (`"London"` pour rappel) ou ayant été livré par `"Speedy Express"`
+2. Lister les clients (société et pays) ayant commandé via un employé situé à Londres (`"London"` pour rappel) ou ayant été livré par `"Speedy Express"`
 
