@@ -41,6 +41,8 @@ SELECT NoEmp, UPPER(Nom) || " " || SUBSTR(Prenom, 1, 1) || "."
     FROM Employe;
 ```
 
+## Longueur d'une chaîne
+
 La commande `LENGTH(chaine)` permet de renvoyer la longueur de la chaîne (i.e. le nombre de caractères, y compris les espaces).
 
 ```sql
@@ -67,6 +69,16 @@ Ci-dessous, nous cherchons la présence du terme `"Ave."` dans l'adresse des emp
 ```sql
 SELECT Nom, Adresse,
         INSTR(Adresse, "Ave.")
+    FROM Employe;
+```
+
+## Suppression de caractères 
+
+Les données saisies dans les tables contiennent parfois des espaces ou d'autres caractères indésirables au début ou à la fin des données. La fonction `TRIM()` et ses variantes `RTRIM()` et `LTRIM()` permettent de supprimer ces caractères. La requête suivante retire les points à la fin des adresses.
+
+```sql
+SELECT Nom, Adresse,
+        RTRIM(Adresse, ".")
     FROM Employe;
 ```
 
