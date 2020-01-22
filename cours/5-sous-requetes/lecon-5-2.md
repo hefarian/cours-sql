@@ -41,4 +41,6 @@ SELECT Societe, Ville, Pays
 
 1. Lister les produits n'ayant jamais été commandés, à l'aide de l'opérateur `EXISTS`
 2. Lister les fournisseurs dont au moins un produit a été livré en France
-3. Liste des fournisseurs qui ne proposent que des boissons
+3. Lister les fournisseurs qui ne proposent que des boissons
+4. Lister les produits pour lesquels il existe une remise supérieure à 20%
+5. Lister les clients qui n'ont pas commandé le produit `"Sasquatch Ale"`
