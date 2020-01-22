@@ -6,7 +6,7 @@ Il est possible et souvent intéressant d'utiliser des sous-requêtes, renvoyant
 - faire des calculs et utiliser le résultat dans un autre
 - ...
 
-## dans `WHERE`
+## dans la clause  `WHERE`
 
 Il est déjà possible de comparer un attribut avec le résultat d'une requête. Ici, nous cherchons les commandes du client `"Bon app"`. On peut bien sûr réaliser cette opération avec une jointure, comme ci-dessous.
 
@@ -46,7 +46,7 @@ SELECT NoCom
 							WHERE Pays = "France");
 ```
 
-## dans le `FROM`
+## dans la clause `FROM`
 
 On a aussi la possibilité de faire une sous-requête dans la partie `FROM` du requête. Ceci peut permettre de faire une restriction avant la jointure. Ou aussi de faire des calculs. En reprenant l'exemple du client `"Bon app"`, on peut aussi faire la requête suivante.
 
@@ -79,7 +79,7 @@ SELECT NoCom, Port + TotalProd AS Total
             GROUP BY NoCom);
 ```
 
-## Comparaison dans une sous-requête
+## Sous-requêtes corrélées
 
 Il est possible de faire référence dans une sous-requête à une valeur de la table (ou des tables) de la requête initiale.
 
@@ -96,5 +96,7 @@ SELECT RefProd, NomProd, PrixUnit
 ## Exercices
 
 1. Lister les employés n'ayant jamais effectué une commande, via une sous-requête
-1. Nombre de produits proposés par la société fournisseur `"Mayumis"`, via une sous-requête
-1. Nombre de commandes passées par des employés sous la responsabilité de `"Patrick Emery"`
+2. Nombre de produits proposés par la société fournisseur `"Mayumis"`, via une sous-requête
+3. Nombre de commandes passées par des employés sous la responsabilité de `"Patrick Emery"`
+4. Lister les numéros de commande ayant un montant un montant supérieur à au montant moyen des commandes
+5.  Lister les commandes pour lesquelles les remises réalisées sont supérieures au montant moyen des remises

@@ -40,5 +40,5 @@ SELECT Societe, Ville, Pays
 ## Exercices
 
 1. Lister les produits n'ayant jamais été commandés, à l'aide de l'opérateur `EXISTS`
-1. Lister les fournisseurs dont au moins un produit a été livré en France
-1. Liste des fournisseurs qui ne proposent que des boissons
+2. Lister les fournisseurs dont au moins un produit a été livré en France
+3. Liste des fournisseurs qui ne proposent que des boissons
