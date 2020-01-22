@@ -1,4 +1,4 @@
-# Fonctions diverses
+# Fonctions de gestion des valeurs `NULL`
 
 Il existe des fonctions utiles pour manipuler les valeurs nulles que l'on trouve dans les tables. Nous allons voir `IFNULL()` pour remplacer les valeurs nulles par un autre, `NULLIF()` pour remplacer une valeur par un null.
 
