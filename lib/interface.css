@@ -41,7 +41,7 @@ header h1, header h2, #boutons {
 
 /* pied de page */
 footer {
-    height: 50px;
+    height: 30px;
     text-align: center;
     font-size: .9em;
     overflow: hidden;

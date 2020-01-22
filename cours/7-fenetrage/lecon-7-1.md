@@ -2,16 +2,33 @@
 
 Ces fonctions vont effectuer des calcules basés sur des lignes liées à une ligne particulière. Contrairement aux fonctions de regroupement, elles n'aggrègent pas les données.
 
-Ces fonctions nécessitent d'utiliser une fenêtre avec la clause `PARTITION BY`. Cette clause divise les lignes en sous-ensembles auxquels la fonction va s'appliquer.
+Ces fonctions nécessitent d'utiliser une fenêtre avec la clause `PARTITION BY`. Cette clause, dite de **partitionnement** ou de **fenêtrage**, divise les lignes en sous-ensembles auxquels la fonction va s'appliquer.
 
-La requête ci-dessous ramène les commandes avec leur montant total, trié par date, utilisons la comme base pour tester ces fonctions.
+## Clause de partitionnement
+
+La clause de partitionnement permet de grouper les données selon un critère puis d'appliquer la fonction sur la fenêtre ainsi créée. La requête suivante partitionne les données par date et numérote les lignes individuellement dans chaque groupe.
+Sans cette clause de partitionnement, toutes les lignes sont considérées comme une seule partition.
+
+
+## Fonction `ROW_NUMBER()`
+
+Cette fonction va numéroter les lignes du groupe qui est créé par la clause de partitionnement. 
+
+```sql
+SELECT
+        ROW_NUMBER () OVER ( 
+            ORDER BY Societe
+        ) RowNum,
+        Societe,
+        Contact,
+        Pays 
+    FROM Fournisseur;
+```
 
 
 ## Fonction `RANK()`
 
 Cette fonction calcule le rang de chaque ligne parmi l'ensemble des lignes retournées.
-
-### Exemple simple
 
 ```sql
 SELECT
@@ -19,29 +36,39 @@ SELECT
     FROM Commande;
 ```
 
-### Exemple avec jointure
-
 Cette requête liste les commandes triées par montant croissant et affiche le rang correspondant.
+
+### Exemple sans partitionnement
 
 ```sql
 SELECT DateCom, Nocom, SUM(PrixUnit) "Montant total", 
-    RANK () OVER (ORDER BY SUM(PrixUnit))
+    RANK() OVER (ORDER BY SUM(PrixUnit))
     FROM Commande NATURAL JOIN DetailCommande
     GROUP BY Nocom
     ORDER BY SUM(PrixUnit);
 ```
 
-## Clause de partitionnement
-
-La clause de partitionnement permet de grouper les données selon un critère puis d'appliquer la fonction sur la fenêtre ainsi créée. La requête suivante partitionne les données par date et numérote les lignes individuellement dans chaque groupe.
-Sans cette clause de partitionnement, toutes les lignes sont considérées comme une seule partition.
+### Exemple avec clause de partitionnement
 
 ```sql
 SELECT DateCom, Nocom, SUM(PrixUnit) "Montant total", 
-    RANK () OVER (PARTITION BY DateCom ORDER BY SUM(PrixUnit))
+    RANK() OVER (PARTITION BY DateCom ORDER BY SUM(PrixUnit))
     FROM Commande NATURAL JOIN DetailCommande
     GROUP BY Nocom
     ORDER BY DateCom;
+```
+
+
+## Fonction `PERCENT_RANK()`
+
+`PERCENT_RANK()` affiche le % de rang de la ligne considérée. La valeur étant décimale, il convient de la multiplier par 100 pour avoir la valeur en pourcentage.
+
+```sql
+SELECT DateCom, Nocom, SUM(PrixUnit) "Montant total", 
+    PERCENT_RANK() OVER (ORDER BY SUM(PrixUnit)) * 100
+    FROM Commande NATURAL JOIN DetailCommande
+    GROUP BY Nocom
+    ORDER BY SUM(PrixUnit);
 ```
 
 
@@ -53,7 +80,7 @@ Elle prend trois arguments :
 - offset : le décalage vers les lignes précédentes
 - default : valeur par défaut si aucune ligne précédente n'existe
 
-### Exemple simple
+### Exemple sans partitionnement
 
 ```sql
 SELECT 
@@ -166,4 +193,24 @@ SELECT
     GROUP BY strftime('%Y-%m', DateCom)
     ORDER BY DateCom;
 ```
+
+
+## Fonction `NTILE()`
+
+La fonction `NTILE()` permet de classer les valeurs en groupes similaires. L'argument de la fonction définit le nombre de groupes que l'on veut créer. 
+
+La requête ci-dessous liste les produits par catégorie et les classe en trois groupes de prix croissants.
+
+```sql
+SELECT CodeCateg, PrixUnit, 
+    NTILE (3) OVER ( 
+        PARTITION BY CodeCateg
+        ORDER BY PrixUnit
+    ) "Bucket" 
+    FROM Produit 
+    ORDER BY CodeCateg;
+```
+
+
+
 
