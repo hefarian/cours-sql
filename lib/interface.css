@@ -51,25 +51,6 @@ footer p {
     margin-top: 5px;
 }
 
-/* Affichage des liens 
-a {
-    text-decoration: none;
-    color: darkred;
-}
-a:hover {
-    color: red;
-}
-*/
-
-/* Affichage des boutons
-button:hover {
-    background-color: steelblue;
-    cursor: pointer;
-}
-button.active {
-    background-color: darkslategrey;
-}
-*/
 #choixAccueil button {
     width: 300px;
     padding: 10px;
@@ -87,11 +68,6 @@ button.active {
 }
 
 /* lecon */
-/*
-#lecon h1, #lecon p, #lecon pre {
-    margin: 10px;
-}
-*/
 #lecon {
     padding: 10px;
 }
@@ -114,9 +90,22 @@ button.active {
 }
 
 /* paramètre de l'interface */
-#information, #droite {
+#information,#droite {
     float: left;
     height: 100%;
+}
+#logo {
+    float: left;
+    height: 100%;
+}
+#choixDroite {
+    float: left;
+    height: 100%;
+}
+#choixGauche {
+    float: left;
+    height: 100%;
+    margin-right: 30px;
 }
 #information {
     width: 40%;

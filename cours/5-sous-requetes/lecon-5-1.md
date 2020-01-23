@@ -6,7 +6,7 @@ Il est possible et souvent intéressant d'utiliser des sous-requêtes, renvoyant
 - faire des calculs et utiliser le résultat dans un autre
 - ...
 
-## dans la clause  `WHERE`
+## Dans la clause  `WHERE`
 
 Il est déjà possible de comparer un attribut avec le résultat d'une requête. Ici, nous cherchons les commandes du client `"Bon app"`. On peut bien sûr réaliser cette opération avec une jointure, comme ci-dessous.
 
@@ -46,7 +46,7 @@ SELECT NoCom
 							WHERE Pays = "France");
 ```
 
-## dans la clause `FROM`
+## Dans la clause `FROM`
 
 On a aussi la possibilité de faire une sous-requête dans la partie `FROM` du requête. Ceci peut permettre de faire une restriction avant la jointure. Ou aussi de faire des calculs. En reprenant l'exemple du client `"Bon app"`, on peut aussi faire la requête suivante.
 
@@ -84,6 +84,8 @@ SELECT NoCom, Port + TotalProd AS Total
 Il est possible de faire référence dans une sous-requête à une valeur de la table (ou des tables) de la requête initiale.
 
 On peut par exemple chercher les produits pour lesquels il existe une vente (table `DetailCommande`) de celui-ci au même prix que le prix actuel (donc celui dans `Produit`).
+
+Attention, avec cette syntaxe la requête imbriquée est exécutée pour chaque ligne renvoyée par la requête principale : les performances peuvent être décevantes !
 
 ```sql
 SELECT RefProd, NomProd, PrixUnit
