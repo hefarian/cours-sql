@@ -10,9 +10,9 @@ La clause de partitionnement permet de grouper les données selon un critère pu
 Sans cette clause de partitionnement, toutes les lignes du résultat sont considérées comme une seule partition.
 
 
-## Fonction `ROW_NUMBER()`
+## Numérotation des lignes
 
-Cette fonction va numéroter les lignes en fonction de leur apparition dans le résultat de la reqûete. La numérotation recommence pour chaque groupe créé par la clause de partitionnement. 
+La fonction `ROW_NUMBER()` va numéroter les lignes en fonction de leur apparition dans le résultat de la reqûete. La numérotation recommence pour chaque groupe créé par la clause de partitionnement. 
 
 ### `ROW_NUMBER()` sans partitionnement
 
@@ -41,9 +41,9 @@ SELECT
     FROM Fournisseur;
 ```
 
-## Fonction `RANK()`
+## Calcul du rang d'une ligne
 
-Cette fonction calcule le rang de chaque ligne parmi l'ensemble des lignes retournées.
+La fonction `RANK()` calcule le rang de chaque ligne parmi l'ensemble des lignes retournées.
 
 ```sql
 SELECT
@@ -81,7 +81,7 @@ SELECT DateCom, Nocom, SUM(PrixUnit) "Montant total",
 ```
 
 
-## Fonction `PERCENT_RANK()`
+## Calcul du pourcentage dans le rang
 
 `PERCENT_RANK()` affiche le % de rang de la ligne considérée. La valeur étant décimale, il convient de la multiplier par 100 pour avoir la valeur en pourcentage.
 
@@ -99,7 +99,7 @@ SELECT DateCom, Nocom, SUM(PrixUnit) "Montant total",
 
 
 
-## Fonction `LAG()`
+## Accès à la ligne précédente
 
 `LAG()` permet d'accéder, sur une ligne, à la valeur de la ligne précédente. Cela permet de faire des sous-totaux cumulés ou des calculs de variation. 
 Elle prend trois arguments :
@@ -162,7 +162,7 @@ SELECT
 ```
 
 
-## Fonction `LEAD()`
+## Accès à la ligne suivante
 
 La fonction `LEAD()` à l'inverse de `LAG()` permet d'accéder à la valeur de la ligne suivante.
 
@@ -204,7 +204,7 @@ SELECT
 ```
 
 
-## Fonction `NTH_VALUE()`
+## Accès à une ligne définie
 
 Si `LEAD()` et `LAG()` permettent d'avoir la valeur d'avant et la valeur d'après, la fonction `NTH_VALUE()` permet de sélectionner la position relative de la ligne dont on veut la valeur. 
 
@@ -230,7 +230,7 @@ FROM Commande;
 ```
 
 
-## Fonction `FIRST_VALUE()`
+## Accès à la première valeur d'une partition
 
 La fonction `FIRST_VALUE()` permet de récupérer la première valeur d'une partition sur chaque ligne de la partition. Lorsque la partition est triée, cela permet d'avoir la valeur minimum de la partition.
 
@@ -252,7 +252,7 @@ SELECT
 La clause `UNBOUNDED PRECEDING` permet de scanner toutes les lignes précédant la ligne courante dans la partition.
 
 
-## Fonction `LAST_VALUE()`
+## Accès à la dernière valeur d'une partition
 
 La fonction `LAST_VALUE()` est l'inverse de la fonction `FISRT_VALUE()`. Lorsque la partition est triée, cela permet d'avoir la valeur maximum de la partition.
 
@@ -274,7 +274,7 @@ SELECT
 La clause `UNBOUNDED FOLLOWING` permet de scanner toutes les lignes suivant la ligne courante dans la partition.
 
 
-## Fonction `NTILE()`
+## Classification des valeurs de la partition
 
 La fonction `NTILE()` permet de classer les valeurs en groupes similaires. L'argument de la fonction définit le nombre de groupes que l'on veut créer. 
 
@@ -291,7 +291,7 @@ SELECT CodeCateg, PrixUnit,
 ```
 
 
-## Fonction `CUME_DIST()`
+## Distribution cumulée
 
 Cette fonction calcule le pourcentage de distribution cumulé des valeurs de la partition. Voici un calcul pour illustrer ce pourcentage :
 ```

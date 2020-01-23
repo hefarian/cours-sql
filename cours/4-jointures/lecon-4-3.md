@@ -78,6 +78,18 @@ SELECT Cl.CodeCli, COUNT(NoCom), AVG(Port)
 ```
 
 
+## Jointures externes complètes
+
+Les jointures externes peuvent être ouvertes "des deux côtés", en mettant en correspondance toutes les lignes qui vont ensemble et en ajoutant les autres lignes des autres tables.
+
+Par exemple, nous pouvons lister les produits commandés avec leur client correspondants, en incluant les clients n'ayant rien commandé et les produits jamais commandés.
+
+Voici un exemple non fonctionnel car non supporté par SQLite dans cet environnement :
+```sql
+SELECT ... FROM Client Cl FULL OUTER JOIN Commande Co
+```
+
+
 ## Exercices
 
 1. Compter pour chaque produit, le nombre de commandes où il apparaît, même pour ceux dans aucune commande
