@@ -1,3 +1,3 @@
 # Exercices complémentaires
 
-Aucun exercice pour le moment.
+1. A l'aide des fonctions 

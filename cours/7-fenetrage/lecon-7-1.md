@@ -7,12 +7,14 @@ Ces fonctions nécessitent d'utiliser une fenêtre avec la clause `PARTITION BY`
 ## Clause de partitionnement
 
 La clause de partitionnement permet de grouper les données selon un critère puis d'appliquer la fonction sur la fenêtre ainsi créée. La requête suivante partitionne les données par date et numérote les lignes individuellement dans chaque groupe.
-Sans cette clause de partitionnement, toutes les lignes sont considérées comme une seule partition.
+Sans cette clause de partitionnement, toutes les lignes du résultat sont considérées comme une seule partition.
 
 
 ## Fonction `ROW_NUMBER()`
 
-Cette fonction va numéroter les lignes du groupe qui est créé par la clause de partitionnement. 
+Cette fonction va numéroter les lignes en fonction de leur apparition dans le résultat de la reqûete. La numérotation recommence pour chaque groupe créé par la clause de partitionnement. 
+
+### `ROW_NUMBER()` sans partitionnement
 
 ```sql
 SELECT
@@ -25,6 +27,19 @@ SELECT
     FROM Fournisseur;
 ```
 
+### `ROW_NUMBER()` avec partitionnement
+
+```sql
+SELECT
+        ROW_NUMBER () OVER ( 
+            PARTITION BY Pays
+            ORDER BY Societe
+        ) RowNum,
+        Societe,
+        Contact,
+        Pays 
+    FROM Fournisseur;
+```
 
 ## Fonction `RANK()`
 
@@ -32,27 +47,34 @@ Cette fonction calcule le rang de chaque ligne parmi l'ensemble des lignes retou
 
 ```sql
 SELECT
-    Nocom, RANK () OVER (ORDER BY Nocom)
+    Nocom, RANK () OVER (
+        ORDER BY Nocom
+    )
     FROM Commande;
 ```
 
 Cette requête liste les commandes triées par montant croissant et affiche le rang correspondant.
 
-### Exemple sans partitionnement
+### `RANK()` sans partitionnement
 
 ```sql
 SELECT DateCom, Nocom, SUM(PrixUnit) "Montant total", 
-    RANK() OVER (ORDER BY SUM(PrixUnit))
+    RANK() OVER (
+        ORDER BY SUM(PrixUnit)
+    )
     FROM Commande NATURAL JOIN DetailCommande
     GROUP BY Nocom
     ORDER BY SUM(PrixUnit);
 ```
 
-### Exemple avec clause de partitionnement
+### `RANK()` avec partitionnement
 
 ```sql
 SELECT DateCom, Nocom, SUM(PrixUnit) "Montant total", 
-    RANK() OVER (PARTITION BY DateCom ORDER BY SUM(PrixUnit))
+    RANK() OVER (
+        PARTITION BY DateCom 
+        ORDER BY SUM(PrixUnit)
+    )
     FROM Commande NATURAL JOIN DetailCommande
     GROUP BY Nocom
     ORDER BY DateCom;
@@ -63,13 +85,18 @@ SELECT DateCom, Nocom, SUM(PrixUnit) "Montant total",
 
 `PERCENT_RANK()` affiche le % de rang de la ligne considérée. La valeur étant décimale, il convient de la multiplier par 100 pour avoir la valeur en pourcentage.
 
+### `PERCENT_RANK()` sans partitionnement 
+
 ```sql
 SELECT DateCom, Nocom, SUM(PrixUnit) "Montant total", 
-    PERCENT_RANK() OVER (ORDER BY SUM(PrixUnit)) * 100
+    PERCENT_RANK() OVER (
+        ORDER BY SUM(PrixUnit)
+    ) * 100 "% cumulé"
     FROM Commande NATURAL JOIN DetailCommande
     GROUP BY Nocom
     ORDER BY SUM(PrixUnit);
 ```
+
 
 
 ## Fonction `LAG()`
@@ -80,20 +107,22 @@ Elle prend trois arguments :
 - offset : le décalage vers les lignes précédentes
 - default : valeur par défaut si aucune ligne précédente n'existe
 
-### Exemple sans partitionnement
+### `LAG()` sans partitionnement
 
 ```sql
 SELECT 
     STRFTIME('%Y', DateCom) "Année", 
     Nocom, 
     SUM(PrixUnit) "CA Annuel N", 
-    LAG (SUM(PrixUnit),  1, 0) OVER ( ORDER BY DateCom) "CA Annuel N-1" 
+    LAG (SUM(PrixUnit),  1, 0) OVER (
+        ORDER BY DateCom
+    ) "CA Annuel N-1" 
     FROM Commande NATURAL JOIN DetailCommande
     GROUP BY strftime('%Y', DateCom)
     ORDER BY DateCom;
 ```
 
-### Exemple avec clause de partitionnement
+### `LAG()` avec clause de partitionnement
 
 Cette variante de la requête précédente partitionne les données par année puis par client.
 
@@ -142,7 +171,7 @@ Elle prend trois arguments :
 - offset : le décalage vers les lignes précédentes
 - default : valeur par défaut si aucune ligne précédente n'existe
 
-### Exemple simple
+### `LEAD()` sans partitionnement
 
 ```sql
 SELECT 
@@ -156,7 +185,7 @@ SELECT
     ORDER BY DateCom;
 ```
 
-### Exemple avec clause de partitionnement
+### `LEAD()` avec partitionnement
 
 Cette variante de la requête précédente partitionne les données par année puis par client.
 
@@ -175,9 +204,57 @@ SELECT
 ```
 
 
+## Fonction `NTH_VALUE()`
+
+Si `LEAD()` et `LAG()` permettent d'avoir la valeur d'avant et la valeur d'après, la fonction `NTH_VALUE()` permet de sélectionner la position relative de la ligne dont on veut la valeur. 
+
+### `NTH_VALUE()` sans partitionnement
+
+```sql
+SELECT NoCom, CodeCli,
+    NTH_VALUE (CodeCli, 2) OVER ( 
+        ORDER BY NoCom DESC
+    )
+FROM Commande;
+```
+
+### `NTH_VALUE()` avec partitionnement
+
+```sql
+SELECT NoCom, CodeCli,
+    NTH_VALUE (CodeCli, 2) OVER ( 
+        PARTITION BY CodeCli
+        ORDER BY NoCom DESC
+    )
+FROM Commande;
+```
+
+
+## Fonction `FIRST_VALUE()`
+
+La fonction `FIRST_VALUE()` permet de récupérer la première valeur d'une partition sur chaque ligne de la partition. Lorsque la partition est triée, cela permet d'avoir la valeur minimum de la partition.
+
+```sql
+SELECT 
+    STRFTIME('%Y-%m', DateCom) "Année", 
+    SUM(PrixUnit) "CA Annuel N", 
+    FIRST_VALUE(SUM(PrixUnit)) OVER (
+        PARTITION BY STRFTIME('%Y', DateCom)
+        ORDER BY SUM(PrixUnit)  
+        RANGE BETWEEN UNBOUNDED PRECEDING AND 
+        CURRENT ROW
+    ) "Decembre"
+    FROM Commande NATURAL JOIN DetailCommande
+    GROUP BY strftime('%Y-%m', DateCom)
+    ORDER BY DateCom;
+```
+
+La clause `UNBOUNDED PRECEDING` permet de scanner toutes les lignes précédant la ligne courante dans la partition.
+
+
 ## Fonction `LAST_VALUE()`
 
-La fonction `LAST_VALUE()` permet de récupérer la dernière valeur d'une partition sur chaque ligne de la partition. Lorsque la partition est triée, cela permet d'avoir la valeur minimum ou maximum de la partition.
+La fonction `LAST_VALUE()` est l'inverse de la fonction `FISRT_VALUE()`. Lorsque la partition est triée, cela permet d'avoir la valeur maximum de la partition.
 
 ```sql
 SELECT 
@@ -193,6 +270,8 @@ SELECT
     GROUP BY strftime('%Y-%m', DateCom)
     ORDER BY DateCom;
 ```
+
+La clause `UNBOUNDED FOLLOWING` permet de scanner toutes les lignes suivant la ligne courante dans la partition.
 
 
 ## Fonction `NTILE()`
@@ -212,5 +291,46 @@ SELECT CodeCateg, PrixUnit,
 ```
 
 
+## Fonction `CUME_DIST()`
+
+Cette fonction calcule le pourcentage de distribution cumulé des valeurs de la partition. Voici un calcul pour illustrer ce pourcentage :
+```
+Nombre de lignes avec valeur <= N / Nombre de lignes totales de la partition
+```
+
+Comme pour `PERCENT_RANK()`, la valeur étant décimale, il convient de la multiplier par 100 pour avoir la valeur en pourcentage.
+
+### `CUME_DIST()` sans partitionnement 
+
+Distribution cumulée de chaque catégorie.
+
+```sql
+SELECT DISTINCT 
+    CodeCateg, 
+    CUME_DIST() 
+    OVER (
+        ORDER BY CodeCateg
+    ) * 100 CumulativeDistribution
+FROM Produit;
+```
+
+### `CUME_DIST()` avec partitionnement 
+
+Distribution cumulée du fournisseur dans chaque catégorie.
+
+```sql
+SELECT DISTINCT 
+    NoFour,
+    CodeCateg, 
+    CUME_DIST() 
+    OVER (
+        PARTITION BY CodeCateg 
+        ORDER BY NoFour
+    ) * 100 CumulativeDistribution
+FROM Produit;
+```
 
 
+## Exercices
+
+1. 
