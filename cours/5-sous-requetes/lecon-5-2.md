@@ -39,8 +39,9 @@ SELECT Societe, Ville, Pays
 
 ## Exercices
 
-1. Lister les produits n'ayant jamais été commandés, à l'aide de l'opérateur `EXISTS`
+1. Lister les produits n'ayant jamais été commandés
 2. Lister les fournisseurs dont au moins un produit a été livré en France
 3. Lister les fournisseurs qui ne proposent que des boissons
 4. Lister les produits pour lesquels il existe une remise supérieure à 20%
 5. Lister les clients qui n'ont pas commandé le produit `"Sasquatch Ale"`
+6. Lister les clients pour lesquels il existe une commande de plus de `1500`

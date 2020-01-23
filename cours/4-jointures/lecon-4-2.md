@@ -91,12 +91,6 @@ SELECT COUNT(DISTINCT CodeCli)
 1. Récupérer les informations des fournisseurs pour chaque produit, avec une jointure interne
 2. Afficher les informations des commandes du client `"Lazy K Kountry Store"`, avec une jointure interne
 3. Afficher le nombre de commande pour chaque messager (en indiquant son nom), avec une jointure interne
-4. Afficher une synthèse des commandes à partir des tables correspondantes : 
-- Nom et prénom du client
-- Numéro de commande
-- Nom du produit
-- Nom du fournisseur du produit
-- Quantité commandée 
-- Prix total pour produit
+4. Afficher une synthèse des commandes à partir des tables correspondantes les champs : Nom et prénom du client, Numéro de commande, Nom du produit, Nom du fournisseur du produit, Quantité commandée, Prix total pour produit
 5. Afficher pour chaque employé la liste des commandes qu'il a traité avec leur montant total
 6. Afficher la liste des clients ayant commandé pour plus de 100€ du produit référence numéro `68`

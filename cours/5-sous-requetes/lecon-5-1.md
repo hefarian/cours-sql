@@ -99,6 +99,7 @@ SELECT RefProd, NomProd, PrixUnit
 
 1. Lister les employés n'ayant jamais effectué une commande, via une sous-requête
 2. Nombre de produits proposés par la société fournisseur `"Mayumis"`, via une sous-requête
-3. Nombre de commandes passées par des employés sous la responsabilité de `"Patrick Emery"`
-4. Lister les numéros de commande ayant un montant un montant supérieur à au montant moyen des commandes
-5.  Lister les commandes pour lesquelles les remises réalisées sont supérieures au montant moyen des remises
+3.  Lister les clients dont le panier moyen est supérieur au panier mouen de tous les clients
+4. Nombre de commandes passées par des employés sous la responsabilité de `"Patrick Emery"`
+5. Lister les numéros de commande ayant un montant un montant supérieur à au montant moyen des commandes
+6. Lister les clients ayant commandé pour plus (en valeur) que le client `"HANAR"`

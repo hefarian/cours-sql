@@ -86,7 +86,8 @@ Par exemple, nous pouvons lister les produits commandés avec leur client corres
 
 Voici un exemple non fonctionnel car non supporté par SQLite dans cet environnement :
 ```sql
-SELECT ... FROM Client Cl FULL OUTER JOIN Commande Co
+SELECT ... 
+FROM Client Cl FULL OUTER JOIN Commande Co
 ```
 
 
@@ -95,4 +96,3 @@ SELECT ... FROM Client Cl FULL OUTER JOIN Commande Co
 1. Compter pour chaque produit, le nombre de commandes où il apparaît, même pour ceux dans aucune commande
 2. Lister les produits n'apparaissant dans aucune commande
 3. Existe-t'il un employé n'ayant enregistré aucune commande ?
-4. Lister les clients avec leur chiffre d'affaires associé, y compris ceux qui n'ont jamais passé de commande

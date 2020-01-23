@@ -25,3 +25,4 @@ SELECT e.Nom, e.Prenom, m.Nom, m.Prenom
 from Employe e, Employe m
 where e.RendCompteA = m.NoEmp;
 ```
+
