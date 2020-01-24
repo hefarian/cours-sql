@@ -6,6 +6,8 @@ Il est possible et souvent intéressant d'utiliser des sous-requêtes, renvoyant
 - faire des calculs et utiliser le résultat dans un autre
 - ...
 
+Il est possible d'utiliser une sous-requêtes dans les clauses `SELECT`, `FROM`, `WHERE`, et `JOIN` des requêtes externes. 
+
 ## Dans la clause  `WHERE`
 
 Il est déjà possible de comparer un attribut avec le résultat d'une requête. Ici, nous cherchons les commandes du client `"Bon app"`. On peut bien sûr réaliser cette opération avec une jointure, comme ci-dessous.
@@ -22,9 +24,12 @@ Si nous avons beaucoup de commandes et de clients, cette jointure peut prendre b
 SELECT NoCom
 	FROM Commande
 	WHERE CodeCli = (SELECT CodeCli
-							FROM Client
-							WHERE Societe = "Bon app");
+						FROM Client
+						WHERE Societe = "Bon app");
 ```
+
+Dans cet exemple, la requête sur la table `Commande` est dite **externe**, la requête sur la table `Client` est appellée **sous-requête**.
+
 
 ## Idem mais avec plusieurs retours
 
@@ -42,13 +47,24 @@ Pour les mêmes raisons que précédemment, on peut choisir de ne pas faire de j
 SELECT NoCom
 	FROM Commande
 	WHERE CodeCli IN (SELECT CodeCli
-							FROM Client
-							WHERE Pays = "France");
+						FROM Client
+						WHERE Pays = "France");
 ```
 
-## Dans la clause `FROM`
+## Dans les clauses `FROM` et `JOIN`
 
-On a aussi la possibilité de faire une sous-requête dans la partie `FROM` du requête. Ceci peut permettre de faire une restriction avant la jointure. Ou aussi de faire des calculs. En reprenant l'exemple du client `"Bon app"`, on peut aussi faire la requête suivante.
+On a aussi la possibilité de faire une sous-requête dans la partie `FROM` de la requête. Ceci peut permettre de faire une restriction avant la jointure, ou de faire des calculs. 
+
+Il est également possible d'utiliser un `SELECT` à la place d'une table dans la clause `FROM` : 
+
+```sql
+SELECT NoCom
+    FROM (SELECT *
+            FROM Client NATURAL JOIN Commande
+            WHERE Pays = "France");         
+```
+
+En reprenant l'exemple du client `"Bon app"`, on peut aussi faire la requête suivante.
 
 ```sql
 SELECT NoCom
@@ -77,6 +93,15 @@ SELECT NoCom, Port + TotalProd AS Total
         		SUM(PrixUnit * Qte * (1 - Remise)) AS TotalProd
             FROM DetailCommande
             GROUP BY NoCom);
+```
+
+## Dans le `SELECT`
+
+La syntaxe ci-dessous permet de sélectionner des données avec une jointure directement dans la clause `SELECT` de la requête principale. Cela permet parfois de pivoter des données qui sont en colonnes pour les sortir en ligne.
+
+```sql
+SELECT c.NoCom, (SELECT p.NomProd FROM Produit p where p.RefProd=c.RefProd)
+    FROM DetailCommande c;   
 ```
 
 ## Sous-requêtes corrélées
