@@ -18,27 +18,27 @@ La fonction `ROW_NUMBER()` va numéroter les lignes en fonction de leur appariti
 
 ```sql
 SELECT
-        ROW_NUMBER () OVER ( 
-            ORDER BY Societe
-        ) RowNum,
-        Societe,
-        Contact,
-        Pays 
-    FROM Fournisseur;
+    ROW_NUMBER () OVER ( 
+        ORDER BY Societe
+    ) RowNum,
+    Societe,
+    Contact,
+    Pays 
+FROM Fournisseur;
 ```
 
 ### `ROW_NUMBER()` avec partitionnement
 
 ```sql
 SELECT
-        ROW_NUMBER () OVER ( 
-            PARTITION BY Pays
-            ORDER BY Societe
-        ) RowNum,
-        Societe,
-        Contact,
-        Pays 
-    FROM Fournisseur;
+    ROW_NUMBER () OVER ( 
+        PARTITION BY Pays
+        ORDER BY Societe
+    ) RowNum,
+    Societe,
+    Contact,
+    Pays 
+FROM Fournisseur;
 ```
 
 ## Calcul du rang d'une ligne
