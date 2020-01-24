@@ -45,4 +45,4 @@ SELECT DISTINCT Fonction AS "Fonctions existantes"
 3. Idem en ajoutant les villes, le tout trié par ordre alphabétique du pays et de la ville
 4. Lister la référence et le nom des produits de la catégorie 2 triés par prix décroissants ayant un prix strictement inférieur à 150€ et étant en stock
 5. Lister les villes avec le code postal des clients en éliminant les doublons 
-6. Lister le nom (renommé en `"Nom Produit"`), la quantité par unité (renommé en  `"Quantité"`) et le prix unitaire (renommé en  `"Prix"`) des produits du fournisseur 2 qui sont conditionnés en pots et qui sont disponibles.
+6. Lister le nom (renommé en `"Nom Produit"`), la quantité par unité (renommé en  `"Quantité"`) et le prix unitaire (renommé en  `"Prix"`) des produits du fournisseur numéro `2` qui sont conditionnés en `pots` et qui sont disponibles.

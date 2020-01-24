@@ -40,6 +40,7 @@ SELECT *
     WHERE UPPER(Ville) = "SEATTLE";
 ```
 
+
 ## Données manquantes
 
 Une donnée manquante en SQL est repérée par un `NULL`. Il y a plusieurs raisons, bonnes ou mauvaises, pour avoir des données manquantes, et il est parfois utile de tester leur présence. Pour cela, nous allons utiliser le terme **`IS NULL`** comme condition.
@@ -52,17 +53,11 @@ SELECT *
     WHERE Region IS NULL;
 ```
 
-Au contraire, si l'on veut uniquement les employés pour lesquels l'information est présente, nous devrons utiliser la négation avec `IS NOT NULL`.
-
-```sql
-SELECT * 
-    FROM Employe
-    WHERE Region IS NOT NULL;
-```
 
 ## Opérateurs spécifiques
 
 Les deux premiers opérateurs définis ci-après sont particulièrement utiles pour limiter la taille de la requête. Le dernier est lui utile pour comparer une chaîne de caractères à une *pseudo-chaîne*.
+
 
 ### `BETWEEN`
 
@@ -74,6 +69,7 @@ SELECT *
     WHERE NoEmp BETWEEN 3 AND 8;
 ```
 
+
 ### `IN`
 
 Cet autre opérateur permet de définir une liste de valeurs entre parenthèses et séparées par des virgules. La condition suivante est équivalente à `TitreCourtoisie = 'Mlle' OR TitreCourtoisie = 'Mme'`.
@@ -83,6 +79,7 @@ SELECT *
     FROM Employe
     WHERE TitreCourtoisie IN ('Mlle', 'Mme');
 ```
+
 
 ### `LIKE`
 
@@ -108,6 +105,35 @@ SELECT *
 ```
 
 Il faut noter que l'opérateur `LIKE` est insensible à la casse, i.e. il ne tient pas compte des minuscules/majuscules.
+
+
+## `NOT`
+
+L'opérateur `NOT` permet d'inverser n'importe laquelle des conditions que l'on peut définir avec `BETWEEN`, `IN`, `LIKE`, `IS NULL` 
+
+Si l'on veut uniquement les employés pour lesquels l'information est présente, nous devrons utiliser la négation avec `IS NOT NULL`.
+
+```sql
+SELECT * 
+    FROM Employe
+    WHERE Region IS NOT NULL;
+```
+
+La requête suivante permet de récupérer les employés dont le nom ne commence pas par un `"D"`.
+
+```sql
+SELECT * 
+    FROM Employe
+    WHERE Nom NOT LIKE 'D%';
+```
+
+Voici comment récupérer les employés dont le matricule est strictement supérieur à 8 et strictement  inférieur à 3
+
+```sql
+SELECT * 
+    FROM Employe
+    WHERE NoEmp BETWEEN 3 AND 8;
+```
 
 ## Exercices
 

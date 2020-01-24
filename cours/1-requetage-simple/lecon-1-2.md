@@ -84,6 +84,6 @@ SELECT *
 
 1. Lister le contenu de la table `Produit`
 2. N'afficher que les 10 premiers produits
-3. Trier tous les produits par leur prix unitaire (attribut `PrixUnit`)
+3. Lister les produits triés par leur prix unitaire (attribut `PrixUnit`) décroissant
 4. Lister les trois produits les plus chers
-5. Lister les employés (table `Employe`) triés par ville puis par nom croissants
+5. Lister les employés (table `Employe`) triés par ville décroissante puis par nom croissant

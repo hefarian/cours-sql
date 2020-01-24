@@ -7,3 +7,5 @@
 5. Lister les produits qui n'ont pas été commandés par le client `Pilote et Fils`
 6. Lister les employés ayant une clientèle sur tous les pays
 7. Lister les produits qui ont été commandés plus de `50` fois
+8. Afficher la somme du montant moyen des commandes
+9. Lister les commandes avec le nombre de produits à l'intérieur en utilisant une sous-requête dans le `SELECT`
