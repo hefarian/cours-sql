@@ -1,48 +1,153 @@
-# Projection
+# Restriction
 
-Une projection est une sélection de colonnes d'une table, sur la base d'une liste d'attributs placés après le `SELECT` et séparés par une virgule.
+Une restriction est une sélection de lignes d'une table, sur la base d'une condition à respecter, définie à la suite du terme **`WHERE`**. Cette condition peut être une combinaison de comparaisons à l'aide de `AND`, de `OR` et de `NOT` (attention donc aux parenthèses dans ce cas).
 
-La requête suivante permet d'avoir uniquement les noms et les prénoms des employés.
+## Opérateurs classiques
+
+Nous disposons bien sûr de tous les opérateurs classiques de comparaison : 
+- `=` 
+- `<>`
+- `>`
+- `>=`
+- `<`
+- `<=`
+
+Cette requête permet de lister tous les employés ayant la fonction de représentant.
 
 ```sql
-SELECT Nom, Prenom
-    FROM Employe;
+SELECT * 
+    FROM Employe
+    WHERE Fonction = "Représentant(e)";
 ```
 
-## Doublons
-
-Lors d'une projection, on est souvent en présence de doublons dans les résultats, i.e. deux lignes ou plus identiques.
-
-Par exemple, lorsqu'on liste les fonctions des employés, on a plusieurs fois chaque fonction existante.
+Si l'on souhaite le complément de cette requête, i.e. tous les employés qui ne sont pas représentants, on utilise le symbole `<>` pour indiquer une non-égalité (ce qui revient à faire `NOT(Fonction = "Représentant(e)")`).
 
 ```sql
-SELECT Fonction
-    FROM Employe;
+SELECT * 
+    FROM Employe
+    WHERE Fonction <> "Représentant(e)";
 ```
 
-Or, dans ce cas, on est souvent intéressé par la liste des valeurs uniques. Pour l'obtenir, il est possible d'ajouter le terme **`DISTINCT`** juste après le `SELECT`, pour supprimer ces doublons.
+Comme indiqué précédemment, il est possible de combiner des comparaisons. La requête suivante permet d'avoir les représentants masculins, avec un numéro d'employé inférieur strictement à 8.
 
 ```sql
-SELECT DISTINCT Fonction
-    FROM Employe;
+SELECT * 
+    FROM Employe
+    WHERE Fonction = "Représentant(e)"
+    AND TitreCourtoisie = "M."
+    AND NoEmp < 8;
 ```
 
-Ceci fonctionne aussi lorsqu'on a indiqué plusieurs attributs dans le `SELECT`.
-
-## Renommage
-
-Pour améliorer la présentation, il est possible de renommer un attribut (et on le verra plus tard le résultat de calcul), avec le terme **`AS`** placé après l'attribut à renommer et suivi du nouveau nom.
+Pour les comparaisons de chaînes de caractères, il est important de faire attention à la casse (i.e. minuscule/majuscule). Par définition, un `"a"` est donc différent d'un `"A"`. Pour remédier à ce problème, il existe les fonction **`UPPER()`** et **`LOWER()`** pour transformer une chaîne en respectivement majuscule et minuscule.
 
 ```sql
-SELECT DISTINCT Fonction AS "Fonctions existantes"
-    FROM Employe;
+SELECT * 
+    FROM Employe
+    WHERE UPPER(Ville) = "SEATTLE";
+```
+
+
+## Données manquantes
+
+Une donnée manquante en SQL est repérée par un `NULL`. Il y a plusieurs raisons, bonnes ou mauvaises, pour avoir des données manquantes, et il est parfois utile de tester leur présence. Pour cela, nous allons utiliser le terme **`IS NULL`** comme condition.
+
+Par exemple, pour lister les employés dont la région n'est pas renseignée, nous devons exécuter la requête suivante.
+
+```sql
+SELECT * 
+    FROM Employe
+    WHERE Region IS NULL;
+```
+
+
+## Opérateurs spécifiques
+
+Les deux premiers opérateurs définis ci-après sont particulièrement utiles pour limiter la taille de la requête. Le dernier est lui utile pour comparer une chaîne de caractères à une *pseudo-chaîne*.
+
+
+### `BETWEEN`
+
+Cet opérateur permet de définir un intervalle fermé dans lequel l'attribut doit avoir sa valeur. La condition suivante est équivalente à `NoEmp >= 3 AND NoEmp <= 8`.
+
+```sql
+SELECT * 
+    FROM Employe
+    WHERE NoEmp BETWEEN 3 AND 8;
+```
+
+
+### `IN`
+
+Cet autre opérateur permet de définir une liste de valeurs entre parenthèses et séparées par des virgules. La condition suivante est équivalente à `TitreCourtoisie = 'Mlle' OR TitreCourtoisie = 'Mme'`.
+
+```sql
+SELECT * 
+    FROM Employe
+    WHERE TitreCourtoisie IN ('Mlle', 'Mme');
+```
+
+
+### `LIKE`
+
+Comme précisé avant, l'opérateur `LIKE` permet de comparer une chaîne de caractère à une *pseudo-chaîne*, dans laquelle nous pouvons ajouter deux caractères spécifiques :
+
+- `%` : une suite de caractères, éventuellement nulle
+- `_` : un et un seul caractère
+
+Par exemple, la requête suivante permet de récupérer les employés dont le nom commence par un `"D"`.
+
+```sql
+SELECT * 
+    FROM Employe
+    WHERE Nom LIKE 'D%';
+```
+
+La requête suivante permet elle d'avoir tous les employés qui ont un prénom de 5 lettres.
+
+```sql
+SELECT * 
+    FROM Employe
+    WHERE Prenom LIKE '_____';
+```
+
+Il faut noter que l'opérateur `LIKE` est insensible à la casse, i.e. il ne tient pas compte des minuscules/majuscules.
+
+
+## `NOT`
+
+L'opérateur `NOT` permet d'inverser n'importe laquelle des conditions que l'on peut définir avec `BETWEEN`, `IN`, `LIKE`, `IS NULL` 
+
+Si l'on veut uniquement les employés pour lesquels l'information est présente, nous devrons utiliser la négation avec `IS NOT NULL`.
+
+```sql
+SELECT * 
+    FROM Employe
+    WHERE Region IS NOT NULL;
+```
+
+La requête suivante permet de récupérer les employés dont le nom ne commence pas par un `"D"`.
+
+```sql
+SELECT * 
+    FROM Employe
+    WHERE Nom NOT LIKE 'D%';
+```
+
+Voici comment récupérer les employés dont le matricule est strictement supérieur à 8 et strictement  inférieur à 3
+
+```sql
+SELECT * 
+    FROM Employe
+    WHERE NoEmp BETWEEN 3 AND 8;
 ```
 
 ## Exercices
 
-1. Lister uniquement la description des catégories de produits (table `Categorie`)
-2. Lister les différents pays des clients
-3. Idem en ajoutant les villes, le tout trié par ordre alphabétique du pays et de la ville
-4. Lister la référence et le nom des produits de la catégorie 2 triés par prix décroissants ayant un prix strictement inférieur à 150€ et étant en stock
-5. Lister les villes avec le code postal des clients en éliminant les doublons 
-6. Lister le nom (renommé en `"Nom Produit"`), la quantité par unité (renommé en  `"Quantité"`) et le prix unitaire (renommé en  `"Prix"`) des produits du fournisseur numéro `2` qui sont conditionnés en `pots` et qui sont disponibles.
+1. Lister les clients français installés à Paris
+2. Lister les clients suisses, allemands et belges
+3. Lister les clients dont le numéro de fax n'est pas renseigné
+4. Lister les clients dont le nom contient `"restaurant"` (nom présent dans la colonne `Societe`)
+5. Lister les produits dont le prix est entre 90 et 100€
+6. Lister les produits fournis par les fournisseurs 16, 18 et 19
+7. Lister les produits de la catégorie 1 (colonne `CodeCateg`) dont des unités sont commandés (colonne `UnitesCom`)
+8. Lister les produits en stock (colonne `UnitesStock`) du fournisseur N°23 qui ne sont pas en commande conditionné par 500ml

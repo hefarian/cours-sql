@@ -1,4 +1,13 @@
-# Requêtage simple
+## Calculs 
+
+Il est possible d'ajouter des expressions dans le `SELECT` : 
+
+```sql
+SELECT 1 + 1, 10 * 2;
+```
+
+
+# Requêtage de données
 
 La requête la plus simple est celle permettant de récupérer l'ensemble des données d'une table. Toute requête d'interrogation de données commence par le mot-clé **`SELECT`** et termine normalement par un point-virgule ("**`;`**").
 
@@ -15,6 +24,8 @@ Voici quelques explications :
 - Le caractère **`*`** indique que l'on veut tous les attributs de la table ;
 - Le terme **`FROM`** permet d'indiquer à partir de quelle table nous devons récupérer les données.
 
+
+
 ## Limitation des résultats
 
 Il est parfois utile de n'avoir que les premières lignes d'une table, pour comprendre son contenu par exemple. Dans ce cas, il est possible d'ajouter en fin de requête le terme **`LIMIT`** suivi du nombre de lignes souhaité.
@@ -24,6 +35,18 @@ SELECT *
     FROM Client
     LIMIT 3;
 ```
+
+
+## Décalage des résultats
+
+Il est possible de ne récupérer que les lignes à partir d'une certaine position dans la liste avec la clause `OFFSET`. Elle est souvent combinée avec la clause `LIMIT` pour faire de la pagination dans les résultats d'une requête.
+
+```sql
+SELECT *
+    FROM Client
+    LIMIT 3 OFFSET 3;
+```
+
 
 ## Ordre des résultats
 
@@ -79,6 +102,32 @@ SELECT *
     FROM Employe
     ORDER BY Fonction DESC, Nom;
 ```
+
+
+## Combinaition de `ORDER BY` avec `LIMIT`
+
+La limitation doit être combilée avec le tri de la clause `ORDER BY` ci-dessous afin de pouvoir limiter les résultats dans un ordre précis.
+
+La requête ci-dessous permet de retrouver le premier employé embauché : 
+
+```sql
+SELECT * 
+    FROM Employe
+    ORDER BY NoEmp ASC
+    LIMIT 1 OFFSET 1;
+```
+
+La requête ci-dessous permet de retrouver le second employé embauché : 
+
+```sql
+SELECT * 
+    FROM Employe
+    ORDER BY NoEmp ASC
+    LIMIT 1 OFFSET 2;
+```
+
+L'offset permet de récupérer la nième ligne de résultat.
+
 
 ## Exercices
 

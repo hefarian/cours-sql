@@ -9,3 +9,4 @@
 6. Lister le chiffre d'affaires et la somme remises faites à chaque client 
 7. Pour chaque client, lister les catégories avec leur chiffre d'affaire associé
 8. Compter le nombre de produits vendus par fournisseur et le chiffre d'affaires associé
+9. Produsez un rapport au format texte affichant pour chaque employé : `L'employé N°[Matricule], [Prénom] [Nom] a pour supérieur hiérarchique direct [Prénom] [Nom]`
