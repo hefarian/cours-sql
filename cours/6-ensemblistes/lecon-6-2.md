@@ -22,5 +22,5 @@ Avec l'opérateur `INTERSECT` :
 
 1. Lister les employés (nom et prénom) étant `"Représentant(e)"` et étant basé au `"Royaume-Uni"` 
 2. Lister les clients (société et pays) ayant commandé via un employé basé à `"Seattle"` et ayant commandé des `"Desserts"`
-3. Lister les clients (nom et prénom) ayant commandé 
+3. Lister les produits (référence et nom) commandés le `"2014-08-08"` et livrés à `"Lyon"`
 

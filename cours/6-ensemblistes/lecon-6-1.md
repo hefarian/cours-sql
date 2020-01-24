@@ -79,4 +79,4 @@ En utilisant la clause `UNION` :
 1. Lister les employés (nom et prénom) étant `"Représentant(e)"` ou étant basé au `"Royaume-Uni"`
 2. Réécrivez la même requête mais cette fois sans utiliser d'opérateur ensembliste
 3. Lister les clients (société et pays) ayant commandé via un employé situé à Londres (`"London"` pour rappel) ou ayant été livré par `"Speedy Express"`
-
+4. Listez le numéro et la date des commandes livrées en `"Belgique"` ou à `"Hanari Carnes"`
