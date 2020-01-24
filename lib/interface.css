@@ -98,14 +98,19 @@ footer p {
     float: left;
     height: 100%;
 }
-#choixDroite {
-    float: left;
-    height: 100%;
-}
-#choixGauche {
+#choix1 {
     float: left;
     height: 100%;
     margin-right: 30px;
+}
+#choix2 {
+    float: left;
+    height: 100%;
+    margin-right: 30px;
+}
+#choix3 {
+    float: left;
+    height: 100%;
 }
 #information {
     width: 40%;
