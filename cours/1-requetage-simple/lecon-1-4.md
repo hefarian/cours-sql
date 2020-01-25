@@ -28,7 +28,10 @@ SELECT *
     WHERE Fonction <> "Représentant(e)";
 ```
 
-Comme indiqué précédemment, il est possible de combiner des comparaisons. La requête suivante permet d'avoir les représentants masculins, avec un numéro d'employé inférieur strictement à 8.
+
+## Combinaison des filtres : `AND`
+
+Comme indiqué précédemment, il est possible de combiner des comparaisons avec l'opérateur `AND`. La requête suivante permet d'avoir les représentants masculins, avec un numéro d'employé inférieur strictement à 8.
 
 ```sql
 SELECT * 
@@ -37,6 +40,44 @@ SELECT *
     AND TitreCourtoisie = "M."
     AND NoEmp < 8;
 ```
+
+
+## Combinaison des filtres : `OR`
+
+Deux comparaisons peuvent être utilisés en complément l'une de l'autre, ce qui permet de récupérer les lignes de l'une **ou** de l'autre.
+
+```sql
+SELECT * 
+    FROM Employe
+    WHERE Fonction = "Représentant(e)"
+    OR TitreCourtoisie = "M."
+```
+
+
+## Combinaisons multiples
+
+Lorsque l'on accumule plusieurs comparaisons avec `AND` et `OR`, il faut parfois placer des parenthèses pour définir la priorité des expressions les unes par rapport aux autres : 
+
+```sql
+SELECT * 
+    FROM Employe
+    WHERE (Fonction = "Représentant(e)"
+    AND TitreCourtoisie = "M.")
+    OR NoEmp < 8;
+```
+
+La requête ci-dessus ne donne pas les mêmes résultats que celle ci-dessous :
+
+```sql
+SELECT * 
+    FROM Employe
+    WHERE Fonction = "Représentant(e)"
+    AND (TitreCourtoisie = "M."
+    OR NoEmp < 8);
+```
+
+
+## Comparaison de chaînes de caractères
 
 Pour les comparaisons de chaînes de caractères, il est important de faire attention à la casse (i.e. minuscule/majuscule). Par définition, un `"a"` est donc différent d'un `"A"`. Pour remédier à ce problème, il existe les fonction **`UPPER()`** et **`LOWER()`** pour transformer une chaîne en respectivement majuscule et minuscule.
 
@@ -65,7 +106,7 @@ SELECT *
 Les deux premiers opérateurs définis ci-après sont particulièrement utiles pour limiter la taille de la requête. Le dernier est lui utile pour comparer une chaîne de caractères à une *pseudo-chaîne*.
 
 
-### `BETWEEN`
+### Opérateur `BETWEEN`
 
 Cet opérateur permet de définir un intervalle fermé dans lequel l'attribut doit avoir sa valeur. La condition suivante est équivalente à `NoEmp >= 3 AND NoEmp <= 8`.
 
@@ -76,7 +117,7 @@ SELECT *
 ```
 
 
-### `IN`
+### Opérateur `IN`
 
 Cet autre opérateur permet de définir une liste de valeurs entre parenthèses et séparées par des virgules. La condition suivante est équivalente à `TitreCourtoisie = 'Mlle' OR TitreCourtoisie = 'Mme'`.
 
@@ -87,7 +128,7 @@ SELECT *
 ```
 
 
-### `LIKE`
+### Opérateur `LIKE`
 
 Comme précisé avant, l'opérateur `LIKE` permet de comparer une chaîne de caractère à une *pseudo-chaîne*, dans laquelle nous pouvons ajouter deux caractères spécifiques :
 
@@ -113,7 +154,7 @@ SELECT *
 Il faut noter que l'opérateur `LIKE` est insensible à la casse, i.e. il ne tient pas compte des minuscules/majuscules.
 
 
-## `NOT`
+## Opérateur `NOT`
 
 L'opérateur `NOT` permet d'inverser n'importe laquelle des conditions que l'on peut définir avec `BETWEEN`, `IN`, `LIKE`, `IS NULL` 
 
@@ -151,3 +192,4 @@ SELECT *
 6. Lister les produits fournis par les fournisseurs 16, 18 et 19
 7. Lister les produits de la catégorie 1 (colonne `CodeCateg`) dont des unités sont commandés (colonne `UnitesCom`)
 8. Lister les produits en stock (colonne `UnitesStock`) du fournisseur N°23 qui ne sont pas en commande conditionné par 500ml
+9. Lister tous les clients dont le nom contient `"sp"`

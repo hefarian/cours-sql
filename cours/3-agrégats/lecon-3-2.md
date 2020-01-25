@@ -19,12 +19,27 @@ SELECT SUM(UnitesStock)
 	WHERE CodeCateg = 1;
 ```
 
-## Moyenne et médiane
+Le mot clé `DISTINCT` permet de faire la somme des valeurs distinctes sans tenir compte des doublons
+
+```sql
+SELECT SUM(DISTINCT PrixUnit)
+	FROM Produit
+	WHERE CodeCateg = 1;
+```
+
+## Moyenne
 
 Bien qu'avec un `SUM()` et un `COUNT()`, on puisse obtenir la moyenne, il existe la fonction `AVG(attribut)` (pour *average*) permettant de la calculer directement. La requête ci-dessous permet de calculer le prix unitaire moyen des produits.
 
 ```sql
 SELECT AVG(PrixUnit)
+	FROM Produit;
+```
+
+Le mot clé `DISTINCT` permet de faire la moyenne des valeurs distinctes sans tenir compte des doublons
+
+```sql
+SELECT AVG(DISTINCT PrixUnit)
 	FROM Produit;
 ```
 
@@ -34,6 +49,9 @@ Dans la plupart des cas, il sera nécessaire d'améliorer la lisibilité du rés
 SELECT ROUND(AVG(PrixUnit), 2)
 	FROM Produit;
 ```
+
+
+## Médiane
 
 En statistique, il est souvent préférable de calculer la médiane plutôt que la moyenne, ce qu'on peut faire avec la fonction `MEDIAN(attribut)`, tel que l'on peut voir dans la requête suivante.
 

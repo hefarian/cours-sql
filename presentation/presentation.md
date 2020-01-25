@@ -85,7 +85,7 @@ La solution ?
 - Contenu d'une notion :
     - Explication de la notion
     - Exemples d'utilisation
-    - Petits exercices simples à chauqe sous-notion
+    - Petits exercices simples à chaque sous-notion
     - Exercices à réaliser
 
 - Etudiants en quasi autonomie durant le TP
