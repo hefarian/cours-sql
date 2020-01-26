@@ -6,15 +6,50 @@ Nous allons voir ici quelques fonctions utiles pour les dates : `DATE()` pour g�
 
 Vous trouverez sur [cette page](https://sqlite.org/lang_datefunc.html) plus d'informations sur les fonctions disponibles.
 
+
+## Formats 
+
+Pour être interprétées par SQLite, les dates et heures peuvent être formatées de la façon suivantes :
+- YYYY-MM-DD
+- YYYY-MM-DD HH:MM
+- YYYY-MM-DD HH:MM:SS
+- YYYY-MM-DD HH:MM:SS.SSS
+- YYYY-MM-DDTHH:MM
+- YYYY-MM-DDTHH:MM:SS
+- YYYY-MM-DDTHH:MM:SS.SSS
+- HH:MM
+- HH:MM:SS
+- HH:MM:SS.SSS
+- now
+- DDDDDDDDDD
+
+
 ## Génération de dates
 
-En premier lieu, si nous désirons avoir la date du jour (de l'exécution de la requête bien sûr), nous pouvons exécuter cette requête. La date est affichée au format `"YYYY-MM-DD"`.
+En premier lieu, si nous désirons avoir la date du jour (de l'exécution de la requête bien sûr), nous pouvons exécuter cette requête. Par défaut, la date est affichée au format `"YYYY-MM-DD"`.
 
 ```sql
 SELECT DATE("now");
 ```
 
-La commande `DATE()` peut prendre d'autres paramètres après le premier contenant la date (ou `"now"`), permettant de modifier cette date. La requête suivante permet d'avoir la date de la veille.
+La commande `DATE()` peut prendre d'autres paramètres après le premier contenant la date (ou `"now"`), permettant de modifier cette date :
+
+Modifier | Fonction 
+-------|---------
++/- NNN days | Ajoute ou retire des jours
++/- NNN months | Ajoute ou retire des mois
++/- NNN years | Ajoute ou retire des années
+start of month | Début du mois spécifié 
+start of year | Début de l'année spécifiée 
+start of day | Début du jour spécifié
+weekday N | Avance ou recule au jour 
+unixepoch | Date au format Unix DDDDDDDDDD 
+localtime | Ajuste une date UTF au fuseau horaire
+utc | Ajuste une date locale sur UTC
+
+Pour `weedday`, les jours sont numérotés à partir de 0 : 0=Dimanche, 1=Lundi, 2=Mardi, ...
+
+La requête suivante permet d'avoir la date de la veille.
 
 ```sql
 SELECT DATE("now", "-1 day");
@@ -26,6 +61,12 @@ Il est possible de cumuler plusieurs modificateurs pour, par exemple, obtenir le
 SELECT DATE("now", "start of month", "-1 day");
 ```
 
+Ou d'obtenir la date du mois prochain moins un jour
+
+```sql
+SELECT date('now','start of month','+1 month','-1 day');
+```
+
 La commande `DATE()` accepte aussi en premier paramètre une date au bon format, pour par exemple lui appliquer une modification par la suite. Nous avons ici la date du lendemain de la commande.
 
 ```sql
@@ -33,9 +74,59 @@ SELECT DATE(DateCom, "+1 day")
     FROM Commande;
 ```
 
+
+## Génération d'heures
+
+La fonction `TIME()` permet de récupérer l'heure courante du serveur. Le format par défaut est `HH:MM:SS`.
+
+```sql
+SELECT TIME();
+```
+
+```sql
+SELECT TIME("14:10:00");
+```
+
+La commande `TIME()` peut prendre d'autres paramètres après le premier contenant l'heure, permettant de modifier cette heure. 
+
+La modification de l'heure se fait avec les modifieurs suivants :
+Modifier | Fonction 
+-------|---------
++/- NNN hours | Ajoute ou retire des heures
++/- NNN minutes | Ajoute ou retire des minutes
++/- NNN.NNNN seconds | Ajoute ou retire des secondes
+
+```sql
+SELECT TIME("14:10:00","+3 hours");
+```
+
+```sql
+SELECT
+    time('10:20:30','+1 hours','+20 minutes')
+```
+
+
 ## Informations à partir d'une date
 
-La commande `STRFTIME()` permet elle d'obtenir des informations à partir d'une date. On indique l'information désirée par un caractère précédé d'un `"%"`. Dans l'exemple ci-après, on récupère l'année (`"%Y"`), le mois (`"%m"`) et le jour ("`%d"`) de la date actuelle. Il est aussi possible de les combiner pour écrire la date dans un format plus classique pour nous.
+La commande `STRFTIME()` permet elle d'obtenir des informations à partir d'une date. On indique l'information désirée par un caractère précédé d'un `"%"`
+
+Masque | Fonction 
+-------|---------
+%d | Jour du mois : 00
+%f | Fractions de secondes : SS.SSS
+%H | Heure : 00-24
+%j | Jour de l'année : 001-366
+%J | Numéro de jour julien
+%m | Mois: 01-12
+%M | Minute: 00-59
+%s | Secondes since 1970-01-01s
+%S | Secondes: 00-59
+%w | Day of week 0-6 with Sunday==0
+%W | Week of year: 00-53
+%Y | Year: 0000-9999
+%% | %
+
+ Dans l'exemple ci-après, on récupère l'année (`"%Y"`), le mois (`"%m"`) et le jour ("`%d"`) de la date actuelle. Il est aussi possible de les combiner pour écrire la date dans un format plus classique pour nous.
 
 ```sql
 SELECT DATE("now") AS "Aujourd'hui",
@@ -83,6 +174,7 @@ On calcule la même différence en utilisant la fonction `STRFTIME()` et le nomb
 ```sql
 SELECT (STRFTIME("%s", "2016-08-21") - STRFTIME("%s", "2016-08-05")) / 86400;
 ```
+
 
 ## Exercices
 

@@ -333,4 +333,4 @@ FROM Produit;
 
 ## Exercices
 
-1. 
+1. Listez pour chaque mois de l'année les produits vendus en affichant leur chiffre d'affaires cummulé

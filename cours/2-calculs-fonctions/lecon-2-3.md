@@ -82,6 +82,22 @@ SELECT Nom, Adresse,
     FROM Employe;
 ```
 
+
+## Transformation en chaîne de caractères
+
+La fonction `QUOTE()` permet de transformer un littéral ou une valeur d'une colonne en texte en ajoutant des `'` autour.
+
+```sql
+SELECT QUOTE('mot')
+    FROM Employe;
+```
+
+```sql
+SELECT QUOTE(Nom), QUOTE(Prenom)
+    FROM Employe;
+```
+
+
 ## Exercices
 
 Dans une même requête, sur la table `Client` : 
@@ -95,3 +111,4 @@ Adresse, CodePostal Ville, Pays
 4. Remplacer le terme `"marketing"` par `"mercatique"` dans la fonction des contacts
 5. Indiquer la présence du terme `"Chef"` dans la fonction du contact
 6. Sélectionner les noms et prénoms des clients en mettant la première lettre de leur nom en majuscule
+7. Développez une requête permettant d'extraire le nom de domaine l'adresse email `nfp107@charon.org`

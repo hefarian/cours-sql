@@ -23,3 +23,10 @@ SELECT Nom, Prenom, NULLIF(TitreCourtoisie,'Dr.') FROM Employe;
 
 1. Lister tous les fournisseurs (`Societe`, `Tel`, `Fax`, `PageAccueil`) en remplaçant les numéros de Fax manquant par la valeur `"Fax non disponible"` et les sites web manquants par `"Site web non disponible"`
 2. Lister tous les employés (`Nom`, `Prénom`, `Fonction`) en remplaçant les fonctions `"Représentant(e)"` par une valeur `NULL`
+3. Fabriquer un rapport au format CSV affichant, pour chaque produit : 
+    - Référence
+    - Nom
+    - Disponibilité : `"En stock"` si le produit est en stock, sinon `"En commande"`
+    - Quantité en stock
+    - Quantité en commande
+    - Réapprovisionnement `"En lot"` si `UnitesCom` > 0, sinon  `"A l'unité"`

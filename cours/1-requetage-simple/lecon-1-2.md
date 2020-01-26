@@ -37,7 +37,7 @@ SELECT *
 ```
 
 
-## Décalage des résultats
+## Fenêtrage des résultats
 
 Il est possible de ne récupérer que les lignes à partir d'une certaine position dans la liste avec la clause `OFFSET`. Elle est souvent combinée avec la clause `LIMIT` pour faire de la pagination dans les résultats d'une requête.
 
