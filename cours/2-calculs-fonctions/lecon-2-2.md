@@ -39,8 +39,8 @@ Dans l'exemple ci-dessous, nous comparons le prix unitaire des produits à deux 
 ```sql
 SELECT Refprod, Nomprod, PrixUnit,
         CASE 
-            WHEN PrixUnit <= 50 THEN "Petits prix"
-            WHEN PrixUnit <= 500 THEN "Gamme moyenne"
+            WHEN PrixUnit <= 50 THEN 'Petits prix'
+            WHEN PrixUnit <= 500 THEN 'Gamme moyenne'
             ELSE "Produits de luxe"
         END AS Gamme
     FROM Produit;
@@ -81,12 +81,10 @@ SELECT Refprod, UnitesStock, UnitesCom, NiveauReap,
 
 ## Exercices
 
-1. A partir de la table `Produit`, afficher `"Produit non disponible"` lorsque l'attribut `Indisponible` vaut 1, et `"Produit disponible"` sinon.
+1. A partir de la table `Produit`, afficher la référence et le message `"Produit non disponible"` lorsque l'attribut `Indisponible` vaut 1, et `"Produit disponible"` sinon.
 2. Dans la table `DetailCommande`, indiquer les infos suivantes en fonction de la remise
 	- si elle vaut 0 : `"aucune remise"`
 	- si elle vaut entre 1 et 5% (inclus) : `"petite remise"`
 	- si elle vaut entre 6 et 15% (inclus) : `"remise modérée"`
 	- sinon :`"remise importante"`
 3. Indiquer pour les commandes envoyées si elles ont été envoyées en retard (date d'envoi `DateEnv` supérieure (ou égale) à la date butoir `ALivAvant`) ou à temps
-4. Lister le nom et la disponibilité des produits en affichant `"Disponible"` ou `"Indisponible"` en fonction de la valeur de la colonne `Indisponible`
-

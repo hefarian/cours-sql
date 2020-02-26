@@ -179,7 +179,7 @@ Voici comment récupérer les employés dont le matricule est strictement supér
 ```sql
 SELECT * 
     FROM Employe
-    WHERE NoEmp BETWEEN 3 AND 8;
+    WHERE NoEmp NOT BETWEEN 3 AND 8;
 ```
 
 ## Exercices
@@ -191,5 +191,5 @@ SELECT *
 5. Lister les produits dont le prix est entre 90 et 100€
 6. Lister les produits fournis par les fournisseurs 16, 18 et 19
 7. Lister les produits de la catégorie 1 (colonne `CodeCateg`) dont des unités sont commandés (colonne `UnitesCom`)
-8. Lister les produits en stock (colonne `UnitesStock`) du fournisseur N°23 qui ne sont pas en commande conditionné par 500ml
+8. Lister les produits en stock (colonne UnitesStock) du fournisseur N°24 qui ne sont pas en commande et qui sont conditionnés par 500ml
 9. Lister tous les clients dont le nom contient `"sp"`

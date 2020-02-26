@@ -47,6 +47,7 @@ unixepoch | Date au format Unix DDDDDDDDDD
 localtime | Ajuste une date UTF au fuseau horaire
 utc | Ajuste une date locale sur UTC
 
+
 Pour `weedday`, les jours sont numérotés à partir de 0 : 0=Dimanche, 1=Lundi, 2=Mardi, ...
 
 La requête suivante permet d'avoir la date de la veille.
@@ -90,6 +91,7 @@ SELECT TIME("14:10:00");
 La commande `TIME()` peut prendre d'autres paramètres après le premier contenant l'heure, permettant de modifier cette heure. 
 
 La modification de l'heure se fait avec les modifieurs suivants :
+
 Modifier | Fonction 
 -------|---------
 +/- NNN hours | Ajoute ou retire des heures
@@ -103,6 +105,26 @@ SELECT TIME("14:10:00","+3 hours");
 ```sql
 SELECT
     time('10:20:30','+1 hours','+20 minutes')
+```
+
+
+## Dates et heures 
+
+La fonction `DATETIME()` permet de combiner la date et l'heure dans une seule valeur. 
+
+```sql
+SELECT datetime("now") as "Date et heure courante";
+```
+
+Pour ajuster la valeur, il est possible d'utiliser tous les modifieurs que nous avons vu précédemment : 
+
+```sql
+SELECT datetime("now", "start of month", "+564 minutes") as "Date et heure";
+```
+
+```sql
+SELECT datetime("now", "start of month", "+1 day", "+1 hour", "+20 minutes") 
+	AS "Date et heure";
 ```
 
 

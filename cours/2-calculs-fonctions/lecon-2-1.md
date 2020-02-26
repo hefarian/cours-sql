@@ -98,8 +98,11 @@ SELECT RefProd,
 	- le prix unitaire, 
 	- la remise, 
 	- la quantité, 
-	- le montant de la remise, 
-	- le montant à payer pour ce produit
+	- le montant remisé
+Arrondir les valeurs à deux chiffres après la virgule.
+
 2. Ajouter pour chaque ligne de la requête ci-dessus :
   - le montant de TVA à 20% sur cette ligne
   - le montant T.T.C. (somme du prix remisé et du montant de T.V.A) de la ligne
+Arrondir les valeurs à deux chiffres après la virgule.
+  

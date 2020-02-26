@@ -26,3 +26,18 @@ from Employe e, Employe m
 where e.RendCompteA = m.NoEmp;
 ```
 
+Avec la nouvelle syntaxe : 
+
+```sql
+SELECT e.Nom, e.Prenom, m.Nom, m.Prenom 
+FROM Employe e INNER JOIN Employe m
+ON (e.RendCompteA = m.NoEmp);
+```
+
+En mode externe pour récupérer le patron qui n'a pas de responsable, sa colonne `"RendCompteA"` est nulle :
+
+```sql
+SELECT e.Nom, e.Prenom, m.Nom, m.Prenom 
+FROM Employe e LEFT OUTER JOIN Employe m
+ON (e.RendCompteA = m.NoEmp);
+```
