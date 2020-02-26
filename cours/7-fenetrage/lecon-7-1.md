@@ -337,6 +337,3 @@ FROM Produit;
 2. Listez pour chaque mois de l'année le nom des produits vendus en affichant leur chiffre d'affaires cummulé sur le mois set leur rang dans la liste
 3. Listez les clients en affichant leur chiffre d'affaires cumulé
 4. Listez pour chaque année et chaque client, le CA qu'il a réalisé pour l'année considérée en affichant également le CA de l'année précédente
-5. Listes les clients et leur chiffre d'affaires du plus grand au plus petit en affichant pour chaque ligne le CA du meilleur client et la différence avec le client considéré
-6. Reprenez la requête de l'exercice précédent et ajoutez la différence entre le CA du meilleur client et celui client considéré
-7. Listez les pays avec leur nombre de clients dans l'ordre croissant et affichez leur distribution cumulée 
