@@ -106,4 +106,5 @@ Si une table est supprimée, les triggers dessus sont supprimés également.
 
 ## Exercices
 
-1. Créer un trigger permettant de vérifier que le numéro de téléphone commence par un +
+1. Créer un trigger qui vérifie que le numéro de téléphone d'un client commence par un +
+2. Créer un trigger qui vérifie que le pays de livraison prévu correspond bien à un pays qui existe dans la table des clients
