@@ -44,4 +44,4 @@ SELECT Societe, Ville, Pays
 3. Lister les fournisseurs qui ne proposent que des boissons
 4. Lister les produits pour lesquels il existe une remise supérieure à 20%
 5. Lister les clients qui n'ont pas commandé le produit `"Sasquatch Ale"`
-6. Lister les clients pour lesquels il existe une commande de plus de `1500`
+6. Lister les clients pour lesquels il existe une commande de plus de `1500` €
