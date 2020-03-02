@@ -70,22 +70,22 @@ INSERT INTO V_ProduitsCategories (Code, Libelle, Categorie)
 VALUES(9999, 'Charentaises', 'Pantouffles');
 ```
 
-Vérification de l'insertion dans la vue 
+Vérification de l'insertion dans la vue :
 
 ```sql
 SELECT * FROM V_ProduitsCategories WHERE Code=9999;
 ```
 
-Dans les tables :
-- Catégorie
+La catégorie a bien été ajoutée :
 ```sql
 SELECT * FROM Categorie WHERE CodeCateg='PANT';
 ```
-- Produit
+
+Le produit également :
 ```sql
 SELECT * FROM Produit WHERE RefProd=9999;
 ```
 
 ## Exercices
 
-1. Créer un trigger permettant 
+1. Créer en premier lieu une vue affichant le libellé de chaque produit avec le nom de son fournisseur. Ajoutez ensuite un trigger permettant d'ajouter un produit dans cette vue : il doit créer le fournisseur, le produit et permettre la jointure entre les deux.
