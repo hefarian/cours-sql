@@ -1,6 +1,6 @@
-# Triggers
+# Triggers `INSERT`, `UPDATE` ou `DELETE`
 
-Un trigger est un élément de la base de données qui est exécuté automatiquement lorsqu'une instruction `INSERT`,`UPDATE` ou `DELETE` a lieu sur une table. 
+Un trigger est un élément de la base de données qui est exécuté automatiquement lorsqu'une instruction `INSERT`, `UPDATE` ou `DELETE` a lieu sur une table. 
 
 Ils permettent, par exemple : 
 - de rajouter des contrôles avant l'exécution d'une transaction
@@ -33,13 +33,12 @@ Si on combine les possibilités de déclenchement, cela nous donne :
 - `BEFORE INSERT`
 - `AFTER INSERT`
 - `BEFORE UPDATE`
-- `AFTER c`
+- `AFTER UPDATE`
 - `BEFORE DELETE`
 - `AFTER DELETE`
 - `INSTEAD OF INSERT`
 - `INSTEAD OF DELETE`
 - `INSTEAD OF UPDATE`
-
 
 
 ## Accès aux données de la transaction 
@@ -52,9 +51,11 @@ Toutes les clauses ne sont pas disponibles, cela dépend de l'instruction :
 - `DELETE` : OLD est disponible
 
 
-## Création d'un trigger
+## Création d'un trigger `BEFORE INSERT`
 
-Supposons que l'on souhaite valider le format de l'adresse email d'un client avant son insertion en base de données. 
+Exemple : nous souhaitons valider le format de l'adresse email d'un client avant son insertion en base de données : si l'adresse n'est pas au bon format, l'insertion est bloquée.
+
+### Mise à jour de la table `Client`
 
 Ajout de l'email dans la table client : 
 
@@ -76,22 +77,102 @@ BEGIN
 END;
 ```
 
-Test du trigger : 
+### Test du trigger
+
+Insertion d'un client avec un mail invalide :
 
 ```sql
 INSERT INTO Client (CodeCli, Societe, Email)
 VALUES('CYBER', 'Cyberdyne', 'emailinvalide.com');
 ```
 
+Insertion d'un client avec un mail valide :
+
 ```sql
 INSERT INTO Client (CodeCli, Societe, Email)
 VALUES('CYBER', 'Cyberdyne', 'email@valide.com');
 ```
 
+Vérification du contenu de la table :
+
 ```sql
 SELECT CodeCli, Societe, Email 
 FROM Client 
 WHERE CodeCli = 'CYBER';
+```
+
+## Création d'un trigger `AFTER UPDATE`
+
+Exemple : nous souhaitons conserver l'historique des emails utilisés par le client dans une table dédiée à leur historisation. 
+
+### Création de la table d'historique
+
+```sql
+CREATE TABLE HistoriqueMail (
+    Id INTEGER PRIMARY KEY,
+    CodeClient VARCHAR(30),
+    AncienEmail TEXT,
+    NouvelEmail TEXT,
+    Operation TEXT,
+    Moment TEXT
+);
+```
+
+### Création du trigger
+
+Le trigger permettant cette historisation est le suivant : 
+
+```sql
+CREATE TRIGGER TRG_HistoriqueEmailClient
+   AFTER UPDATE ON Client
+   WHEN OLD.Email <> NEW.Email
+BEGIN
+   INSERT INTO HistoriqueMail (
+      CodeClient,
+      AncienEmail,
+      NouvelEmail,
+      Operation,
+      Moment
+   )
+   VALUES
+   (
+      OLD.CodeCli,
+      OLD.Email,
+      NEW.Email,
+      'UPDATE',
+      DATETIME('NOW')
+   );
+END;
+```
+
+### Test du trigger 
+
+Un update de la société ne déclenche pas le trigger : 
+
+```sql
+UPDATE Client 
+SET Societe = 'Cyberdyne Systems'
+WHERE CodeCli = 'CYBER';
+```
+
+Vérification : 
+
+```sql
+SELECT * FROM HistoriqueMail;
+```
+
+Un update de l'email déclenche le trigger : 
+
+```sql
+UPDATE Client 
+SET Email = 'email@cyberdyne.com'
+WHERE CodeCli = 'CYBER';
+```
+
+Vérification : 
+
+```sql
+SELECT * FROM HistoriqueMail;
 ```
 
 ## Suppression d'un trigger
@@ -106,5 +187,6 @@ Si une table est supprimée, les triggers dessus sont supprimés également.
 
 ## Exercices
 
-1. Créer un trigger qui vérifie que le numéro de téléphone d'un client commence par un +
-2. Créer un trigger qui vérifie que le pays de livraison prévu correspond bien à un pays qui existe dans la table des clients
+1. Créer un trigger qui vérifie avant insertion ou mise à jour que le numéro de téléphone d'un client commence par un +
+2. Créer un trigger qui vérifie avant insertion ou mise à jour que le pays de livraison prévu correspond bien à un pays qui existe dans la table des clients
+3. Créer un trigger qui audite les changements apportés à la colonne RendCompteA de la table des employés. Enregistrer la date du changement, le nom de l'ancien manager et le nom du nouveau manager
