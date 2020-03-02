@@ -63,4 +63,4 @@ DROP VIEW IF EXISTS V_ProduitsCategories;
 ## Exercices
 
 1. Créer une vue nommée `"V_ChiffreAffaires"` permettant d'afficher le nom de chaque client, le nombre de commandes et le chiffre d'affaires qui a généré chaque année 
-2. Créer une vue une vue nommée `"V_Approvisonnement"` permettant d'afficher pour chaque fournisseur le code et le nom de chaque produit qu'il propose au catalogue ainsi que la quantité en stock et en commande
+2. Créer une vue une vue nommée `"V_Approvisonnement"` permettant d'afficher le code, le nom, la quantité en commande de chaque produit avec le nom de son fournisseur. La vue ne doit afficher que les produits dont la quantité commandée est supérieure à 0.

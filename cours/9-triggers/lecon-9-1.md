@@ -16,11 +16,11 @@ La création d'une vue revient à créer une requête SQL stockée en base avec 
 
 ```sql
 CREATE TRIGGER [IF NOT EXISTS] trigger_name 
-   [BEFORE|AFTER|INSTEAD OF] [INSERT|UPDATE|DELETE] 
+   [BEFORE|AFTER] [INSERT|UPDATE|DELETE] 
    ON table_name
    [WHEN condition]
 BEGIN
- statements;
+   statements;
 END;
 ```
 Les mots clé `BEFORE`, `AFTER` et `INSTEAD OF` permettent de spécifier si le trigger se déclenche avant, après ou à la place l'instruction.
@@ -187,6 +187,6 @@ Si une table est supprimée, les triggers dessus sont supprimés également.
 
 ## Exercices
 
-1. Créer un trigger qui vérifie avant insertion ou mise à jour que le numéro de téléphone d'un client commence par un +
+1. Créer un trigger qui vérifie avant insertion ou mise à jour que le numéro de téléphone d'un client commence par un +. 
 2. Créer un trigger qui vérifie avant insertion ou mise à jour que le pays de livraison prévu correspond bien à un pays qui existe dans la table des clients
 3. Créer un trigger qui audite les changements apportés à la colonne RendCompteA de la table des employés. Enregistrer la date du changement, le nom de l'ancien manager et le nom du nouveau manager
