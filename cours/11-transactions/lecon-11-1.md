@@ -47,7 +47,7 @@ BEGIN TRANSACTION;
 
 Insertion d'une donnée :
 ```sql
-INSERT INTO Produit ('RefProd', 'NomProd', 'NoFour', 'CodeCateg', 'QteParUnit', 'PrixUnit', 'UnitesStock', 'UniteCom', 'NiveauReap', 'Indisponible') 
+INSERT INTO Produit ('RefProd', 'NomProd', 'NoFour', 'CodeCateg', 'QteParUnit', 'PrixUnit', 'UnitesStock', 'UnitesCom', 'NiveauReap', 'Indisponible') 
 VALUES ('PROD1','Produit A1', 1, 1, 1, 18, 0, 0, 1, 1); 
 ```
 
@@ -76,7 +76,7 @@ BEGIN TRANSACTION;
 
 Insertion d'une donnée :
 ```sql
-INSERT INTO Produit ('RefProd', 'NomProd', 'NoFour', 'CodeCateg', 'QteParUnit', 'PrixUnit', 'UnitesStock', 'UniteCom', 'NiveauReap', 'Indisponible') 
+INSERT INTO Produit ('RefProd', 'NomProd', 'NoFour', 'CodeCateg', 'QteParUnit', 'PrixUnit', 'UnitesStock', 'UnitesCom', 'NiveauReap', 'Indisponible') 
 VALUES ('PROD1','Produit A1', 1, 1, 1, 18, 0, 0, 1, 1); 
 ```
 
