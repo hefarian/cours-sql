@@ -60,8 +60,8 @@ SELECT COUNT(*)
 ## Exercices
 
 1. Calculer le nombre d'employés qui sont `"Représentant(e)"`
-2. Calculer le nombre de produits de moins de 50 euros
-3. Calculer le nombre de produits de catégorie 2 et avec plus de 10 unités en stocks
-4. Calculer le nombre de produits de catégorie 1, des fournisseurs 1 et 18
-5. Calculer le nombre de pays différents de livraison
-6. Calculer le nombre de commandes réalisées le 28/03/2016.
+1. Calculer le nombre de produits de moins de 50 euros
+1. Calculer le nombre de produits de catégorie 2 et avec plus de 10 unités en stocks
+1. Calculer le nombre de produits de catégorie 1, des fournisseurs 1 et 18
+1. Calculer le nombre de pays différents de livraison
+1. Calculer le nombre de commandes réalisées le 28/03/2016.

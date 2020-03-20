@@ -16,10 +16,11 @@ De même que l'union et l'intersection, les champs des deux `SELECT` doivent êt
 
 Et le tri et la limitation doivent se faire aussi à la fin.
 
+
 ## Exercices
 
 Avec l'opérateur `EXCEPT` :
 
 1. Lister les employés (nom et prénom) étant `"Représentant(e)"` mais n'étant basé au `"Royaume-Uni"` 
-2. Lister les clients (société et pays) ayant commandés via un employé situé à Londres (`"London"` pour rappel) et n'ayant jamais été livré par `"United Package"`
+1. Lister les clients (société et pays) ayant commandés via un employé situé à Londres (`"London"` pour rappel) et n'ayant jamais été livré par `"United Package"`
 

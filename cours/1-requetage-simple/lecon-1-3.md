@@ -51,6 +51,6 @@ SELECT DISTINCT Fonction AS "Fonctions existantes"
 ## Exercices
 
 1. Lister uniquement la description des catégories de produits (table `Categorie`)
-2. Lister les différents pays des clients
-3. Idem en ajoutant les villes, le tout trié par ordre alphabétique du pays et de la ville
-4. Lister les villes avec le code postal des clients en éliminant les doublons 
+1. Lister les différents pays des clients
+1. Idem en ajoutant les villes, le tout trié par ordre alphabétique du pays et de la ville
+1. Lister les villes avec le code postal des clients en éliminant les doublons 

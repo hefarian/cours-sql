@@ -2,6 +2,7 @@
 
 Outre les dénombrements, il est possible de faire quelques calculs statistiques de base, tels que somme, moyenne, minimum et maximum. 
 
+
 ## Somme
 
 La fonction `SUM(attribut)` permet donc de faire la somme des valeurs non nulles de l'attribut passé en paramètre. La requête suivante nous permet d'avoir le nombre total d'unités de produits en stock.
@@ -26,6 +27,7 @@ SELECT SUM(DISTINCT PrixUnit)
 	FROM Produit
 	WHERE CodeCateg = 1;
 ```
+
 
 ## Moyenne
 
@@ -69,9 +71,10 @@ SELECT MIN(PrixUnit), MAX(PrixUnit)
 	FROM Produit
 ```
 
+
 ## Exercices
 
 1. Calculer le coût moyen du port pour les commandes du client dont le code est `"QUICK"` (attribut `CodeCli`) 
-2. Calculer le coût du port minimum et maximum des commandes
-3. Pour chaque messager (par leur numéro : `1`, `2` et `3`), donner le montant total des frais de port leur correspondant
-5. Afficher le prix minimum et le prix maximum d'un produit
+1. Calculer le coût du port minimum et maximum des commandes
+1. Pour chaque messager (par leur numéro : `1`, `2` et `3`), donner le montant total des frais de port leur correspondant
+1. Afficher le prix minimum et le prix maximum d'un produit

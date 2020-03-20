@@ -94,5 +94,5 @@ FROM Client Cl FULL OUTER JOIN Commande Co
 ## Exercices
 
 1. Compter pour chaque produit, le nombre de commandes où il apparaît, même pour ceux dans aucune commande
-2. Lister les produits n'apparaissant dans aucune commande
-3. Existe-t'il un employé n'ayant enregistré aucune commande ?
+1. Lister les produits n'apparaissant dans aucune commande
+1. Existe-t'il un employé n'ayant enregistré aucune commande ?

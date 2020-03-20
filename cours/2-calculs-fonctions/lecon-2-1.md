@@ -19,6 +19,7 @@ SELECT RefProd, UnitesStock + UnitesCom
     FROM Produit;
 ```
 
+
 ### Renommage 
 
 Pour plus de lisibilité, il est d'usage de renommer un calcul, grâce à `AS`. Si l'on désire mettre des accents (en français) et/ou des espaces, il est nécessaire d'ajouter les `"..."` (ou `'...'`). 
@@ -38,6 +39,7 @@ SELECT RefProd,
 		PrixUnit * UnitesStock AS "Montant en stock"
     FROM Produit;
 ```
+
 
 ### Combinaison de clauses
 
@@ -61,6 +63,7 @@ SELECT RefProd,
     LIMIT 3;
 ```
 
+
 ### Calcul complexe
 
 Les calculs peuvent être un peu plus complexes, grâce à l'utilisation des parenthèses. Par exemple, considérons que nous voulons garder au moins 10 unités de chaque produit. Nous calculons dans la requête suivante le montant en stock directement disponible, en tenant compte de la contrainte précédente.
@@ -73,6 +76,7 @@ SELECT RefProd,
 ```
 
 Toute expression mathématique combinant les opérateurs classiques est donc acceptable à ce niveau.
+
 
 ### Arrondi
 
@@ -92,6 +96,7 @@ SELECT RefProd,
     FROM Produit;
 ```
 
+
 ## Exercices
 
 1. La table `DetailCommande` contient l'ensemble des lignes d'achat de chaque commande. Calculer, pour la commande numéro `10251`, pour chaque produit acheté dans celle-ci, le montant de la ligne d'achat en incluant la remise (stockée en proportion dans la table). Afficher donc :
@@ -101,7 +106,7 @@ SELECT RefProd,
 	- le montant remisé
 Arrondir les valeurs à deux chiffres après la virgule.
 
-2. Ajouter pour chaque ligne de la requête ci-dessus :
+1. Ajouter pour chaque ligne de la requête ci-dessus :
   - le montant de TVA à 20% sur cette ligne
   - le montant T.T.C. (somme du prix remisé et du montant de T.V.A) de la ligne
 Arrondir les valeurs à deux chiffres après la virgule.

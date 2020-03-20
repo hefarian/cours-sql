@@ -132,7 +132,7 @@ L'offset permet de récupérer la nième ligne de résultat.
 ## Exercices
 
 1. Lister le contenu de la table `Produit`
-2. N'afficher que les 10 premiers produits
-3. Lister les produits triés par leur prix unitaire (attribut `PrixUnit`) décroissant
-4. Lister les trois produits les plus chers
-5. Lister les employés (table `Employe`) triés par ville décroissante puis par nom croissant
+1. N'afficher que les 10 premiers produits
+1. Lister les produits triés par leur prix unitaire (attribut `PrixUnit`) décroissant
+1. Lister les trois produits les plus chers
+1. Lister les employés (table `Employe`) triés par ville décroissante puis par nom croissant

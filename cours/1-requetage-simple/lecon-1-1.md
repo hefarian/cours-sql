@@ -6,6 +6,7 @@ Elle a pour but de simplifier le fonctionnement d'une organisation ou d'une entr
 
 Nous devons utiliser ce qu'on appelle un **Système de Gestion de Bases de Données** (ou *SGBD*) pour gérer ces bases et faire toutes les opérations nécessaires sur celles-ci (création, insertion, modification, interrogation, suppression).
 
+
 ## Exemple de table
 
 Voici un exemple de table simple, décrivant des étudiants. Chaque ligne est appelée un **tuple** ou *enregistrement*. Chaque colonne est appelée un **attribut** ou une *variable*. 
@@ -20,9 +21,11 @@ Table `Etudiant`:
  5     | Yannic	| Sandrine	| F	| 18 
  6     | Josse	| Francis	| H	| 20 
  
+
 ## Modèle relationnel
 
 Afin de créer des bases de données, il a été défini un modèle relationnel permettant d'établir des contraintes de construction de celles-ci. Ces contraintes ont pour but de limiter le plus possible les problèmes à gérer plus tard. On parle de règles d'intégrité structurelle.
+
 
 ### Contrainte de domaine
 
@@ -35,9 +38,11 @@ Tout attribut a un **domaine** de valeurs, qui sont ici les suivants :
 
 Ceci a pour but d'éviter au maximum les erreurs introduites lors d'insertion de données.
 
+
 ### Unicité de la clé
 
 Comme nous pouvons le remarquer dans l'exemple de table, le premier attribut `IdEtu`est un entier différent pour chaque ligne. C'est ce qu'on appelle une **clé primaire**. Celle-ci est un attribut (ou groupe d'attributs) permettant d'identifier chaque ligne de la table de manière unique. Cela permettra de faire des liens entre lignes de plusieurs tables sans ambiguïté.
+
 
 ### Contrainte d'entité
 
@@ -59,6 +64,7 @@ Table `Note` :
 L'attribut `IdEtu` présent ici fait **référence** à l'attribut `IdEtu` de la table `Etudiant` vue plus haut. On parle aussi de **clé externe** ou de ** clé étrangère**. C'est un attribut d'une relation devant apparaître comme clé primaire dans une autre relation.
 
 La contrainte de référence veut que toute valeur présente dans la colonne `IdEtu` de la table `Note` doit être présente dans la colonne `IdEtu` de la table `Etudiant`. Cela évite de mettre une note à un étudiant qui n'existe pas.
+
 
 ## Langage SQL
 

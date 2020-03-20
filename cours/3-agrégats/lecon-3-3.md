@@ -4,9 +4,11 @@ Si l'on désire avec un calcul statistique selon un critère (que l'on appellera
 
 Le `GROUP BY` doit être obligatoirement placé après le `WHERE` dans la requête.
 
+
 ## Agrégat simple 
 
 Le critère d'agrégation est souvent un seul attribut (par exemple, on souhaite le nombre d'étudiants de chaque sexe).
+
 
 ### Utilisation classique
 
@@ -36,6 +38,7 @@ SELECT Pays, COUNT(*) AS "Nb clients"
 
 Ce mécanisme fonctionne bien évidemment avec tous les autres calculs d'agrégats que nous avons vu précédemment (`SUM()`, `AVG()`, ...).
 
+
 ### Combinaison d'agrégats
 
 Il est aussi possible de calculer directement plusieurs agrégats en une seule requête, comme ci-dessous. Nous cherchons donc à avoir, pour chaque fournisseur :
@@ -54,6 +57,7 @@ SELECT NoFour,
 	FROM Produit
 	GROUP BY NoFour;
 ```
+
 
 ## Agrégat complexe
 
@@ -81,13 +85,15 @@ SELECT NoFour, CodeCateg, COUNT(*)
 	FROM Produit
 	GROUP By NoFour;
 ```
+
+
 ## Exercices
 
 1. Donner le nombre d'employés par fonction
-2. Donner le montant moyen du port par messager
-3. Donner le nombre de catégories de produits fournis par chaque fournisseur
-4. Donner le prix moyen des produits pour chaque fournisseur et chaque catégorie de produits fournis par celui-ci
-5. Depuis la table `DetailCommande`, donner le prix total et le montant total de TVA de chaque commande 
-6. Donner le prix moyen et le prix médian des produits de la catégorie numéro 2
-7. Lister le nombre de client par pays et par ville  
-8. Lister les cinq employés ayant géré le plus de commandes 
+1. Donner le montant moyen du port par messager
+1. Donner le nombre de catégories de produits fournis par chaque fournisseur
+1. Donner le prix moyen des produits pour chaque fournisseur et chaque catégorie de produits fournis par celui-ci
+1. Depuis la table `DetailCommande`, donner le prix total et le montant total de TVA de chaque commande 
+1. Donner le prix moyen et le prix médian des produits de la catégorie numéro 2
+1. Lister le nombre de client par pays et par ville  
+1. Lister les cinq employés ayant géré le plus de commandes 

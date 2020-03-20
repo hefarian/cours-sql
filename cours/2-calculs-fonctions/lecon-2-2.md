@@ -2,6 +2,7 @@
 
 Nous avons vu comment se restreindre à un sous-ensemble d'une table via les restrictions dans la partie `WHERE` d'une requête. Il existe aussi une possibilité de faire un traitement conditionnel avec le terme `CASE`. Dans un `SELECT`, celui-ci va nous permettre de conditionner la valeur d'une colonne par les valeurs d'autres colonnes.
 
+
 ## Comparaison à des valeurs (égalité)
 
 La première utilisation de cette commande est de comparer un attribut à un ensemble de valeurs. Puisque la comparaison est l'égalité, ceci concerne principalement des attributs de type texte ou avec un nombre de valeurs restreint. Dans ce cas, l'ordre des comparaisons à l'aide de `WHEN` n'a aucune importance.
@@ -29,6 +30,7 @@ SELECT Refprod, Nomprod, NiveauReap,
         END AS Reapprovisionnement
     FROM Produit;
 ```
+
 
 ## Comparaison à des valeurs (infériorité ou supériorité)
 
@@ -62,6 +64,7 @@ FIN SI
 
 Dans le deuxième test, il n'est pas nécessaire de tester si le prix est supérieur strictement à 50, car on est dans la partie `SINON` du premier test.
 
+
 ## Comparaison entre attributs
 
 Enfin, il est aussi possible d'utiliser ce test `CASE` pour comparer plusieurs attributs entre eux. 
@@ -79,12 +82,13 @@ SELECT Refprod, UnitesStock, UnitesCom, NiveauReap,
     FROM Produit;
 ```
 
+
 ## Exercices
 
 1. A partir de la table `Produit`, afficher la référence et le message `"Produit non disponible"` lorsque l'attribut `Indisponible` vaut 1, et `"Produit disponible"` sinon.
-2. Dans la table `DetailCommande`, indiquer les infos suivantes en fonction de la remise
+1. Dans la table `DetailCommande`, indiquer les infos suivantes en fonction de la remise
 	- si elle vaut 0 : `"aucune remise"`
 	- si elle vaut entre 1 et 5% (inclus) : `"petite remise"`
 	- si elle vaut entre 6 et 15% (inclus) : `"remise modérée"`
 	- sinon :`"remise importante"`
-3. Indiquer pour les commandes envoyées si elles ont été envoyées en retard (date d'envoi `DateEnv` supérieure (ou égale) à la date butoir `ALivAvant`) ou à temps
+1. Indiquer pour les commandes envoyées si elles ont été envoyées en retard (date d'envoi `DateEnv` supérieure (ou égale) à la date butoir `ALivAvant`) ou à temps

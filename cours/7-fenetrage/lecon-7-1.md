@@ -334,6 +334,6 @@ FROM Produit;
 ## Exercices
 
 1. Listez les clients en les numérotant en fonction de leur chiffre d'affaire global   
-2. Listez pour chaque mois de l'année le nom des produits vendus en affichant leur chiffre d'affaires cummulé sur le mois set leur rang dans la liste
-3. Listez les clients en affichant leur chiffre d'affaires cumulé
-4. Listez pour chaque année et chaque client, le CA qu'il a réalisé pour l'année considérée en affichant également le CA de l'année précédente
+1. Listez pour chaque mois de l'année le nom des produits vendus en affichant leur chiffre d'affaires cummulé sur le mois set leur rang dans la liste
+1. Listez les clients en affichant leur chiffre d'affaires cumulé
+1. Listez pour chaque année et chaque client, le CA qu'il a réalisé pour l'année considérée en affichant également le CA de l'année précédente
