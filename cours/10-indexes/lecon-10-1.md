@@ -31,6 +31,7 @@ Trois informations sont à spécifier :
 Un index `UNIQUE` va bloquer l'ajout de doublons dans la table. 
 
 
+
 ### Usage de l'index par le serveur 
 
 Lors d'une recherche de fournisseur par page d'accueil, le serveur va utiliser l'index pour trouver les lignes correspondantes : 
@@ -50,6 +51,7 @@ Un index multi-colonnes va contenir les données de plusieurs colonnes, il est d
 CREATE UNIQUE INDEX IDX_Client
 ON Client (Societe, Ville);
 ```
+
 
 ### Usage de l'index par le serveur 
 
@@ -89,6 +91,7 @@ WHERE Ville='Bern';
 ```sql
 PRAGMA index_list('Fournisseur');
 ```
+
 
 ### Avec un select dans le dictionnaire 
 
