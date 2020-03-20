@@ -88,5 +88,5 @@ SELECT * FROM Produit WHERE RefProd=9999;
 
 ## Exercices
 
-1. Créer une vue affichant le libellé de chaque produit avec le nom de son fournisseur. Ajoutez sur cette vue un trigger permettant d'ajouter un nouveau produit dans la vue : il doit créer le fournisseur, le produit et permettre la jointure entre les deux.
-2. Créer une vue affichant chaque catégorie avec le nombre de produits qu'elle contient. Ajoutez un trigger permettant d'ajouter une nouvelle catégorie dans cette vue
+1. Créer une vue affichant la référence et le nom de chaque produit avec le numéro et le nom de son fournisseur. Ajoutez sur cette vue un trigger permettant d'ajouter un nouveau produit dans la vue : il doit créer le produit et / ou le fournisseur et permettre la jointure enstre les deux.
+2. Créer une vue affichant chaque catégorie (code et nom) avec le nombre de produits qu'elle contient. Ajoutez un trigger permettant d'ajouter une nouvelle catégorie dans cette vue

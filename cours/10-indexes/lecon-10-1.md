@@ -10,9 +10,11 @@ Les recherches de valeurs exactes (=) ou les inégalités (>, >=, <,<=) peuvent 
 
 Dans un index, les données sont toujours triées de façon croissante.
 
+
 ## Fonctionnement 
 
 Un index repose sur une seule table mais peut inclure plusieurs colonnes. Il stocke réellement des données et donc consomme de la place sur le serveur. Lorsqu'il est placé sur une colonne, l'index associe chaque valeur de la colonne aux ROWID qui la contiennent. 
+
 
 ## Création d'un index
 
@@ -45,7 +47,8 @@ WHERE PageAccueil='http://www.capcod.eu';
 
 ## Index multi-colones 
 
-Un index multi-colonnes va contenir les données de plusieurs colonnes, il est donc un peu plus polyvalent. En contrepartie, il va prendre plus de place sur le disque.
+Un index multi-colonnes va contenir les données de plusieurs colonnes, il est donc un peu plus polyvalent. Les deux colonnes étant prises en compte dans le calcul des valeurs distinctes, cela permet d'améliorer la recherche de colonnes utilisées ensembles dans les `SELECT`
+En contrepartie, il va prendre plus de place sur le disque.
 
 ```sql
 CREATE UNIQUE INDEX IDX_Client
@@ -112,6 +115,6 @@ DROP INDEX IDX_PageAccueil;
 
 ## Exercices
 
-1. Créer un index unique permettant d'améliorer la recherche d'employé par leur nom
+1. Créer un index unique permettant d'améliorer la recherche d'un employé par son nom
 2. Créer un index unique permettant d'améliorer la recherche d'un fournisseur par son numéro de téléphone en évitant l'insertion de doublons dans cette colonne
 3. Créer un index permettant de rechercher un client par Nom et par Code postal simultanément
