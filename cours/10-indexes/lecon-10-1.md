@@ -118,3 +118,4 @@ DROP INDEX IDX_PageAccueil;
 1. Créer un index unique permettant d'améliorer la recherche d'un employé par son nom
 1. Créer un index unique permettant d'améliorer la recherche d'un fournisseur par son numéro de téléphone en évitant l'insertion de doublons dans cette colonne
 1. Créer un index permettant de rechercher un client par Nom et par Code postal simultanément
+1. Réalisez un script composé de commandes permettant de supprimer les indexes créés pendant les exercices précédents
