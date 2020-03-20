@@ -25,6 +25,8 @@ Le mot clé `TEMP` permet de créer une vue temporaire qui est détruite à la f
 
 ## Création d'une vue
 
+La création d'une vue se fait à l'aide d'une commande simple :
+
 ```sql
 CREATE VIEW IF NOT EXISTS V_ProduitsCategories AS
 SELECT RefProd, NomProd, NomCateg
@@ -41,10 +43,12 @@ SELECT RefProd, NomProd, NomCateg
 		ON Produit.CodeCateg = Categorie.CodeCateg;
 ```
 
+Les colonnes de la vue prennent le nom des alias de colonnes qui sont placés dans l'instruction `SELECT`.
+
 
 ## Usage d'une vue
 
-La vue peut être utiliser comme n'importe quelle table dans les instructions SQL :
+La vue peut être utilisée comme n'importe quelle table dans les instructions SQL :
 
 ```sql
 SELECT * FROM V_ProduitsCategories;
@@ -62,5 +66,7 @@ DROP VIEW IF EXISTS V_ProduitsCategories;
 
 ## Exercices
 
-1. Créer une vue nommée `"V_ChiffreAffaires"` permettant d'afficher le nom de chaque client, le nombre de commandes et le chiffre d'affaires qui a généré chaque année 
-2. Créer une vue une vue nommée `"V_Approvisonnement"` permettant d'afficher le code, le nom, la quantité en commande de chaque produit avec le nom de son fournisseur. La vue ne doit afficher que les produits dont la quantité commandée est supérieure à 0.
+1. Créer une vue nommée `"V_ChiffreAffaires"` permettant d'afficher le nom de chaque client avec le chiffre d'affaires qu'il a généré chaque année 
+2. Créer une vue nommée `"V_QteCommandes"` permettant d'afficher le nom de chaque client et le nombre de commandes qu'il a passé chaque année 
+3. Créer une vue nommée `"V_Approvisonnement"` permettant d'afficher le code et le nom de chaque produit avec le nom de son fournisseur
+4. Créer une vue nommée `"V_RevenuMensuel"` affichant pour chaque mois et pour chaque année le montant total des commandes (incluant la remise)
