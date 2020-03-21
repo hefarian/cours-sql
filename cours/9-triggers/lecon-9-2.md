@@ -88,4 +88,14 @@ SELECT * FROM Produit WHERE RefProd=9999;
 
 ## Exercices
 
-1. Créer une vue affichant chaque catégorie (code et nom) avec le nombre de produits qu'elle contient. Si la catégorie ne contient aucun produit, afficher le nombre `0`.  Ajoutez un trigger permettant d'insérer une nouvelle catégorie directement dans cette vue
+1. Créer une vue `V_CategoriesProduits` affichant chaque catégorie (code et nom) avec le nombre de produits qu'elle contient. Si la catégorie ne contient aucun produit, afficher le nombre `0`.  Ajoutez un trigger permettant d'insérer une nouvelle catégorie directement dans cette vue à l'aide d'un insert tel que : 
+
+```sql
+INSERT INTO V_CategoriesProduits(Code, Libelle, NbProduits) 
+VALUES (9,'Hygienne',0);
+```
+
+Tester l'insertion avec : 
+```sql
+SELECT * FROM Categorie WHERE CodeCateg=9;
+```

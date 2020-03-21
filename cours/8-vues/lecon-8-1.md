@@ -66,7 +66,7 @@ DROP VIEW IF EXISTS V_ProduitsCategories;
 
 ## Exercices
 
-1. Créer une vue nommée `"V_ChiffreAffaires"` permettant d'afficher le nom de chaque client avec le chiffre d'affaires qu'il a généré chaque année 
 1. Créer une vue nommée `"V_QteCommandes"` permettant d'afficher le nom de chaque client et le nombre de commandes qu'il a passé chaque année 
 1. Créer une vue nommée `"V_Approvisonnement"` permettant d'afficher le code et le nom de chaque produit avec le nom de son fournisseur
-1. Créer une vue nommée `"V_RevenuMensuel"` affichant pour chaque mois et pour chaque année le montant total des commandes (incluant la remise)
+1. Créer une vue nommée `"V_ChiffreAffaires"` permettant d'afficher le nom de chaque client avec le chiffre d'affaires qu'il a généré chaque année 
+1. Créer une vue nommée `"V_ProduitsVendus"` affichant pour chaque année et pour chaque mois le montant des commandes (hors remise)
