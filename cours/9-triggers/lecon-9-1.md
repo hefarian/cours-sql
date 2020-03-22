@@ -187,7 +187,8 @@ Si une table est supprimée, les triggers dessus sont supprimés également.
 
 ## Exercices
 
-1. Créer un trigger qui vérifie avant insertion ou mise à jour que le numéro de téléphone d'un client commence bien par un caractère `+`. Si ce n'est pas le cas, l'insertion ne doit pas avoir lieu
+### Exercice 1 
+Créer un trigger qui vérifie avant insertion ou mise à jour que le numéro de téléphone d'un client commence bien par un caractère `+`. Si ce n'est pas le cas, l'insertion ne doit pas avoir lieu
 
 ```sql
 INSERT INTO Client (CodeCli, Societe, Tel)
@@ -199,7 +200,8 @@ INSERT INTO Client (CodeCli, Societe, Tel)
 VALUES('CYBER', 'Cyberdyne', '+3338877665533');
 ```
 
-1. Créer un trigger qui vérifie avant insertion ou mise à jour que le pays de livraison prévu correspond bien à un pays qui existe dans la table des clients. Si ce n'est pas le cas, l'insertion ne doit pas avoir lieu. Voici deux requêtes d'intertion permettant de tester le trigger : 
+### Exercice 2
+Créer un trigger qui vérifie avant insertion ou mise à jour que le pays de livraison prévu correspond bien à un pays qui existe dans la table des clients. Si ce n'est pas le cas, l'insertion ne doit pas avoir lieu. Voici deux requêtes d'intertion permettant de tester le trigger : 
 
 ```sql
 INSERT INTO Commande(NoCom,CodeCli,NoEmp,DateCom,ALivAvant,Port,PaysLiv) 
@@ -211,7 +213,8 @@ INSERT INTO Commande(NoCom,CodeCli,NoEmp,DateCom,ALivAvant,Port,PaysLiv)
 VALUES (999999,'VINET', 5, '2020-03-24', '2020-03-30', 80, 'Russie');
 ```
 
-1. Créer un trigger qui audite les changements apportés à la colonne RendCompteA de la table des employés. Créer au préalable la date d'audit avec les colonnes nécessaires puis un trigger qui va enregistrer dedans la date du changement, le nom de l'ancien manager et le nom du nouveau manager.
+### Exercice 3
+Créer un trigger qui audite les changements apportés à la colonne RendCompteA de la table des employés. Créer au préalable la date d'audit avec les colonnes nécessaires puis un trigger qui va enregistrer dedans la date du changement, le nom de l'ancien manager et le nom du nouveau manager.
 
 ```sql
 CREATE TABLE AuditHierarchieEmploye (DateMaj TEXT, NoEmp INT, AncienManager INT, NouveauManager INT);
