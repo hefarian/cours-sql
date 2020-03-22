@@ -29,4 +29,3 @@ INNER JOIN Categorie ca ON p.CodeCateg=ca.CodeCateg
 GROUP BY f.Societe, ca.NomCateg
 ORDER BY 4 DESC;
 ```
-
