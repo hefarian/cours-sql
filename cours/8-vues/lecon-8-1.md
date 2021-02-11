@@ -69,7 +69,7 @@ DROP VIEW IF EXISTS V_ProduitsCategories;
 Dans ces exercices, pensez à bien nommer les colonnes avec des Alias dans le Select, cela permet de faciliter les requêtes faites sur les vues.
 
 1. Créer une vue nommée `"V_QteCommandes"` permettant d'afficher le nom de chaque client et le nombre de commandes qu'il a passé chaque année. Utilisez cette vue pour lister les 10 clients qui ont passé le plus de commandes.
-1. Créer une vue nommée `"V_Approvisonnement"` permettant d'afficher pour chaque année et chaque fournisseur, le nom et la quantité de chaque produit vendu. Utilisez cette vue pour lister les 5 fournisseurs ayant vendu le plus de produits au global.
+1. Créer une vue nommée `"V_ProduitsFournisseurVendus"` permettant d'afficher pour chaque année et chaque fournisseur, le nom et la quantité de chaque produit vendu. Utilisez cette vue pour lister les 5 fournisseurs ayant vendu le plus de produits au global.
 1. Créer une vue nommée `"V_ChiffreAffaires"` permettant d'afficher le nom de chaque client avec le chiffre d'affaires qu'il a généré chaque année. Utilisez cette vue pour chercher les trois meilleurs clients. 
 1. Créer une vue nommée `"V_ProduitsVendus"` affichant pour chaque année et pour chaque mois le montant des commandes (hors remise). Utilisez cette vue pour trouver les trois produits les plus vendus
 1. Créer une vue nommée `"V_CodeClient"` qui affiche pour chaque client sa société et un identifiant basé sur les trois premiers caractères du champ `Societe` combinés avec les cinq premiers chiffres d'un nombre aléatoire produit par la fonction `RANDOM()`. Attention, `RANDOM()` renvoie parfois un code négatif et cela n'est pas souhaitable.
