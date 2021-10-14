@@ -21,7 +21,7 @@ WHERE RendCompteA = NoEmp;
 La syntaxe impose d'utiliser les alias de tables pour faire ce genre de requête : 
 
 ```sql
-SELECT e.Nom, e.Prenom, m.Nom, m.Prenom 
+SELECT e.NoEMp, e.Nom, e.Prenom, e.RendCompteA,  m.NoEmp, m.Nom, m.Prenom 
 FROM Employe e, Employe m
 WHERE e.RendCompteA = m.NoEmp;
 ```
@@ -29,15 +29,15 @@ WHERE e.RendCompteA = m.NoEmp;
 Avec la nouvelle syntaxe : 
 
 ```sql
-SELECT e.Nom, e.Prenom, m.Nom, m.Prenom 
-FROM Employe e INNER JOIN Employe m
-ON (e.RendCompteA = m.NoEmp);
+SELECT e.NoEMp, e.Nom, e.Prenom, e.RendCompteA,  m.NoEmp, m.Nom, m.Prenom 
+FROM Employe e 
+INNER JOIN Employe m ON (e.RendCompteA = m.NoEmp);
 ```
 
 En mode externe pour récupérer le patron qui n'a pas de responsable, sa colonne `"RendCompteA"` est nulle :
 
 ```sql
-SELECT e.Nom, e.Prenom, m.Nom, m.Prenom 
-FROM Employe e LEFT OUTER JOIN Employe m
-ON (e.RendCompteA = m.NoEmp);
+SELECT e.NoEMp, e.Nom, e.Prenom, e.RendCompteA,  m.NoEmp, m.Nom, m.Prenom 
+FROM Employe e 
+LEFT OUTER JOIN Employe m ON (e.RendCompteA = m.NoEmp);
 ```
