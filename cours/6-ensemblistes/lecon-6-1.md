@@ -8,24 +8,24 @@ Tous les clients qui sont français (premier `SELECT`) ou dont le contact est le
 
 ```sql
 SELECT Societe, Fonction, Pays
-    FROM Client
-    WHERE Pays = "France"
+FROM Client
+WHERE Pays = "France"
 UNION
 SELECT Societe, Fonction, Pays
-    FROM Client
-    WHERE Fonction = "Propriétaire";
+FROM Client
+WHERE Fonction = "Propriétaire";
 ``` 
 
 Il faut noter que les deux `SELECT` doivent absolument renvoyer des champs ayant des types compatibles. Si besoin il est possible de tricher un peu : 
 
 ```sql
 SELECT Societe, Fonction, Pays
-    FROM Client
-    WHERE Pays = "France"
+FROM Client
+WHERE Pays = "France"
 UNION
 SELECT Societe, Fonction, Pays
-    FROM Client
-    WHERE Fonction = "Propriétaire";
+FROM Client
+WHERE Fonction = "Propriétaire";
 ``` 
 
 ## Ordre et limite
@@ -34,12 +34,12 @@ Si l'on souhaite faire un tri du résultat, et/ou se limiter aux premières lign
 
 ```sql
 SELECT Societe, Fonction, Pays
-    FROM Client
-    WHERE Pays = "France"
+FROM Client
+WHERE Pays = "France"
 UNION
 SELECT Societe, Fonction, Pays
-    FROM Client
-    WHERE Fonction = "Propriétaire"
+FROM Client
+WHERE Fonction = "Propriétaire"
 ORDER BY 1;
 ```
 
@@ -47,12 +47,12 @@ Et si l'on veut se limiter aux 10 premières lignes, la requête devient la suiv
 
 ```sql
 SELECT Societe, Fonction, Pays
-    FROM Client
-    WHERE Pays = "France"
+FROM Client
+WHERE Pays = "France"
 UNION 
 SELECT Societe, Fonction, Pays
-    FROM Client
-    WHERE Fonction = "Propriétaire"
+FROM Client
+WHERE Fonction = "Propriétaire"
 ORDER BY 1
 LIMIT 10;
 ```
@@ -63,12 +63,12 @@ Il arrive que des lignes soient présentes dans les deux requêtes. Ici, cela es
 
 ```sql
 SELECT Societe, Fonction, Pays
-    FROM Client
-    WHERE Pays = "France"
+FROM Client
+WHERE Pays = "France"
 UNION ALL 
 SELECT Societe, Fonction, Pays
-    FROM Client
-    WHERE Fonction = "Propriétaire"
+FROM Client
+WHERE Fonction = "Propriétaire"
 ORDER BY 1;
 ```
 

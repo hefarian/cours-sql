@@ -18,12 +18,12 @@ La fonction `ROW_NUMBER()` va numéroter les lignes en fonction de leur appariti
 
 ```sql
 SELECT
-    ROW_NUMBER () OVER ( 
-        ORDER BY Societe
-    ) RowNum,
-    Societe,
-    Contact,
-    Pays 
+ROW_NUMBER () OVER ( 
+    ORDER BY Societe
+) RowNum,
+Societe,
+Contact,
+Pays 
 FROM Fournisseur;
 ```
 
@@ -31,13 +31,13 @@ FROM Fournisseur;
 
 ```sql
 SELECT
-    ROW_NUMBER () OVER ( 
-        PARTITION BY Pays
-        ORDER BY Societe
-    ) RowNum,
-    Societe,
-    Contact,
-    Pays 
+ROW_NUMBER () OVER ( 
+    PARTITION BY Pays
+    ORDER BY Societe
+) RowNum,
+Societe,
+Contact,
+Pays 
 FROM Fournisseur;
 ```
 
@@ -47,10 +47,10 @@ La fonction `RANK()` calcule le rang de chaque ligne parmi l'ensemble des lignes
 
 ```sql
 SELECT
-    Nocom, RANK () OVER (
-        ORDER BY Nocom
-    )
-    FROM Commande;
+Nocom, RANK () OVER (
+    ORDER BY Nocom
+)
+FROM Commande;
 ```
 
 Cette requête liste les commandes triées par montant croissant et affiche le rang correspondant.
@@ -59,25 +59,25 @@ Cette requête liste les commandes triées par montant croissant et affiche le r
 
 ```sql
 SELECT DateCom, Nocom, SUM(PrixUnit) "Montant total", 
-    RANK() OVER (
-        ORDER BY SUM(PrixUnit)
-    )
-    FROM Commande NATURAL JOIN DetailCommande
-    GROUP BY Nocom
-    ORDER BY SUM(PrixUnit);
+RANK() OVER (
+    ORDER BY SUM(PrixUnit)
+)
+FROM Commande NATURAL JOIN DetailCommande
+GROUP BY Nocom
+ORDER BY SUM(PrixUnit);
 ```
 
 ### `RANK()` avec partitionnement
 
 ```sql
 SELECT DateCom, Nocom, SUM(PrixUnit) "Montant total", 
-    RANK() OVER (
-        PARTITION BY DateCom 
-        ORDER BY SUM(PrixUnit)
-    )
-    FROM Commande NATURAL JOIN DetailCommande
-    GROUP BY Nocom
-    ORDER BY DateCom;
+RANK() OVER (
+    PARTITION BY DateCom 
+    ORDER BY SUM(PrixUnit)
+)
+FROM Commande NATURAL JOIN DetailCommande
+GROUP BY Nocom
+ORDER BY DateCom;
 ```
 
 
@@ -89,12 +89,12 @@ SELECT DateCom, Nocom, SUM(PrixUnit) "Montant total",
 
 ```sql
 SELECT DateCom, Nocom, SUM(PrixUnit) "Montant total", 
-    PERCENT_RANK() OVER (
-        ORDER BY SUM(PrixUnit)
-    ) * 100 "% cumulé"
-    FROM Commande NATURAL JOIN DetailCommande
-    GROUP BY Nocom
-    ORDER BY SUM(PrixUnit);
+PERCENT_RANK() OVER (
+    ORDER BY SUM(PrixUnit)
+) * 100 "% cumulé"
+FROM Commande NATURAL JOIN DetailCommande
+GROUP BY Nocom
+ORDER BY SUM(PrixUnit);
 ```
 
 
@@ -111,15 +111,15 @@ Elle prend trois arguments :
 
 ```sql
 SELECT 
-    STRFTIME('%Y', DateCom) "Année", 
-    Nocom, 
-    SUM(PrixUnit) "CA Annuel N", 
-    LAG (SUM(PrixUnit),  1, 0) OVER (
-        ORDER BY DateCom
-    ) "CA Annuel N-1" 
-    FROM Commande NATURAL JOIN DetailCommande
-    GROUP BY strftime('%Y', DateCom)
-    ORDER BY DateCom;
+STRFTIME('%Y', DateCom) "Année", 
+Nocom, 
+SUM(PrixUnit) "CA Annuel N", 
+LAG (SUM(PrixUnit),  1, 0) OVER (
+    ORDER BY DateCom
+) "CA Annuel N-1" 
+FROM Commande NATURAL JOIN DetailCommande
+GROUP BY strftime('%Y', DateCom)
+ORDER BY DateCom;
 ```
 
 ### `LAG()` avec clause de partitionnement
@@ -128,37 +128,37 @@ Cette variante de la requête précédente partitionne les données par année p
 
 ```sql
 SELECT 
-    STRFTIME('%Y', DateCom) "Année", 
-    CodeCLi "Client",
-    SUM(PrixUnit) "CA Annuel N", 
-    LAG (SUM(PrixUnit),  1, 0) OVER ( 
-        PARTITION BY STRFTIME('%Y', DateCom) 
-        ORDER BY DateCom
-    ) "CA Annuel N-1"
-    FROM Commande NATURAL JOIN DetailCommande
-    GROUP BY strftime('%Y', DateCom), CodeCLi
-    ORDER BY DateCom;
+STRFTIME('%Y', DateCom) "Année", 
+CodeCLi "Client",
+SUM(PrixUnit) "CA Annuel N", 
+LAG (SUM(PrixUnit),  1, 0) OVER ( 
+    PARTITION BY STRFTIME('%Y', DateCom) 
+    ORDER BY DateCom
+) "CA Annuel N-1"
+FROM Commande NATURAL JOIN DetailCommande
+GROUP BY strftime('%Y', DateCom), CodeCLi
+ORDER BY DateCom;
 ```
 
 La colonne produite peut servir dans des expressions de calcul, par exemple pour connaître la variation de la valeur entre deux groupes de données.
 
 ```sql
 SELECT 
-    STRFTIME('%Y', DateCom) "Année", 
-    CodeCLi "Client",
-    SUM(PrixUnit) "CA Annuel N", 
-    LAG (SUM(PrixUnit),  1, 0) OVER ( 
-        PARTITION BY CodeCLi 
-        ORDER BY DateCom
-    ) "CA Annuel N-1", 
-    SUM(PrixUnit) - LAG (SUM(PrixUnit),  1, 0) OVER ( 
-        PARTITION BY STRFTIME('%Y', DateCom) 
-        ORDER BY DateCom
-    )
-    "Différence"
-    FROM Commande NATURAL JOIN DetailCommande
-    GROUP BY strftime('%Y', DateCom), CodeCLi
-    ORDER BY DateCom;
+STRFTIME('%Y', DateCom) "Année", 
+CodeCLi "Client",
+SUM(PrixUnit) "CA Annuel N", 
+LAG (SUM(PrixUnit),  1, 0) OVER ( 
+    PARTITION BY CodeCLi 
+    ORDER BY DateCom
+) "CA Annuel N-1", 
+SUM(PrixUnit) - LAG (SUM(PrixUnit),  1, 0) OVER ( 
+    PARTITION BY STRFTIME('%Y', DateCom) 
+    ORDER BY DateCom
+)
+"Différence"
+FROM Commande NATURAL JOIN DetailCommande
+GROUP BY strftime('%Y', DateCom), CodeCLi
+ORDER BY DateCom;
 ```
 
 
@@ -175,14 +175,14 @@ Elle prend trois arguments :
 
 ```sql
 SELECT 
-    STRFTIME('%Y', DateCom) "Année", 
-    SUM(PrixUnit) "CA Annuel N", 
-    LEAD (SUM(PrixUnit),  1, 0) OVER (
-        ORDER BY DateCom
-    ) "CA Annuel N+1" 
-    FROM Commande NATURAL JOIN DetailCommande
-    GROUP BY strftime('%Y', DateCom)
-    ORDER BY DateCom;
+STRFTIME('%Y', DateCom) "Année", 
+SUM(PrixUnit) "CA Annuel N", 
+LEAD (SUM(PrixUnit),  1, 0) OVER (
+    ORDER BY DateCom
+) "CA Annuel N+1" 
+FROM Commande NATURAL JOIN DetailCommande
+GROUP BY strftime('%Y', DateCom)
+ORDER BY DateCom;
 ```
 
 ### `LEAD()` avec partitionnement
@@ -191,16 +191,16 @@ Cette variante de la requête précédente partitionne les données par année p
 
 ```sql
 SELECT 
-    STRFTIME('%Y', DateCom) "Année", 
-    CodeCLi "Client",
-    SUM(PrixUnit) "CA Mensuel N", 
-    LEAD (SUM(PrixUnit),  1, 0) OVER ( 
-        PARTITION BY strftime('%Y', DateCom) 
-        ORDER BY DateCom
-    ) "CA Mensuel N+1"
-    FROM Commande NATURAL JOIN DetailCommande
-    GROUP BY strftime('%Y', DateCom), CodeCLi
-    ORDER BY DateCom;
+STRFTIME('%Y', DateCom) "Année", 
+CodeCLi "Client",
+SUM(PrixUnit) "CA Mensuel N", 
+LEAD (SUM(PrixUnit),  1, 0) OVER ( 
+    PARTITION BY strftime('%Y', DateCom) 
+    ORDER BY DateCom
+) "CA Mensuel N+1"
+FROM Commande NATURAL JOIN DetailCommande
+GROUP BY strftime('%Y', DateCom), CodeCLi
+ORDER BY DateCom;
 ```
 
 
@@ -212,9 +212,9 @@ Si `LEAD()` et `LAG()` permettent d'avoir la valeur d'avant et la valeur d'aprè
 
 ```sql
 SELECT NoCom, CodeCli,
-    NTH_VALUE (CodeCli, 2) OVER ( 
-        ORDER BY NoCom DESC
-    )
+NTH_VALUE (CodeCli, 2) OVER ( 
+    ORDER BY NoCom DESC
+)
 FROM Commande;
 ```
 
@@ -222,10 +222,10 @@ FROM Commande;
 
 ```sql
 SELECT NoCom, CodeCli,
-    NTH_VALUE (CodeCli, 2) OVER ( 
-        PARTITION BY CodeCli
-        ORDER BY NoCom DESC
-    )
+NTH_VALUE (CodeCli, 2) OVER ( 
+    PARTITION BY CodeCli
+    ORDER BY NoCom DESC
+)
 FROM Commande;
 ```
 
@@ -236,17 +236,17 @@ La fonction `FIRST_VALUE()` permet de récupérer la première valeur d'une part
 
 ```sql
 SELECT 
-    STRFTIME('%Y-%m', DateCom) "Année", 
-    SUM(PrixUnit) "CA Annuel N", 
-    FIRST_VALUE(SUM(PrixUnit)) OVER (
-        PARTITION BY STRFTIME('%Y', DateCom)
-        ORDER BY SUM(PrixUnit)  
-        RANGE BETWEEN UNBOUNDED PRECEDING AND 
-        CURRENT ROW
-    ) "Decembre"
-    FROM Commande NATURAL JOIN DetailCommande
-    GROUP BY strftime('%Y-%m', DateCom)
-    ORDER BY DateCom;
+STRFTIME('%Y-%m', DateCom) "Année", 
+SUM(PrixUnit) "CA Annuel N", 
+FIRST_VALUE(SUM(PrixUnit)) OVER (
+    PARTITION BY STRFTIME('%Y', DateCom)
+    ORDER BY SUM(PrixUnit)  
+    RANGE BETWEEN UNBOUNDED PRECEDING AND 
+    CURRENT ROW
+) "Decembre"
+FROM Commande NATURAL JOIN DetailCommande
+GROUP BY strftime('%Y-%m', DateCom)
+ORDER BY DateCom;
 ```
 
 La clause `UNBOUNDED PRECEDING` permet de scanner toutes les lignes précédant la ligne courante dans la partition.
@@ -258,17 +258,17 @@ La fonction `LAST_VALUE()` est l'inverse de la fonction `FISRT_VALUE()`. Lorsque
 
 ```sql
 SELECT 
-    STRFTIME('%Y-%m', DateCom) "Année", 
-    SUM(PrixUnit) "CA Annuel N", 
-    LAST_VALUE(SUM(PrixUnit)) OVER (
-        PARTITION BY STRFTIME('%Y', DateCom)
-        ORDER BY SUM(PrixUnit)  
-        RANGE BETWEEN CURRENT ROW AND 
-        UNBOUNDED FOLLOWING
-    ) "Decembre"
-    FROM Commande NATURAL JOIN DetailCommande
-    GROUP BY strftime('%Y-%m', DateCom)
-    ORDER BY DateCom;
+STRFTIME('%Y-%m', DateCom) "Année", 
+SUM(PrixUnit) "CA Annuel N", 
+LAST_VALUE(SUM(PrixUnit)) OVER (
+    PARTITION BY STRFTIME('%Y', DateCom)
+    ORDER BY SUM(PrixUnit)  
+    RANGE BETWEEN CURRENT ROW AND 
+    UNBOUNDED FOLLOWING
+) "Decembre"
+FROM Commande NATURAL JOIN DetailCommande
+GROUP BY strftime('%Y-%m', DateCom)
+ORDER BY DateCom;
 ```
 
 La clause `UNBOUNDED FOLLOWING` permet de scanner toutes les lignes suivant la ligne courante dans la partition.
@@ -282,12 +282,12 @@ La requête ci-dessous liste les produits par catégorie et les classe en trois 
 
 ```sql
 SELECT CodeCateg, PrixUnit, 
-    NTILE (3) OVER ( 
-        PARTITION BY CodeCateg
-        ORDER BY PrixUnit
-    ) "Bucket" 
-    FROM Produit 
-    ORDER BY CodeCateg;
+NTILE (3) OVER ( 
+    PARTITION BY CodeCateg
+    ORDER BY PrixUnit
+) "Bucket" 
+FROM Produit 
+ORDER BY CodeCateg;
 ```
 
 
@@ -306,11 +306,11 @@ Distribution cumulée de chaque catégorie.
 
 ```sql
 SELECT DISTINCT 
-    CodeCateg, 
-    CUME_DIST() 
-    OVER (
-        ORDER BY CodeCateg
-    ) * 100 CumulativeDistribution
+CodeCateg, 
+CUME_DIST() 
+OVER (
+    ORDER BY CodeCateg
+) * 100 CumulativeDistribution
 FROM Produit;
 ```
 
@@ -320,13 +320,13 @@ Distribution cumulée du fournisseur dans chaque catégorie.
 
 ```sql
 SELECT DISTINCT 
-    NoFour,
-    CodeCateg, 
-    CUME_DIST() 
-    OVER (
-        PARTITION BY CodeCateg 
-        ORDER BY NoFour
-    ) * 100 CumulativeDistribution
+NoFour,
+CodeCateg, 
+CUME_DIST() 
+OVER (
+    PARTITION BY CodeCateg 
+    ORDER BY NoFour
+) * 100 CumulativeDistribution
 FROM Produit;
 ```
 

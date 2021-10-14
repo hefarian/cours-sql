@@ -12,8 +12,8 @@ Comme il n'est pas possible de joindre deux fois la table sur elle même car le 
 
 ```sql
 SELECT Nom, Prenom, Nom, Prenom 
-from Employe, Employe
-where RendCompteA = NoEmp;
+FROM Employe, Employe
+WHERE RendCompteA = NoEmp;
 ```
 
 ### Exemple d'autojointure
@@ -22,8 +22,8 @@ La syntaxe impose d'utiliser les alias de tables pour faire ce genre de requête
 
 ```sql
 SELECT e.Nom, e.Prenom, m.Nom, m.Prenom 
-from Employe e, Employe m
-where e.RendCompteA = m.NoEmp;
+FROM Employe e, Employe m
+WHERE e.RendCompteA = m.NoEmp;
 ```
 
 Avec la nouvelle syntaxe : 

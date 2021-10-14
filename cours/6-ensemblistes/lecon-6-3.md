@@ -4,12 +4,12 @@ Enfin, la **différence** entre deux éléments *A* et *B*, renvoie les élémen
 
 ```sql
 SELECT Societe, Fonction, Pays
-    FROM Client
-    WHERE Pays = "France"
+FROM Client
+WHERE Pays = "France"
 EXCEPT
 SELECT Societe, Fonction, Pays
-    FROM Client
-    WHERE Fonction = "Propriétaire";
+FROM Client
+WHERE Fonction = "Propriétaire";
 ``` 
 
 De même que l'union et l'intersection, les champs des deux `SELECT` doivent être les mêmes. 

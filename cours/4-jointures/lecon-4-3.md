@@ -15,9 +15,10 @@ Une jointure se fait entre deux tables. Nous parlerons de **jointure externe gau
 Dans notre cas, si nous souhaitons avec les clients avec les détails de commande, tout en gardant la table de résultat les clients sans commande, nous devons donc réaliser une jointure externe gauche entre `Client` (à gauche) et `Commande` (à droite).
 
 ```sql
-SELECT *
-	FROM Client Cl LEFT OUTER JOIN Commande Co
-		ON Cl.CodeCli = Co.CodeCli;
+SELECT cl.CodeCli, co.NoCom
+FROM Client Cl 
+LEFT JOIN Commande Co ON Cl.CodeCli = Co.CodeCli
+Order by Nocom DESC;
 ```
 
 Si vous regardez les lignes pour les clients `"ESPAC"` et `"ETOUR"` (entre autres), vous verrez qu'il n'y a aucune information sur les attributs de la table `Commande` (à partir de `NoCom`).
@@ -35,10 +36,10 @@ Par exemple, si nous souhaitons connaître le nombre de commandes par client, il
 
 ```sql
 SELECT Cl.CodeCli, COUNT(*)
-	FROM Client Cl LEFT OUTER JOIN Commande Co
-		ON Cl.CodeCli = Co.CodeCli
-	GROUP BY Cl.CodeCli
-	ORDER BY 2;
+FROM Client Cl LEFT OUTER JOIN Commande Co
+	ON Cl.CodeCli = Co.CodeCli
+GROUP BY Cl.CodeCli
+ORDER BY 2;
 ```
 
 Si l'on veut avoir le nombre de commandes, et donc 0 pour ceux n'ayant aucune commande, il faut compter le nombre de valeurs non nulles d'un attribut, et de préférence la clé primaire de la deuxième table.
@@ -47,10 +48,10 @@ Ainsi, si nous comptons le nombre de valeurs non nulles de `NoCom` (avec `COUNT(
 
 ```sql
 SELECT Cl.CodeCli, COUNT(NoCom)
-	FROM Client Cl LEFT OUTER JOIN Commande Co
-		ON Cl.CodeCli = Co.CodeCli
-	GROUP BY Cl.CodeCli
-	ORDER BY 2;
+FROM Client Cl LEFT OUTER JOIN Commande Co
+	ON Cl.CodeCli = Co.CodeCli
+GROUP BY Cl.CodeCli
+ORDER BY 2;
 ```
 
 Ainsi, ce processus, combiné avec une condition sur l'agrégat (avec `HAVING`), nous permet de pouvoir récupérer uniquement les lignes d'une table n'ayant pas de correspondance dans l'autre.
@@ -59,10 +60,10 @@ Par exemple, si nous souhaitons connaître le nom des sociétés clientes pour l
 
 ```sql
 SELECT Cl.*
-	FROM Client Cl LEFT OUTER JOIN Commande Co
-		ON Cl.CodeCli = Co.CodeCli
-	GROUP BY Cl.CodeCli
-	HAVING COUNT(NoCom) == 0;
+FROM Client Cl LEFT OUTER JOIN Commande Co
+	ON Cl.CodeCli = Co.CodeCli
+GROUP BY Cl.CodeCli
+HAVING COUNT(NoCom) == 0;
 ```
 
 Maintenant, si on ajoute un autre calcul d'agrégat (somme, moyenne, ...), le résultat sera `NULL` pour les lignes n'ayant pas de correspondances.
@@ -71,10 +72,10 @@ Par exemple, si nous calculons les frais de port moyens pour chaque client, nous
 
 ```sql
 SELECT Cl.CodeCli, COUNT(NoCom), AVG(Port)
-	FROM Client Cl LEFT OUTER JOIN Commande Co
-		ON Cl.CodeCli = Co.CodeCli
-	GROUP BY Cl.CodeCli
-	ORDER BY 2;
+FROM Client Cl LEFT OUTER JOIN Commande Co
+	ON Cl.CodeCli = Co.CodeCli
+GROUP BY Cl.CodeCli
+ORDER BY 2;
 ```
 
 

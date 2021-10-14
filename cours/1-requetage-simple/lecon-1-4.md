@@ -16,16 +16,16 @@ Cette requête permet de lister tous les employés ayant la fonction de représe
 
 ```sql
 SELECT * 
-    FROM Employe
-    WHERE Fonction = "Représentant(e)";
+FROM Employe
+WHERE Fonction = "Représentant(e)";
 ```
 
 Si l'on souhaite le complément de cette requête, i.e. tous les employés qui ne sont pas représentants, on utilise le symbole `<>` pour indiquer une non-égalité (ce qui revient à faire `NOT(Fonction = "Représentant(e)")`).
 
 ```sql
 SELECT * 
-    FROM Employe
-    WHERE Fonction <> "Représentant(e)";
+FROM Employe
+WHERE Fonction <> "Représentant(e)";
 ```
 
 
@@ -35,10 +35,10 @@ Comme indiqué précédemment, il est possible de combiner des comparaisons avec
 
 ```sql
 SELECT * 
-    FROM Employe
-    WHERE Fonction = "Représentant(e)"
-    AND TitreCourtoisie = "M."
-    AND NoEmp < 8;
+FROM Employe
+WHERE Fonction = "Représentant(e)"
+AND TitreCourtoisie = "M."
+AND NoEmp < 8;
 ```
 
 
@@ -48,9 +48,9 @@ Deux comparaisons peuvent être utilisés en complément l'une de l'autre, ce qu
 
 ```sql
 SELECT * 
-    FROM Employe
-    WHERE Fonction = "Représentant(e)"
-    OR TitreCourtoisie = "M."
+FROM Employe
+WHERE Fonction = "Représentant(e)"
+OR TitreCourtoisie = "M."
 ```
 
 
@@ -60,20 +60,20 @@ Lorsque l'on accumule plusieurs comparaisons avec `AND` et `OR`, il faut parfois
 
 ```sql
 SELECT * 
-    FROM Employe
-    WHERE (Fonction = "Représentant(e)"
-    AND TitreCourtoisie = "M.")
-    OR NoEmp < 8;
+FROM Employe
+WHERE (Fonction = "Représentant(e)"
+AND TitreCourtoisie = "M.")
+OR NoEmp < 8;
 ```
 
 La requête ci-dessus ne donne pas les mêmes résultats que celle ci-dessous :
 
 ```sql
 SELECT * 
-    FROM Employe
-    WHERE Fonction = "Représentant(e)"
-    AND (TitreCourtoisie = "M."
-    OR NoEmp < 8);
+FROM Employe
+WHERE Fonction = "Représentant(e)"
+AND (TitreCourtoisie = "M."
+OR NoEmp < 8);
 ```
 
 
@@ -83,8 +83,8 @@ Pour les comparaisons de chaînes de caractères, il est important de faire atte
 
 ```sql
 SELECT * 
-    FROM Employe
-    WHERE UPPER(Ville) = "SEATTLE";
+FROM Employe
+WHERE UPPER(Ville) = "SEATTLE";
 ```
 
 
@@ -96,8 +96,8 @@ Par exemple, pour lister les employés dont la région n'est pas renseignée, no
 
 ```sql
 SELECT * 
-    FROM Employe
-    WHERE Region IS NULL;
+FROM Employe
+WHERE Region IS NULL;
 ```
 
 
@@ -112,8 +112,8 @@ Cet opérateur permet de définir un intervalle fermé dans lequel l'attribut do
 
 ```sql
 SELECT * 
-    FROM Employe
-    WHERE NoEmp BETWEEN 3 AND 8;
+FROM Employe
+WHERE NoEmp BETWEEN 3 AND 8;
 ```
 
 
@@ -123,8 +123,8 @@ Cet autre opérateur permet de définir une liste de valeurs entre parenthèses 
 
 ```sql
 SELECT * 
-    FROM Employe
-    WHERE TitreCourtoisie IN ('Mlle', 'Mme');
+FROM Employe
+WHERE TitreCourtoisie IN ('Mlle', 'Mme');
 ```
 
 
@@ -139,16 +139,16 @@ Par exemple, la requête suivante permet de récupérer les employés dont le no
 
 ```sql
 SELECT * 
-    FROM Employe
-    WHERE Nom LIKE 'D%';
+FROM Employe
+WHERE Nom LIKE 'D%';
 ```
 
 La requête suivante permet elle d'avoir tous les employés qui ont un prénom de 5 lettres.
 
 ```sql
 SELECT * 
-    FROM Employe
-    WHERE Prenom LIKE '_____';
+FROM Employe
+WHERE Prenom LIKE '_____';
 ```
 
 Il faut noter que l'opérateur `LIKE` est insensible à la casse, i.e. il ne tient pas compte des minuscules/majuscules.
@@ -162,24 +162,24 @@ Si l'on veut uniquement les employés pour lesquels l'information est présente,
 
 ```sql
 SELECT * 
-    FROM Employe
-    WHERE Region IS NOT NULL;
+FROM Employe
+WHERE Region IS NOT NULL;
 ```
 
 La requête suivante permet de récupérer les employés dont le nom ne commence pas par un `"D"`.
 
 ```sql
 SELECT * 
-    FROM Employe
-    WHERE Nom NOT LIKE 'D%';
+FROM Employe
+WHERE Nom NOT LIKE 'D%';
 ```
 
 Voici comment récupérer les employés dont le matricule est strictement supérieur à 8 et strictement  inférieur à 3
 
 ```sql
 SELECT * 
-    FROM Employe
-    WHERE NoEmp NOT BETWEEN 3 AND 8;
+FROM Employe
+WHERE NoEmp NOT BETWEEN 3 AND 8;
 ```
 
 ## Exercices

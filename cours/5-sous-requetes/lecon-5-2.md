@@ -6,20 +6,20 @@ Par exemple, si l'on souhaite avoir les clients ayant au moins une commande, on 
 
 ```sql
 SELECT *
-    FROM Client Cl
-    WHERE EXISTS (SELECT *
-                    FROM Commande
-                    WHERE CodeCli = Cl.CodeCli);
+FROM Client Cl
+WHERE EXISTS (SELECT *
+                FROM Commande
+                WHERE CodeCli = Cl.CodeCli);
 ```
 
 On peut faire aussi l'inverse de cette requête en cherchant les clients n'ayant pas de commande.
 
 ```sql
 SELECT *
-    FROM Client Cl
-    WHERE NOT EXISTS (SELECT *
-                        FROM Commande
-                        WHERE CodeCli = Cl.CodeCli);
+FROM Client Cl
+WHERE NOT EXISTS (SELECT *
+                    FROM Commande
+                    WHERE CodeCli = Cl.CodeCli);
 ```
 
 Dans les deux requêtes ci-dessous, il est possible de faire autrement car nous ne comparons qu'avec un seul attribut (`CodeCli`). On aurait pu donc passer par une joitnure ou un `IN` (ou `NOT IN`) avec une sous-requête.
@@ -30,11 +30,11 @@ On cherche ici à trouver des clients qui habitent dans la même ville (et donc 
 
 ```sql
 SELECT Societe, Ville, Pays
-	FROM Client Cl
-	WHERE EXISTS (SELECT *
-	                FROM Employe
-	                WHERE Ville LIKE Cl.Ville
-	                AND Pays LIKE Cl.Pays);
+FROM Client Cl
+WHERE EXISTS (SELECT *
+                FROM Employe
+                WHERE Ville LIKE Cl.Ville
+                AND Pays LIKE Cl.Pays);
 ```
 
 ## Exercices

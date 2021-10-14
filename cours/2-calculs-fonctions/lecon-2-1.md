@@ -26,7 +26,7 @@ Pour plus de lisibilité, il est d'usage de renommer un calcul, grâce à `AS`. 
 
 ```sql
 SELECT RefProd AS Reference, 
-       UnitesStock + UnitesCom AS "Unités disponibles"
+    UnitesStock + UnitesCom AS "Unités disponibles"
 FROM Produit;
 ```
 
@@ -36,7 +36,7 @@ Dans cet exemple, nous utilisons la multiplication `*` pour calculer le montant 
 
 ```sql
 SELECT RefProd, 
-		   PrixUnit * UnitesStock AS "Montant en stock"
+	PrixUnit * UnitesStock AS "Montant en stock"
 FROM Produit;
 ```
 
@@ -47,7 +47,7 @@ Puisque nous sommes dans une requête `SELECT`, nous pouvons bien évidemment ut
 
 ```sql
 SELECT RefProd, 
-		    PrixUnit * UnitesStock AS "Montant en stock indisponible"
+	PrixUnit * UnitesStock AS "Montant en stock indisponible"
 FROM Produit
 WHERE Indisponible = 1;
 ```
@@ -56,7 +56,7 @@ Et bien évidemment, on peut aussi trier le résultat, à l'aide de `ORDER BY`, 
 
 ```sql
 SELECT RefProd, 
-	   	PrixUnit * UnitesStock AS "Montant en stock"
+	PrixUnit * UnitesStock AS "Montant en stock"
 FROM Produit
 WHERE Indisponible = 1
 ORDER BY 2 DESC
@@ -69,8 +69,7 @@ LIMIT 3;
 Les calculs peuvent être un peu plus complexes, grâce à l'utilisation des parenthèses. Par exemple, considérons que nous voulons garder au moins 10 unités de chaque produit. Nous calculons dans la requête suivante le montant en stock directement disponible, en tenant compte de la contrainte précédente.
 
 ```sql
-SELECT RefProd, 
-		   PrixUnit * (UnitesStock - 10)
+SELECT RefProd, PrixUnit * (UnitesStock - 10)
 FROM Produit
 WHERE UnitesStock >= 10;
 ```
@@ -84,7 +83,7 @@ Il est possible d'obtenir l'arrondi d'un réel grâce à la fonction `ROUND()`. 
 
 ```sql
 SELECT RefProd, 
-		ROUND(PrixUnit * 1.05) AS "Nouveau Prix"
+	ROUND(PrixUnit * 1.05) AS "Nouveau Prix"
 FROM Produit;
 ```
 
@@ -92,7 +91,7 @@ L'arrondi ci-dessus est à l'entier. Si l'on désire un arrondi à 2 décimales 
 
 ```sql
 SELECT RefProd, 
-		ROUND(PrixUnit * 1.05, 2) AS "Nouveau Prix"
+	ROUND(PrixUnit * 1.05, 2) AS "Nouveau Prix"
 FROM Produit;
 ```
 

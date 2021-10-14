@@ -117,5 +117,5 @@ Adresse, CodePostal Ville, Pays
 1. Mettre en minuscule le nom des sociétés
 1. Remplacer le terme `"marketing"` par `"mercatique"` dans la fonction des contacts
 1. Indiquer la présence du terme `"Chef"` dans la fonction du contact
-1. Sélectionner les noms et prénoms des clients en mettant la première lettre de leur nom en majuscule
+1. Sélectionner les noms et prénoms des clients en mettant la première lettre de leur nom en majuscule et la première lettre de leur prénom en minuscules
 1. Développez une requête permettant d'extraire le nom de domaine l'adresse email `nfp107@charon.org`

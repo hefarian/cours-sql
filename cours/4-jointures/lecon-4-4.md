@@ -12,7 +12,7 @@ Pour mieux comprendre le produit cartésien, on peut regarder la requête suivan
 
 ```sql
 SELECT *
-    FROM Produit, Categorie;
+FROM Produit, Categorie;
 ```
 
 ### Restriction sur produit cartésien
@@ -23,16 +23,16 @@ Pour reprendre notre exemple précédent, pour faire correspondre chaque produit
 
 ```sql
 SELECT *
-    FROM Produit, Categorie
-    WHERE Produit.CodeCateg = Categorie.CodeCateg;
+FROM Produit, Categorie
+WHERE Produit.CodeCateg = Categorie.CodeCateg;
 ```
 
 Comme précédemment, il est aussi possible de renommer temporairement les tables pour simplifier l'écriture de la requête.
 
 ```sql
 SELECT *
-    FROM Produit P, Categorie C
-    WHERE P.CodeCateg = C.CodeCateg;
+FROM Produit P, Categorie C
+WHERE P.CodeCateg = C.CodeCateg;
 ```
 
 ## Jointures multiples
@@ -45,9 +45,9 @@ Cette requête ne fonctionne pas, car l'attribut `Tel` est présent dans `Client
 
 ```sql
 SELECT Societe, NomMess, COUNT(*)
-    FROM (Client NATURAL JOIN Commande)
-        NATURAL JOIN Messager
-    GROUP BY Societe, NomMess;
+FROM (Client NATURAL JOIN Commande)
+    NATURAL JOIN Messager
+GROUP BY Societe, NomMess;
 ```
 
 ### Jointure interne
@@ -56,11 +56,11 @@ Pour qu'elle fonctionne, nous devons passer par des jointures internes. Cette re
 
 ```sql
 SELECT Societe, NomMess, COUNT(*)
-    FROM (Client Cl INNER JOIN Commande Co
-            ON Cl.CodeCli = Co.CodeCli)
-        INNER JOIN Messager M
-            ON Co.NoMess = M.NoMess
-    GROUP BY Societe, NomMess;
+FROM Client Cl INNER JOIN Commande Co
+    ON Cl.CodeCli = Co.CodeCli
+INNER JOIN Messager M
+    ON Co.NoMess = M.NoMess
+GROUP BY Societe, NomMess;
 ```
 
 ### Jointure *à la main*
@@ -69,10 +69,10 @@ Dans ce type de jointure, nous devons déjà lister dans le `FROM` les tables n�
 
 ```sql
 SELECT Societe, NomMess, COUNT(*)
-    FROM Client Cl, Commande Co, Messager M
-    WHERE Cl.CodeCli = Co.CodeCli
-    AND Co.NoMess = M.NoMess
-    GROUP BY Societe, NomMess;
+FROM Client Cl, Commande Co, Messager M
+WHERE Cl.CodeCli = Co.CodeCli
+AND Co.NoMess = M.NoMess
+GROUP BY Societe, NomMess;
 ```
 
 ## Limitations

@@ -9,23 +9,23 @@ La fonction `SUM(attribut)` permet donc de faire la somme des valeurs non nulles
 
 ```sql
 SELECT SUM(UnitesStock)
-	FROM Produit;
+FROM Produit;
 ```
 
 Bien évidemment, ce calcul peut se faire suite à une restriction, c'est-à-dire sur un sous-ensemble de la table. Ici, nous calculons le nombre d'unités en stock pour tous les produits de la catégorie `1`.
 
 ```sql
 SELECT SUM(UnitesStock)
-	FROM Produit
-	WHERE CodeCateg = 1;
+FROM Produit
+WHERE CodeCateg = 1;
 ```
 
 Le mot clé `DISTINCT` permet de faire la somme des valeurs distinctes sans tenir compte des doublons
 
 ```sql
 SELECT SUM(DISTINCT PrixUnit)
-	FROM Produit
-	WHERE CodeCateg = 1;
+FROM Produit
+WHERE CodeCateg = 1;
 ```
 
 
@@ -35,21 +35,21 @@ Bien qu'avec un `SUM()` et un `COUNT()`, on puisse obtenir la moyenne, il existe
 
 ```sql
 SELECT AVG(PrixUnit)
-	FROM Produit;
+FROM Produit;
 ```
 
 Le mot clé `DISTINCT` permet de faire la moyenne des valeurs distinctes sans tenir compte des doublons
 
 ```sql
 SELECT AVG(DISTINCT PrixUnit)
-	FROM Produit;
+FROM Produit;
 ```
 
 Dans la plupart des cas, il sera nécessaire d'améliorer la lisibilité du résultat en arrondissant les valeurs, très souvent à 2 décimales, comme ci-après.
 
 ```sql
 SELECT ROUND(AVG(PrixUnit), 2)
-	FROM Produit;
+FROM Produit;
 ```
 
 
@@ -59,7 +59,7 @@ En statistique, il est souvent préférable de calculer la médiane plutôt que 
 
 ```sql
 SELECT MEDIAN(PrixUnit)
-	FROM Produit;
+FROM Produit;
 ```
 
 ## Minimum et maximum
@@ -68,7 +68,7 @@ Enfin, deux autres fonctions utiles sont disponibles : `MIN(attribut)` et `MAX(a
 
 ```sql
 SELECT MIN(PrixUnit), MAX(PrixUnit)
-	FROM Produit
+FROM Produit
 ```
 
 

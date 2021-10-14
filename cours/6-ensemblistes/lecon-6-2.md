@@ -4,12 +4,12 @@ L'**intersection**, avec l'opérateur `INTERSECT`, entre deux ensembles *A* et *
 
 ```sql
 SELECT Societe, Fonction, Pays
-    FROM Client
-    WHERE Pays = "France"
+FROM Client
+WHERE Pays = "France"
 INTERSECT
 SELECT Societe, Fonction, Pays
-    FROM Client
-    WHERE Fonction = "Propriétaire";
+FROM Client
+WHERE Fonction = "Propriétaire";
 ``` 
 
 Tout comme l'union, les champs des deux `SELECT` doivent être identiques.

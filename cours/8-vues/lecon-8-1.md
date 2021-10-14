@@ -30,8 +30,8 @@ La création d'une vue se fait à l'aide d'une commande simple :
 ```sql
 CREATE VIEW IF NOT EXISTS V_ProduitsCategories AS
 SELECT RefProd, NomProd, NomCateg
-	FROM Produit INNER JOIN Categorie
-		ON Produit.CodeCateg = Categorie.CodeCateg;
+FROM Produit INNER JOIN Categorie
+	ON Produit.CodeCateg = Categorie.CodeCateg;
 ```
 
 Il est possible de personnaliser les noms de colonne de la vue pour qu'ils donnent plus de sens à celle-ci :
@@ -39,8 +39,8 @@ Il est possible de personnaliser les noms de colonne de la vue pour qu'ils donne
 ```sql
 CREATE VIEW IF NOT EXISTS V_ProduitsCategories (Code, Produit, Categorie) AS
 SELECT RefProd, NomProd, NomCateg
-	FROM Produit INNER JOIN Categorie
-		ON Produit.CodeCateg = Categorie.CodeCateg;
+FROM Produit INNER JOIN Categorie
+	ON Produit.CodeCateg = Categorie.CodeCateg;
 ```
 
 Les colonnes de la vue prennent le nom des alias de colonnes qui sont placés dans l'instruction `SELECT`.

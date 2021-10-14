@@ -6,7 +6,7 @@ La requête suivante permet d'avoir uniquement les noms et les prénoms des empl
 
 ```sql
 SELECT Nom, Prenom
-    FROM Employe;
+FROM Employe;
 ```
 
 ## Projections et calculs
@@ -15,7 +15,7 @@ Il est tout à fait possible de mélanger projections et calculs dans une requê
 
 ```sql
 SELECT DateCom, Port, Port * 2 
-    FROM Commande;
+FROM Commande;
 ```
 
 
@@ -27,14 +27,14 @@ Par exemple, lorsqu'on liste les fonctions des employés, on a plusieurs fois ch
 
 ```sql
 SELECT Fonction
-    FROM Employe;
+FROM Employe;
 ```
 
 Or, dans ce cas, on est souvent intéressé par la liste des valeurs uniques. Pour l'obtenir, il est possible d'ajouter le terme **`DISTINCT`** juste après le `SELECT`, pour supprimer ces doublons.
 
 ```sql
 SELECT DISTINCT Fonction
-    FROM Employe;
+FROM Employe;
 ```
 
 Ceci fonctionne aussi lorsqu'on a indiqué plusieurs attributs dans le `SELECT`.
@@ -45,7 +45,7 @@ Pour améliorer la présentation, il est possible de renommer un attribut (et on
 
 ```sql
 SELECT DISTINCT Fonction AS "Fonctions existantes"
-    FROM Employe;
+FROM Employe;
 ```
 
 ## Exercices

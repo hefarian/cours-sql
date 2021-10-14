@@ -4,35 +4,35 @@ Il arrive que nous souhaitions restreindre les résultats avec une condition sur
 
 ```sql
 SELECT Pays, COUNT(*)
-    FROM Client
-    GROUP BY Pays;
+FROM Client
+GROUP BY Pays;
 ```
 
 La première idée serait de faire une restriction sur le `COUNT(*)` dans la clause `WHERE`, comme ci-dessous. Comme vous pourrez le voir, cette requête ne fonctionne pas, car le `COUNT(*)` est mal placé.
 
 ```sql
 SELECT Pays, COUNT(*) 
-    FROM Client
-    WHERE COUNT(*) >= 10
-    GROUP BY Pays;
+FROM Client
+WHERE COUNT(*) >= 10
+GROUP BY Pays;
 ```
 
 Pour effectuer ces restrictions, il est nécessaire d'utiliser la clause `HAVING`, situé obligatoirement après le `GROUP BY`. Dans notre exemple, nous devons donc écrire la requête suivante.
 
 ```sql
 SELECT Pays, COUNT(*) 
-    FROM Client
-    GROUP BY Pays
-    HAVING COUNT(*) >= 10;
+FROM Client
+GROUP BY Pays
+HAVING COUNT(*) >= 10;
 ```
 
 Pour améliorer la lisibilité, il est aussi possible de renommer le résultat de l'agrégat, et d'utiliser ce nouveau nom dans la condition du `HAVING`.
 
 ```sql
 SELECT Pays, COUNT(*) AS Nb
-    FROM Client
-    GROUP BY Pays
-    HAVING Nb >= 10;
+FROM Client
+GROUP BY Pays
+HAVING Nb >= 10;
 ```
 
 
@@ -42,12 +42,12 @@ Nous avons maintenant vu tous les clauses existantes dans une requête `SQL` de 
 
 ```sql
 SELECT attributs, calculs, agrégats
-	FROM tables
-	WHERE conditions
-	GROUP BY attributs
-	HAVING conditions
-	ORDER BY attributs
-	LIMIT nombre;
+FROM tables
+WHERE conditions
+GROUP BY attributs
+HAVING conditions
+ORDER BY attributs
+LIMIT nombre;
 ```
 
 

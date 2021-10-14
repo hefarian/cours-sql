@@ -15,7 +15,7 @@ Voici la requête permettant de récupérer la liste des clients présents dans 
 
 ```sql
 SELECT *
-    FROM Client;
+FROM Client;
 ```
 
 Voici quelques explications :
@@ -32,8 +32,8 @@ Il est parfois utile de n'avoir que les premières lignes d'une table, pour comp
 
 ```sql
 SELECT *
-    FROM Client
-    LIMIT 3;
+FROM Client
+LIMIT 3;
 ```
 
 
@@ -43,8 +43,8 @@ Il est possible de ne récupérer que les lignes à partir d'une certaine positi
 
 ```sql
 SELECT *
-    FROM Client
-    LIMIT 3 OFFSET 3;
+FROM Client
+LIMIT 3 OFFSET 3;
 ```
 
 
@@ -61,20 +61,20 @@ Les deux requêtes suivantes sont les mêmes et permettent toutes deux d'avoir l
 
 ```sql
 SELECT * 
-    FROM Employe
-    ORDER BY Nom;
+FROM Employe
+ORDER BY Nom;
 ```
 
 ```sql
 SELECT * 
-    FROM Employe
-    ORDER BY 2;
+FROM Employe
+ORDER BY 2;
 ```
 
 ```sql
 SELECT * 
-    FROM Employe
-    ORDER BY Nom ASC;
+FROM Employe
+ORDER BY Nom ASC;
 ```
 
 Dans un souci de clarté, il est tout de même préférable d'utiliser la première option.
@@ -83,24 +83,24 @@ Ensuite, pour modifier le type de tri, il est possible d'ajouter le terme **`DES
 
 ```sql
 SELECT * 
-    FROM Employe
-    ORDER BY Nom DESC;
+FROM Employe
+ORDER BY Nom DESC;
 ```
 
 Il est possible d'avoir plusieurs critères de tri. Pour cela, il faut séparer les différents attributs (nom ou position) par une virgule (*`,`*). La requête suivante permet donc d'avoir les employés triés d'abord par leur fonction, puis par leur nom.
 
 ```sql
 SELECT * 
-    FROM Employe
-    ORDER BY Fonction, Nom;
+FROM Employe
+ORDER BY Fonction, Nom;
 ```
 
 Voici la même requête que précédemment, avec les fonctions triées par ordre alphabétique décroissant.
 
 ```sql
 SELECT * 
-    FROM Employe
-    ORDER BY Fonction DESC, Nom;
+FROM Employe
+ORDER BY Fonction DESC, Nom;
 ```
 
 
@@ -112,18 +112,18 @@ La requête ci-dessous permet de retrouver le premier employé embauché :
 
 ```sql
 SELECT * 
-    FROM Employe
-    ORDER BY NoEmp ASC
-    LIMIT 1 OFFSET 1;
+FROM Employe
+ORDER BY NoEmp ASC
+LIMIT 1 OFFSET 1;
 ```
 
 La requête ci-dessous permet de retrouver le second employé embauché : 
 
 ```sql
 SELECT * 
-    FROM Employe
-    ORDER BY NoEmp ASC
-    LIMIT 1 OFFSET 2;
+FROM Employe
+ORDER BY NoEmp ASC
+LIMIT 1 OFFSET 2;
 ```
 
 L'offset permet de récupérer la nième ligne de résultat.

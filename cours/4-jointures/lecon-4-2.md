@@ -8,8 +8,8 @@ En reprenant le premier exemple précédent, voici la requête reliant les produ
 
 ```sql
 SELECT *
-	FROM Produit INNER JOIN Categorie
-		ON Produit.CodeCateg = Categorie.CodeCateg;
+FROM Produit INNER JOIN Categorie
+	ON Produit.CodeCateg = Categorie.CodeCateg;
 ```
 
 De même pour les jointures naturelles, il est possible de réaliser d'autres opérations, en plus de la jointure. 
@@ -18,19 +18,19 @@ Si nous souhaitons refaire la requête récupérant les produits (nom du produit
 
 ```sql
 SELECT NomProd, Societe
-	FROM Produit INNER JOIN Fournisseur
-		ON Produit.NoFour = Fournisseur.NoFour
-	WHERE Pays = "France";
+FROM Produit INNER JOIN Fournisseur
+	ON Produit.NoFour = Fournisseur.NoFour
+WHERE Pays = "France";
 ```
 
 Si on souhaite maintenant le nom de catégorie et le nombre de produits associés, avec une jointure interne, voici comment faire.
 
 ```sql
 SELECT NomCateg, COUNT(*) AS "Nb Produits"
-	FROM Produit INNER JOIN Categorie
-		ON Produit.CodeCateg = Categorie.CodeCateg
-	GROUP BY NomCateg
-	ORDER BY 2 DESC;
+FROM Produit INNER JOIN Categorie
+	ON Produit.CodeCateg = Categorie.CodeCateg
+GROUP BY NomCateg
+ORDER BY 2 DESC;
 ```
 
 
@@ -42,8 +42,8 @@ Reprenons la requête précédent en renommant `Produit` en `P` et `Categorie` e
 
 ```sql
 SELECT *
-	FROM Produit AS P INNER JOIN Categorie AS C
-		ON P.CodeCateg = C.CodeCateg;
+FROM Produit AS P INNER JOIN Categorie AS C
+	ON P.CodeCateg = C.CodeCateg;
 ```
 
 Il est aussi possible de ne pas indiquer le terme `AS`, le renommage sera tout de même pris en compte.
@@ -52,8 +52,8 @@ Ainsi, la requête précédente devient la suivante.
 
 ```sql
 SELECT *
-	FROM Produit P INNER JOIN Categorie C
-		ON P.CodeCateg = C.CodeCateg;
+FROM Produit P INNER JOIN Categorie C
+	ON P.CodeCateg = C.CodeCateg;
 ```
 
 
@@ -63,10 +63,11 @@ De même que pour une jointure naturelle, il est possible d'enchaîner les joint
 
 ```sql
 SELECT *
-    FROM (Produit P INNER JOIN Categorie C
-        ON P.CodeCateg = C.CodeCateg)
-            INNER JOIN Fournisseur F
-                ON P.NoFour = F.NoFour;
+FROM Produit P 
+INNER JOIN Categorie C
+	ON P.CodeCateg = C.CodeCateg
+INNER JOIN Fournisseur F
+	ON P.NoFour = F.NoFour;
 ```
 
 ## Lignes manquantes
@@ -77,12 +78,12 @@ Si nous comptons le nombre de clients dans la table `Client`, et le nombre de cl
 
 ```sql
 SELECT COUNT(*)
-	FROM Client;
+FROM Client;
 ```
 
 ```sql
 SELECT COUNT(DISTINCT CodeCli)
-	FROM Commande;
+FROM Commande;
 ```
 
 

@@ -12,38 +12,38 @@ Par exemple, nous souhaitons connaître le nom de la catégorie de chaque produi
 
 ```sql
 SELECT *
-	FROM Produit NATURAL JOIN Categorie;
+FROM Produit NATURAL JOIN Categorie;
 ```
 
 Bien évidemment, il est possible de réaliser toute autre opération vu précédemment, dont les projections. Ici, nous nous restreignons à la référence du produit, son nom et la catégorie de celui-ci.
 
 ```sql
 SELECT RefProd, NomProd, NomCateg
-	FROM Produit NATURAL JOIN Categorie;
+FROM Produit NATURAL JOIN Categorie;
 ```
 
 Si on souhaite avoir l'ensemble des colonnes d'une des tables, il est aussi possible de l'indiquer dans le `SELECT` avec le formalisme `table.*`: 
 
 ```sql
 SELECT RefProd, NomProd, Categorie.*
-	FROM Produit NATURAL JOIN Categorie;
+FROM Produit NATURAL JOIN Categorie;
 ```
 
 Ce processus nous permet aussi de se faire des restrictions sur un attribut d'une table pour qu'elles soient répercuter sur l'autre. Par exemple, ici, on ne retient que les produits fournis par des entreprises françaises.
 
 ```sql
 SELECT NomProd, Societe
-	FROM Produit NATURAL JOIN Fournisseur
-	WHERE Pays = "France";
+FROM Produit NATURAL JOIN Fournisseur
+WHERE Pays = "France";
 ```
 
 Mais il est d'autant plus intéressant quand on veut faire des agrégats. Par exemple, si nous souhaitons connaître le nombre de produits par catégorie, plutôt que de présenter les codes de catégorie, nous allons chercher à présenter le nom des catégories. Le résultat sera ainsi plus parlant.
 
 ```sql
 SELECT NomCateg, COUNT(*) AS "Nb Produits"
-	FROM Produit NATURAL JOIN Categorie
-	GROUP BY NomCateg
-	ORDER BY 2 DESC;
+FROM Produit NATURAL JOIN Categorie
+GROUP BY NomCateg
+ORDER BY 2 DESC;
 ```
 
 
@@ -55,8 +55,8 @@ Ici, nous ajoutons à la fois les informations de `Categorie`, mais aussi de `Fo
 
 ```sql
 SELECT *
-    FROM (Produit NATURAL JOIN Categorie) 
-    	NATURAL JOIN Fournisseur;
+FROM (Produit NATURAL JOIN Categorie) 
+NATURAL JOIN Fournisseur;
 ```
 
 
@@ -66,8 +66,8 @@ Des problèmes peuvent survenir quand les tables ont des noms de variables ident
 
 ```sql
 SELECT *
-    FROM (Commande NATURAL JOIN Client) 
-    	NATURAL JOIN Employe;
+FROM (Commande NATURAL JOIN Client) 
+NATURAL JOIN Employe;
 ```
 
 Un **jointure naturelle** n'est donc pas réalisable lorsque :

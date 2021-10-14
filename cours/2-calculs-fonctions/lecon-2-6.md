@@ -52,3 +52,7 @@ La conversion de texte vers date est faite de cette façon :
 ```sql
 SELECT CAST('2017-08-25' AS DATETIME);
 ```
+
+## Exercices
+1. Lister pour chaque commande le N° de commande, le code client, la date de commande et les frais de port de chaque commande, triés par Frais de port décroissants.
+1.

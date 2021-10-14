@@ -12,7 +12,7 @@ Nous avons donc ici le nombre de clients contenus dans la base de données.
 
 ```sql
 SELECT COUNT(*) 
-    FROM Client;
+FROM Client;
 ```
 
 ## Nombre de valeurs d'un attribut
@@ -21,14 +21,14 @@ Il est possible de spécifier un attribut dans le `COUNT()`. Ceci permettra de c
 
 ```sql
 SELECT COUNT(CodeCli) 
-    FROM Client;
+FROM Client;
 ```
 
 Par contre, si on indique un attribut dans lequel il y a des valeurs manquantes (i.e. `NULL` en `SQL`), nous n'aurons pas le même résultat. Nous aurons donc le nombre de valeurs non nulles de cet attribut. Ici, l'attribut est le numéro de fax du client. Comme il y a quelques clients sans numéro de fax, nous n'obtenons pas le même résultat.
 
 ```sql
 SELECT COUNT(Fax) 
-    FROM Client;
+FROM Client;
 ```
 
 ## Nombre de valeurs distinctes d'un attribut
@@ -37,14 +37,14 @@ Pour aller plus loin, il est aussi possible d'ajouter la clause `DISTINCT` avant
 
 ```sql
 SELECT COUNT(DISTINCT Pays) 
-    FROM Client;
+FROM Client;
 ```
 
 Ce nombre correspond au nombre de lignes de la table résultante de la requête suivante.
 
 ```sql
 SELECT DISTINCT Pays
-    FROM Client;
+FROM Client;
 ```
 
 ## Restriction dans le dénombrement
@@ -54,7 +54,7 @@ Pour dénombrer des sous-ensembles d'une table, il est bien évidemment possible
 ```sql
 SELECT COUNT(*) 
     FROM Client
-    WHERE Pays = "France";
+WHERE Pays = "France";
 ```
 
 ## Exercices

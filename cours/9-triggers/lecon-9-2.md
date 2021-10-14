@@ -33,8 +33,8 @@ La vue sur laquelle le trigger va être placé est la suivante :
 ```sql
 CREATE VIEW IF NOT EXISTS V_ProduitsCategories (Code, Libelle, Categorie) AS
 SELECT RefProd, NomProd, NomCateg
-	FROM Produit INNER JOIN Categorie
-		ON Produit.CodeCateg = Categorie.CodeCateg;
+FROM Produit INNER JOIN Categorie
+    ON Produit.CodeCateg = Categorie.CodeCateg;
 ```
 
 Test de la vue : 

@@ -16,24 +16,24 @@ Le premier exemple que nous allons voir est le dénombrement. Nous désirons le 
 
 ```sql
 SELECT Pays, COUNT(*)
-	FROM Client;
+FROM Client;
 ```
 
 Une fois exécutée, on se rend compte qu'elle ne renvoie qu'une seule ligne, avec un seul pays (celui en dernier dans la table) et le nombre total de clients. Pour être correct, il faut spécifier le critère d'agrégation (ici le pays) dans la clause `GROUP BY`, comme ci-dessous.
 
 ```sql
 SELECT Pays, COUNT(*)
-	FROM Client
-	GROUP BY Pays;
+FROM Client
+GROUP BY Pays;
 ```
 
 Ici, le résultat est ordonné par pays. On peut améliorer la lisibilité du résultat en renommant le dénombrement et en ordonnant de manière décroissante par celui-ci.
 
 ```sql
 SELECT Pays, COUNT(*) AS "Nb clients"
-	FROM Client
-	GROUP BY Pays
-	ORDER BY 2 DESC;
+FROM Client
+GROUP BY Pays
+ORDER BY 2 DESC;
 ```
 
 Ce mécanisme fonctionne bien évidemment avec tous les autres calculs d'agrégats que nous avons vu précédemment (`SUM()`, `AVG()`, ...).
@@ -50,12 +50,12 @@ Il est aussi possible de calculer directement plusieurs agrégats en une seule r
 
 ```sql
 SELECT NoFour, 
-        COUNT(*) AS "Nb produits",
-        ROUND(AVG(PrixUnit)) AS "Prix moyen",
-        MIN(PrixUnit) as "Prix minimum",
-        MAX(PrixUnit) as "Prix maximum"
-	FROM Produit
-	GROUP BY NoFour;
+	COUNT(*) AS "Nb produits",
+	ROUND(AVG(PrixUnit)) AS "Prix moyen",
+	MIN(PrixUnit) as "Prix minimum",
+	MAX(PrixUnit) as "Prix maximum"
+FROM Produit
+GROUP BY NoFour;
 ```
 
 
@@ -72,8 +72,8 @@ Dans ce cas, il faut spécifier les attributs à la fois dans le `SELECT` et dan
 
 ```sql
 SELECT NoFour, CodeCateg, COUNT(*)
-	FROM Produit
-	GROUP By NoFour, CodeCateg;
+FROM Produit
+GROUP By NoFour, CodeCateg;
 ```
 
 Plus généralement, il est obligatoire que les attributs présents dans le `SELECT` soient aussi présents dans le `GROUP BY`. Dans le cas contraire, le résultat ne correspondra pas à ce qu'on cherche à obtenir et ce n'est pas toujours facile à repérer.
@@ -82,8 +82,8 @@ Par exemple ici, en ne mettant pas CodeCateg dans le `GROUP BY`, on a bien un r�
 
 ```sql
 SELECT NoFour, CodeCateg, COUNT(*)
-	FROM Produit
-	GROUP By NoFour;
+FROM Produit
+GROUP By NoFour;
 ```
 
 
