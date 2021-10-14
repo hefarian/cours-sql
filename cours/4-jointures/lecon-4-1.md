@@ -3,6 +3,8 @@
 
 Une **jointure** entre deux tables permet de combiner l'information contenue entre les deux tables. Comme vous avez pu le remarquer, les données sont découpées de façon très détaillées dans différentes tables, ceci pour différentes raisons. Pour recouper ces données, il est nécessaire de les combiner et donc de faire des jointures.
 
+<img src="../assets/jointures.png" alt="jointures" style="width:400px;"/>
+
 
 ## Principe
 
