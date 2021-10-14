@@ -24,8 +24,8 @@ Si nous avons beaucoup de commandes et de clients, cette jointure peut prendre b
 SELECT NoCom
 FROM Commande
 WHERE CodeCli = (SELECT CodeCli
-                    FROM Client
-                    WHERE Societe = "Bon app");
+                 FROM Client
+                 WHERE Societe = "Bon app");
 ```
 
 Dans cet exemple, la requête sur la table `Commande` est dite **externe**, la requête sur la table `Client` est appellée **sous-requête**.
@@ -33,7 +33,7 @@ Dans cet exemple, la requête sur la table `Commande` est dite **externe**, la r
 
 ## Idem mais avec plusieurs retours
 
-Si la recherche concerne plusieurs valeurs, il faut donc utiliser l'opérateur `IN`, qui teste si une valeur est présente dans une liste. Ici, nous cherchons les commandes des clients français, toujours possible avec une jointure.
+Si la recherche concerne plusieurs valeurs, il faut utiliser l'opérateur `IN`, qui teste si une valeur est présente dans une liste. Ici, nous cherchons les commandes des clients français, toujours possible avec une jointure :
 
 ```sql
 SELECT NoCom
