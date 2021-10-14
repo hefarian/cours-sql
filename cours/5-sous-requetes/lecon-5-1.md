@@ -122,9 +122,9 @@ WHERE PrixUnit IN (SELECT PrixUnit
 
 ## Exercices
 
-1. Lister les employés n'ayant jamais effectué une commande, via une sous-requête
+1. Lister les employés n'ayant jamais traité de commande, via une sous-requête
 1. Nombre de produits proposés par la société fournisseur `"Mayumis"`, via une sous-requête
-1.  Lister les clients dont le panier moyen est supérieur au panier moyen de tous les clients
+1. Lister les clients dont le panier moyen est supérieur au panier moyen de tous les clients
 1. Nombre de commandes passées par des employés sous la responsabilité de `"Patrick Emery"`
 1. Lister les numéros de commande ayant un montant supérieur à au montant moyen des commandes
 1. Lister les clients ayant commandé pour plus (en valeur) que le client `"HANAR"`
