@@ -53,7 +53,9 @@ VALUES ('PROD1','Produit A1', 1, 1, 1, 18, 0, 0, 1, 1);
 
 Vérification de l'insertion :
 ```sql
-SELECT * FROM Produit WHERE RefProd='PROD1';
+SELECT * 
+FROM Produit 
+WHERE RefProd='PROD1';
 ```
 
 Annulation : 
@@ -63,7 +65,9 @@ ROLLBACK;
 
 Vérification de l'annulation :
 ```sql
-SELECT * FROM Produit WHERE RefProd='PROD1';
+SELECT * 
+FROM Produit 
+WHERE RefProd='PROD1';
 ```
 
 
@@ -82,7 +86,9 @@ VALUES ('PROD1','Produit A1', 1, 1, 1, 18, 0, 0, 1, 1);
 
 Vérification de l'insertion :
 ```sql
-SELECT * FROM Produit WHERE RefProd='PROD1';
+SELECT * 
+FROM Produit 
+WHERE RefProd='PROD1';
 ```
 
 Annulation : 
@@ -92,5 +98,7 @@ COMMIT;
 
 Conformation de l'insertion :
 ```sql
-SELECT * FROM Produit WHERE RefProd='PROD1';
+SELECT * 
+FROM Produit 
+WHERE RefProd='PROD1';
 ```
