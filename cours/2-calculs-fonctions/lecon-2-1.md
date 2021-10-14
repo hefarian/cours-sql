@@ -9,14 +9,14 @@ Voici un premier exemple de calcul dans une requête. On additionne les unités 
 
 ```sql
 SELECT *, UnitesStock + UnitesCom
-    FROM Produit;
+FROM Produit;
 ```
 
 Bien évidemment, on peut vouloir faire aussi un projection en même temps, en n'affichant que la référence du produit.
 
 ```sql
 SELECT RefProd, UnitesStock + UnitesCom
-    FROM Produit;
+FROM Produit;
 ```
 
 
@@ -26,8 +26,8 @@ Pour plus de lisibilité, il est d'usage de renommer un calcul, grâce à `AS`. 
 
 ```sql
 SELECT RefProd AS Reference, 
-		UnitesStock + UnitesCom AS "Unités disponibles"
-    FROM Produit;
+       UnitesStock + UnitesCom AS "Unités disponibles"
+FROM Produit;
 ```
 
 Vous remarquerez qu'il est possible de passer à la ligne suivante dans un `SELECT` pour rendre le code plus simple à lire. En effet, en `SQL`, on peut écrire tout sur une même ligne, jusqu'à un mot par ligne. Le moteur du SGBD supprime les espaces inutiles et les sauts de lignes avant l'exécution de la requête. Mais il est important d'avoir un **code lisible** (débugage plus simple, compréhension de celui-ci par un autre aisée, réutilisation facilitée, ...).
@@ -36,8 +36,8 @@ Dans cet exemple, nous utilisons la multiplication `*` pour calculer le montant 
 
 ```sql
 SELECT RefProd, 
-		PrixUnit * UnitesStock AS "Montant en stock"
-    FROM Produit;
+		   PrixUnit * UnitesStock AS "Montant en stock"
+FROM Produit;
 ```
 
 
@@ -47,20 +47,20 @@ Puisque nous sommes dans une requête `SELECT`, nous pouvons bien évidemment ut
 
 ```sql
 SELECT RefProd, 
-		PrixUnit * UnitesStock AS "Montant en stock indisponible"
-    FROM Produit
-    WHERE Indisponible = 1;
+		    PrixUnit * UnitesStock AS "Montant en stock indisponible"
+FROM Produit
+WHERE Indisponible = 1;
 ```
 
 Et bien évidemment, on peut aussi trier le résultat, à l'aide de `ORDER BY`, et se limiter à n lignes, à l'aide de `LIMIT`. Nous avons donc ici les trois produits indisponibles avec le plus haut montant en stock.
 
 ```sql
 SELECT RefProd, 
-		PrixUnit * UnitesStock AS "Montant en stock"
-    FROM Produit
-    WHERE Indisponible = 1
-    ORDER BY 2 DESC
-    LIMIT 3;
+	   	PrixUnit * UnitesStock AS "Montant en stock"
+FROM Produit
+WHERE Indisponible = 1
+ORDER BY 2 DESC
+LIMIT 3;
 ```
 
 
@@ -70,9 +70,9 @@ Les calculs peuvent être un peu plus complexes, grâce à l'utilisation des par
 
 ```sql
 SELECT RefProd, 
-		PrixUnit * (UnitesStock - 10)
-    FROM Produit
-    WHERE UnitesStock >= 10;
+		   PrixUnit * (UnitesStock - 10)
+FROM Produit
+WHERE UnitesStock >= 10;
 ```
 
 Toute expression mathématique combinant les opérateurs classiques est donc acceptable à ce niveau.
@@ -85,7 +85,7 @@ Il est possible d'obtenir l'arrondi d'un réel grâce à la fonction `ROUND()`. 
 ```sql
 SELECT RefProd, 
 		ROUND(PrixUnit * 1.05) AS "Nouveau Prix"
-    FROM Produit;
+FROM Produit;
 ```
 
 L'arrondi ci-dessus est à l'entier. Si l'on désire un arrondi à 2 décimales (et donc les centimes dans notre cas), il faut ajouter un 2 comme second paramètre de la fonction `ROUND()`.
@@ -93,7 +93,7 @@ L'arrondi ci-dessus est à l'entier. Si l'on désire un arrondi à 2 décimales 
 ```sql
 SELECT RefProd, 
 		ROUND(PrixUnit * 1.05, 2) AS "Nouveau Prix"
-    FROM Produit;
+FROM Produit;
 ```
 
 

@@ -11,24 +11,24 @@ Dans l'exemple ci-dessous, nous voulons afficher les titres de courtoisie au com
 
 ```sql
 SELECT NoEmp, Nom, Prenom, TitreCourtoisie,
-        CASE TitreCourtoisie
-            WHEN "Mlle" THEN "Mademoiselle"
-            WHEN "Mme"  THEN "Madame"
-            WHEN "M."   THEN "Monsieur"
-            ELSE TitreCourtoisie
-        END AS Titre
-    FROM Employe;
+    CASE TitreCourtoisie
+        WHEN "Mlle" THEN "Mademoiselle"
+        WHEN "Mme"  THEN "Madame"
+        WHEN "M."   THEN "Monsieur"
+        ELSE TitreCourtoisie
+    END AS Titre
+FROM Employe;
 ```
 
 On peut aussi l'utiliser pour mettre un message en fonction de la valeur d'un attribut. Ci-dessous, nous affichons à partir de quel niveau de stock le produit doit être commandé pour réapprovisionnement. Si c'est à `0`, on indique qu'il n'y a pas de niveau minimum. Sinon, on utilise la valeur stockée dans `NiveauReap` pour créer le message.
 
 ```sql
 SELECT Refprod, Nomprod, NiveauReap,
-        CASE NiveauReap
-            WHEN 0 THEN "Pas de niveau minimum"
-            ELSE "Réapprovisionnement à partir de " || NiveauReap || " unités restantes"
-        END AS Reapprovisionnement
-    FROM Produit;
+    CASE NiveauReap
+        WHEN 0 THEN "Pas de niveau minimum"
+        ELSE "Réapprovisionnement à partir de " || NiveauReap || " unités restantes"
+    END AS Reapprovisionnement
+FROM Produit;
 ```
 
 
@@ -40,12 +40,12 @@ Dans l'exemple ci-dessous, nous comparons le prix unitaire des produits à deux 
 
 ```sql
 SELECT Refprod, Nomprod, PrixUnit,
-        CASE 
-            WHEN PrixUnit <= 50 THEN 'Petits prix'
-            WHEN PrixUnit <= 500 THEN 'Gamme moyenne'
-            ELSE "Produits de luxe"
-        END AS Gamme
-    FROM Produit;
+    CASE 
+        WHEN PrixUnit <= 50 THEN 'Petits prix'
+        WHEN PrixUnit <= 500 THEN 'Gamme moyenne'
+        ELSE "Produits de luxe"
+    END AS Gamme
+FROM Produit;
 ```
 
 Ceci revient à écrire en algo ce qui suit :
@@ -73,13 +73,13 @@ Dans l'exemple ci-dessous, nous voulons afficher un message en fonction de l'act
 
 ```sql
 SELECT Refprod, UnitesStock, UnitesCom, NiveauReap,
-        CASE
-            WHEN UnitesCom > 0 THEN "Déjà commandé"
-            WHEN UnitesStock < NiveauReap THEN "A commander"
-            WHEN UnitesStock == 0 THEN "Plus en stock"
-            ELSE "rien à faire"
-        END AS Informations
-    FROM Produit;
+    CASE
+        WHEN UnitesCom > 0 THEN "Déjà commandé"
+        WHEN UnitesStock < NiveauReap THEN "A commander"
+        WHEN UnitesStock == 0 THEN "Plus en stock"
+        ELSE "rien à faire"
+    END AS Informations
+FROM Produit;
 ```
 
 

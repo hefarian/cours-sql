@@ -7,14 +7,14 @@ La première opération que l'on souhaite faire avec des chaînes de caractères
 
 ```sql
 SELECT NoEmp, Nom || Prenom
-    FROM Employe;
+FROM Employe;
 ```
 
 Avec la requête ci-dessus, les deux chaînes sont collées, i.e. il n'y a pas d'espace entre les deux. Pour cela, il est tout à fait possible de concaténer en une expression plusieurs chaînes pour introduire un espace, comme ci-après.
 
 ```sql
 SELECT NoEmp, Nom || " " || Prenom
-    FROM Employe;
+FROM Employe;
 ```
 
 
@@ -24,14 +24,14 @@ Une commande intéressante sur les chaînes est la commande `SUBSTR(chaine, debu
 
 ```sql
 SELECT NoEmp, Nom || " " || SUBSTR(Prenom, 1, 1)
-    FROM Employe;
+FROM Employe;
 ```
 
 Et on ajoute un `"."` pour indiquer que c'est une initiale. Il n'y a pas de limite sur le nombre de chaînes que l'on peut concaténer en une seule expression.
 
 ```sql
 SELECT NoEmp, Nom || " " || SUBSTR(Prenom, 1, 1) || "."
-    FROM Employe;
+FROM Employe;
 ```
 
 
@@ -41,7 +41,7 @@ Pour pouvoir transformer une chaîne en majuscule (et respectivement en minuscul
 
 ```sql
 SELECT NoEmp, UPPER(Nom) || " " || SUBSTR(Prenom, 1, 1) || "."
-    FROM Employe;
+FROM Employe;
 ```
 
 
@@ -51,7 +51,7 @@ La commande `LENGTH(chaine)` permet de renvoyer la longueur de la chaîne (i.e. 
 
 ```sql
 SELECT NoEmp, Nom, LENGTH(Nom)
-    FROM Employe;
+FROM Employe;
 ```
 
 
@@ -61,8 +61,8 @@ La commande `REPLACE(chaîne, sc1, sc2)` permet de remplacer la sous-chaîne `sc
 
 ```sql
 SELECT Nom, Prenom, Fonction,
-        REPLACE(Fonction, "Chef", "Responsable")
-    FROM Employe;
+    REPLACE(Fonction, "Chef", "Responsable")
+FROM Employe;
 ```
 
 
@@ -74,8 +74,8 @@ Ci-dessous, nous cherchons la présence du terme `"Ave."` dans l'adresse des emp
 
 ```sql
 SELECT Nom, Adresse,
-        INSTR(Adresse, "Ave.")
-    FROM Employe;
+    INSTR(Adresse, "Ave.")
+FROM Employe;
 ```
 
 
@@ -85,8 +85,8 @@ Les données saisies dans les tables contiennent parfois des espaces ou d'autres
 
 ```sql
 SELECT Nom, Adresse,
-        RTRIM(Adresse, ".")
-    FROM Employe;
+    RTRIM(Adresse, ".")
+FROM Employe;
 ```
 
 
@@ -96,12 +96,12 @@ La fonction `QUOTE()` permet de transformer un littéral ou une valeur d'une col
 
 ```sql
 SELECT QUOTE('mot')
-    FROM Employe;
+FROM Employe;
 ```
 
 ```sql
 SELECT QUOTE(Nom), QUOTE(Prenom)
-    FROM Employe;
+FROM Employe;
 ```
 
 
