@@ -1,5 +1,5 @@
 # Cours-SQL
-Ce projet est un fork du projet de JN Charon disponible ici :  https://github.com/jnjollois/cours-sql lui-même un fork de FX Jollois disponible ici : https://github.com/fxjollois/cours-sql. J'y ai ajouté des exercices complémentaires ajouté bootstrap pour améliorer l'interface graphique et mis à jour les différentes librairies du projet.
+Ce projet est un fork du projet de JN Charon disponible ici :  https://github.com/jnjollois/cours-sql lui-même un fork de FX Jollois disponible ici : https://github.com/fxjollois/cours-sql. J'y ai ajouté des cours et Exercices sur les CREATE, INSERT, UPDATE, DELETE.
 
 
 Application web interactive de cours `SQL` accessible A définir. 
